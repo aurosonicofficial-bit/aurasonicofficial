@@ -328,7 +328,7 @@
     </div>
     <a href="#about" onclick="backToMain()" data-i18n="nav-about">ABOUT</a>
     <a href="#contact" onclick="backToMain()" data-i18n="nav-contact">CONTACT</a>
-    <a href="radyo/" style="color:var(--gold);font-weight:700;letter-spacing:1.5px;">● RADIO</a>
+    <a href="#live" style="color:var(--gold);font-weight:700;letter-spacing:1.5px;">● RADIO</a>
     <!-- FIX 13: 7 Languages -->
     <div class="lang-switcher">
       <button class="lang-btn active" onclick="setLang('en')">EN</button>
@@ -352,9 +352,25 @@
     <div class="hero-cta">
       <a href="#artists" class="btn-gold" data-i18n="hero-btn-artists">OUR ARTISTS</a>
       <a href="#releases" class="btn-outline" data-i18n="hero-btn-releases">LATEST RELEASES</a>
-      <a href="radyo/" class="btn-gold" style="background:#c0392b;color:#fff;">🔴 LISTEN LIVE</a>
+      <a href="#live" class="btn-gold" style="background:#c0392b;color:#fff;">🔴 LISTEN LIVE</a>
     </div>
     <div class="hero-scroll" data-i18n="hero-scroll">SCROLL</div>
+  </section>
+
+  <!-- LIVE RADIO -->
+  <section id="live" style="padding:70px 20px;text-align:center;">
+    <div class="section-header">
+      <p class="section-eyebrow" style="color:#c0392b;" data-i18n="live-eyebrow">● ON AIR · 24/7</p>
+      <h2 class="section-title" data-i18n="live-title">LIVE RADIO</h2>
+      <div class="gold-line"></div>
+      <p class="hero-sub" data-i18n="live-sub" style="margin-top:14px;">Global Hits · Rock · Pop · Latin · Dance — Music Never Sleeps</p>
+    </div>
+    <div style="max-width:900px;margin:24px auto 0;position:relative;padding-bottom:56.25%;height:0;border-radius:16px;overflow:hidden;box-shadow:0 12px 48px rgba(0,0,0,.55);">
+      <iframe src="https://www.youtube.com/embed/live_stream?channel=UCS59J8baS5L0ZgsQilf6nAA"
+        style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;"
+        allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen loading="lazy"
+        title="Aura Sonic Radio — Live"></iframe>
+    </div>
   </section>
 
   <section id="artists">
