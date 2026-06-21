@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>SketchUp ile Mimari Modelleme Eğitimi · Aşkın Öztürk</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="../../aurasonicofficial-logo.png">
+<meta name="description" content="SketchUp ile Mimari Modelleme — 16 dersli kapsamlı eğitim programı. Eğitmen: Aşkın Öztürk. Tasarım felsefesinden Lumion render'a kadar.">
+<meta property="og:title" content="SketchUp ile Mimari Modelleme · Aşkın Öztürk">
+<meta property="og:description" content="16 dersli profesyonel SketchUp eğitimi. Tasarım Felsefesi + 3D Düşünmek + Mimari Proje + Lumion Render.">
+<meta property="og:image" content="https://www.aurasonicofficial.com/egitim/sketchup/askin-hoca.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --gold:#C9A84C;--gold2:#E8C96A;--gold4:rgba(201,168,76,.1);
+  --bg:#0A0E1A;--bg2:#0F1421;--bg3:#1A2138;--bg4:#242C44;
+  --white:#fff;--muted:rgba(255,255,255,.55);--muted2:rgba(255,255,255,.8);
+  --border:rgba(201,168,76,.25);--border2:rgba(255,255,255,.08);
+  --green:#22C55E;--orange:#F59E0B;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--white);line-height:1.6}
+a{color:inherit;text-decoration:none}
+
+/* TOP NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(10,14,26,.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:14px 5%;display:flex;justify-content:space-between;align-items:center}
+.brand{display:flex;align-items:center;gap:12px}
+.brand img{height:36px;filter:drop-shadow(0 0 12px rgba(201,168,76,.4))}
+.brand-text{font-family:'Bebas Neue';font-size:20px;letter-spacing:2.5px;color:var(--gold);line-height:1}
+.brand-sub{font-size:9px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-top:2px}
+.nav-back{font-size:13px;color:var(--muted2);padding:8px 16px;border:1px solid var(--border2);border-radius:999px;transition:.2s}
+.nav-back:hover{border-color:var(--gold);color:var(--gold)}
+
+/* HERO */
+.hero{padding:50px 5% 30px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:1000px;height:1000px;background:radial-gradient(circle,rgba(201,168,76,.12),transparent 60%);pointer-events:none}
+.hero-tag{display:inline-block;background:var(--gold4);color:var(--gold);padding:7px 18px;border-radius:999px;font-size:11px;letter-spacing:2px;margin-bottom:18px;font-weight:700;border:1px solid var(--border)}
+.hero h1{font-family:'Bebas Neue';font-size:clamp(38px,6vw,64px);letter-spacing:3px;color:var(--white);line-height:1.05;margin-bottom:14px;position:relative;z-index:2}
+.hero h1 .gold{color:var(--gold)}
+.hero .lead{font-size:16px;color:var(--muted2);max-width:680px;margin:0 auto 26px;position:relative;z-index:2}
+
+.instructor{display:inline-flex;align-items:center;gap:14px;background:var(--bg2);border:1px solid var(--gold);padding:12px 22px 12px 14px;border-radius:999px;margin-bottom:30px;position:relative;z-index:2}
+.instructor-photo{width:50px;height:50px;border-radius:50%;background:#1A0F00;overflow:hidden;flex-shrink:0;border:2px solid var(--gold)}
+.instructor-photo img{width:100%;height:100%;object-fit:cover}
+.instructor-info{text-align:left}
+.instructor-info .n{font-family:'Bebas Neue';font-size:18px;letter-spacing:2px;color:var(--gold);line-height:1}
+.instructor-info .r{font-size:11px;color:var(--muted2);margin-top:3px;letter-spacing:1px}
+
+.stats{display:flex;gap:30px;justify-content:center;flex-wrap:wrap;padding:18px;background:var(--bg2);border:1px solid var(--border2);border-radius:14px;max-width:680px;margin:0 auto 14px;position:relative;z-index:2}
+.stat{text-align:center}
+.stat b{display:block;font-family:'Bebas Neue';font-size:30px;color:var(--gold);letter-spacing:1px;line-height:1}
+.stat small{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px}
+
+/* COURSE GRID */
+.courses{padding:50px 5%;max-width:1200px;margin:0 auto}
+.section-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;flex-wrap:wrap;gap:14px}
+.section-head h2{font-family:'Bebas Neue';font-size:30px;color:var(--gold);letter-spacing:2px}
+.section-head .progress-tag{font-size:12px;color:var(--muted2);background:var(--bg2);padding:6px 14px;border-radius:999px;border:1px solid var(--border2)}
+
+.lesson-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:16px}
+.lesson{background:var(--bg2);border:1px solid var(--border2);border-radius:14px;padding:22px;transition:.25s;position:relative;display:flex;flex-direction:column}
+.lesson:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:0 12px 28px rgba(0,0,0,.4)}
+.lesson.locked{opacity:.55;cursor:not-allowed}
+.lesson.locked:hover{transform:none;border-color:var(--border2);box-shadow:none}
+.lesson-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;gap:12px}
+.lesson-num{font-family:'Bebas Neue';font-size:36px;color:var(--gold);letter-spacing:1px;line-height:1}
+.lesson-badge{font-size:10px;font-weight:700;letter-spacing:1.5px;padding:4px 9px;border-radius:999px;text-transform:uppercase;white-space:nowrap}
+.lesson-badge.done{background:rgba(34,197,94,.18);color:var(--green)}
+.lesson-badge.locked{background:rgba(245,158,11,.18);color:var(--orange)}
+.lesson-badge.lumion{background:rgba(34,211,238,.18);color:#22D3EE}
+.lesson-title{font-size:15px;font-weight:600;margin-bottom:10px;color:var(--white);line-height:1.3}
+.lesson-topics{flex:1;list-style:none;margin-bottom:14px}
+.lesson-topics li{font-size:12px;color:var(--muted2);padding:3px 0 3px 16px;position:relative;line-height:1.5}
+.lesson-topics li::before{content:'•';color:var(--gold);position:absolute;left:5px;font-weight:700}
+.lesson-uygulama{font-size:11px;color:var(--gold);background:var(--gold4);padding:5px 10px;border-radius:6px;margin-bottom:10px;display:inline-block;letter-spacing:.3px}
+.lesson-cta{font-size:12px;color:var(--gold);font-weight:600;display:flex;align-items:center;gap:6px;margin-top:auto}
+
+/* LUMION SECTION */
+.lumion-section{padding:50px 5%;background:linear-gradient(180deg,transparent,var(--bg2));margin-top:30px}
+.lumion-section .lesson-grid{max-width:1200px;margin:0 auto}
+
+footer{padding:40px 5%;border-top:1px solid var(--border2);text-align:center;color:var(--muted);font-size:13px;margin-top:40px}
+footer a{color:var(--muted2)}footer a:hover{color:var(--gold)}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="brand" href="../../">
+    <img src="../../aurasonicofficial-logo.png" alt="">
+    <div><div class="brand-text">AURA SONIC ACADEMY</div><div class="brand-sub">Profesyonel Eğitim Serisi</div></div>
+  </a>
+  <a class="nav-back" href="../../">← Ana Sayfa</a>
+</nav>
+
+<header class="hero">
+  <span class="hero-tag">🏛️ MİMARİ TASARIM EĞİTİMİ</span>
+  <h1>SKETCHUP İLE <span class="gold">MİMARİ MODELLEME</span></h1>
+  <p class="lead">Tasarım felsefesinden başlayıp, 3D modelleme tekniklerini öğrenerek, kendi mimari ev projeni baştan sona kuracak ve Lumion ile profesyonel render alacaksın.</p>
+
+  <div class="instructor">
+    <div class="instructor-photo"><img src="../sketchup/askin-hoca.jpg" alt="Aşkın Öztürk" onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,var(--gold),var(--gold2))';this.parentElement.innerHTML='<div style=\&quot;display:flex;align-items:center;justify-content:center;height:100%;font-family:Bebas Neue;font-size:22px;color:#1A0F00\&quot;>AÖ</div>'"></div>
+    <div class="instructor-info">
+      <div class="n">AŞKIN ÖZTÜRK</div>
+      <div class="r">SketchUp & Mimari Modelleme · 20+ yıl deneyim</div>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><b>16</b><small>Ders</small></div>
+    <div class="stat"><b>+1</b><small>Lumion</small></div>
+    <div class="stat"><b>~30</b><small>Saat</small></div>
+    <div class="stat"><b>Tüm</b><small>Seviyeler</small></div>
+    <div class="stat"><b>Türkçe</b><small>Anlatım</small></div>
+  </div>
+</header>
+
+<section class="courses">
+  <div class="section-head">
+    <h2>📚 EĞİTİM DERSLERİ</h2>
+    <span class="progress-tag" id="progressTag">2/16 ders hazır</span>
+  </div>
+
+  <div class="lesson-grid" id="grid"></div>
+</section>
+
+<section class="lumion-section">
+  <div class="courses" style="padding:0">
+    <div class="section-head">
+      <h2 style="color:#22D3EE">🎬 LUMION DERSİ</h2>
+    </div>
+    <div class="lesson-grid">
+      <div class="lesson locked">
+        <div class="lesson-head">
+          <div class="lesson-num" style="color:#22D3EE">L1</div>
+          <span class="lesson-badge lumion">YAKINDA</span>
+        </div>
+        <div class="lesson-title">Lumion'a Giriş & Proje Değerlendirme</div>
+        <ul class="lesson-topics">
+          <li>Lumion arayüzü ve temelleri</li>
+          <li>SketchUp'tan model aktarımı</li>
+          <li>Malzeme & doku uygulama</li>
+          <li>Aydınlatma ve gökyüzü</li>
+          <li>Final render alımı</li>
+        </ul>
+        <div class="lesson-uygulama">🎯 Ev projesinin profesyonel renderını al</div>
+        <div class="lesson-cta">🔒 Yakında</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  AURA SONIC ACADEMY · <b style="color:var(--gold)">Aşkın Öztürk</b> tarafından hazırlandı<br><br>
+  <a href="../../">aurasonicofficial.com</a> · <a href="mailto:info@aurasonicofficial.co.uk">info@aurasonicofficial.co.uk</a>
+</footer>
+
+<script>
+const LESSONS = [
+  { n:1, t:"Tasarım Felsefesi & Arayüz", topics:["Tasarım Felsefesi ve 3D Düşünmek","Tasarım Yaparken Nasıl Düşünmeliyiz?","SketchUp'la Neler Yapabiliriz?","SketchUp | Arayüz & Temeller","Uygulama","Ödev"], uygulama:"Arayüzü tanı, eksen ve görüş kontrolü", link:"../sketchup/", done:true },
+  { n:2, t:"Çizim Araçları (Düzlem → 3D)", topics:["Tasarım Felsefesi (tekrar)","Line aracı ile düzlem oluşturma","Rectangle, Circle, Polygon ile geometrik şekiller","Uygulama","Ödev"], uygulama:"İlk yüzeyini oluştur", link:"../sketchup/bolum-2/", done:true },
+  { n:3, t:"Arc & Freehand Araçları", topics:["Tasarım Felsefesi (tekrar)","Arc araçları ile geometrik şekiller","Freehand ve Rotated Rectangle ile geometrik şekiller","Uygulama","Ödev"], uygulama:"Eğrisel formlar oluştur" },
+  { n:4, t:"Push/Pull, Move, Offset", topics:["Tasarım Felsefesi (tekrar)","Push and Pull aracı","Move aracı ile taşıma","Offset aracı","Uygulama","Ödev"], uygulama:"2D yüzeyleri 3D'ye dönüştür" },
+  { n:5, t:"Rotate, Copy, Mirror, Scale", topics:["Tasarım Felsefesi (tekrar)","Rotate aracı ile döndürme","Copy komutu ile kopyalama","Mirror ve Scale aracı","Uygulama","Ödev"], uygulama:"Nesneleri dönüştür ve çoğalt" },
+  { n:6, t:"Follow Me & Yazı/Ölçü/3D Yazı", topics:["Follow Me aracı","Uygulama 1: Masa","Yazı, Ölçü ve 3D Yazı","Ödev"], uygulama:"🪑 Masa modeli" },
+  { n:7, t:"Group, Component, Malzeme", topics:["Group - Component araçları","Outliner ile SketchUp'ı düzenli kullanma","Malzeme atama ve oluşturma","Uygulama: Merdiven Çeşitleri (U Merdiven çizimi)","Ödev"], uygulama:"🪜 U Merdiven" },
+  { n:8, t:"3D Warehouse & Banyo", topics:["3D Warehouse Model Kütüphanesi ve etkili kullanımı","Örnek Uygulama 2: Banyo","Uygulama: Merdiven Çeşitleri (L Merdiven)","Ödev"], uygulama:"🚿 Banyo + L Merdiven" },
+  { n:9, t:"Zoom/Views, Camera/Section, Styles", topics:["Zoom-Views araçları ile görünüşler","Camera - Section ile kamera ve kesit araçları","Styles - Stiller","Uygulama: Merdiven Çeşitleri (Döner Merdiven)","Ödev"], uygulama:"🌀 Döner Merdiven" },
+  { n:10, t:"Shadow, Scenes & Yardımcı Araçlar", topics:["Shadow-Scenes araçları ile gölge ve sahneleme","Yardımcı Araçlar","Uygulama: Yaşam Alanı Çizimi","Ödev"], uygulama:"🏡 Yaşam Alanı" },
+  { n:11, t:"Sandbox & Location (Arazi)", topics:["Sandbox aracı ile arazi modelleme","Location aracı ile uydudan arazi modeli alma","Uygulama: Yaşam Alanı Çizimi","Ödev"], uygulama:"🗺️ Arazi + Yaşam Alanı" },
+  { n:12, t:"Optimizasyon & Plugin'ler", topics:["Programda kasılma/takılma olmadan çalışma yöntemleri","Plugin'ler","Uygulama: E.Yatak odası","Ödev"], uygulama:"🛏️ E. Yatak Odası" },
+  { n:13, t:"Solid Tool & Import/Export", topics:["Solid Tool araçları","Import ve Export araçları","Uygulama: E.Yatak odası","Ödev"], uygulama:"🛏️ E. Yatak Odası (devam)" },
+  { n:14, t:"Önemli Plugin'ler", topics:["Bilmemiz gereken önemli Plugin'ler","Uygulama: Ç.Yatak odası","Ödev: Bitirme/Ev Projesi"], uygulama:"🛏️ Ç. Yatak Odası" },
+  { n:15, t:"Bitirme Projesi: Ev Projesi I", topics:["Bitirme Projesi · Ev Projesi","Ödev"], uygulama:"🏠 Ev Projesi (1. Bölüm)" },
+  { n:16, t:"Ev Projesi II + Lumion'a Giriş", topics:["Bitirme Projesi · Ev Projesi (devam)","Lumion'a Giriş - projenin renderini alıyoruz","Kısa Lumion dersi"], uygulama:"🏠 Ev Projesi + Render" }
+];
+
+const grid = document.getElementById('grid');
+grid.innerHTML = LESSONS.map(l => `
+  <${l.done && l.link ? 'a href="'+l.link+'"' : 'div'} class="lesson ${!l.done?'locked':''}">
+    <div class="lesson-head">
+      <div class="lesson-num">${String(l.n).padStart(2,'0')}</div>
+      <span class="lesson-badge ${l.done?'done':'locked'}">${l.done?'✓ Hazır':'🔒 Yakında'}</span>
+    </div>
+    <div class="lesson-title">Ders ${l.n}: ${l.t}</div>
+    <ul class="lesson-topics">
+      ${l.topics.map(t => `<li>${t}</li>`).join('')}
+    </ul>
+    <div class="lesson-uygulama">${l.uygulama}</div>
+    <div class="lesson-cta">${l.done ? 'Derse Başla →' : '🔒 Yakında açılacak'}</div>
+  </${l.done && l.link ? 'a' : 'div'}>
+`).join('');
+
+const doneCount = LESSONS.filter(l => l.done).length;
+document.getElementById('progressTag').textContent = doneCount + '/' + LESSONS.length + ' ders hazır';
+</script>
+</body>
+</html>
