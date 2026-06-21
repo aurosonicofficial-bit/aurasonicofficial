@@ -172,7 +172,7 @@ footer{background:var(--bg2);padding:60px 5% 30px;border-top:1px solid var(--bor
 <header class="hero">
   <span class="hero-badge"><span data-i18n="hero.badge">● Yeni: Yapay Zeka Destekli Dağıtım Paneli Aktif!</span></span>
   <h1><span data-i18n="hero.h1a">Müziğinizi</span><span class="accent" data-i18n="hero.h1b">Tüm Dünyaya Duyurun</span></h1>
-  <p>Şarkılarınızı <b>Spotify, Apple Music ve 150+ dijital platforma</b> yükleyin. Gizli ücret yok, %100 şeffaflık ve sanatçı dostu arayüz ile kariyerinizi yönetin.</p>
+  <p><span data-i18n="hero.sub">Şarkılarınızı Spotify, Apple Music ve 150+ dijital platforma yükleyin. Gizli ücret yok, %100 şeffaflık ve sanatçı dostu arayüz ile kariyerinizi yönetin.</span></p>
   <div class="hero-cta">
     <a class="btn btn-gold" href="#pricing" data-i18n="hero.cta1">Paketleri İncele →</a>
     <a class="btn btn-ghost" onclick="openSignup()" data-i18n="hero.cta2">Üye Ol</a>
@@ -186,7 +186,7 @@ footer{background:var(--bg2);padding:60px 5% 30px;border-top:1px solid var(--bor
 </div>
 
 <div class="dsp-strip">
-  <h4>150+ Dijital Mağaza & Streaming Platformuna Dağıtım</h4>
+  <h4 data-i18n="dsp.title">150+ Dijital Mağaza & Streaming Platformuna Dağıtım</h4>
   <div class="dsp-logos">
     <span>Spotify</span><span>Apple Music</span><span>YouTube Music</span><span>Amazon Music</span><span>TIDAL</span><span>Deezer</span><span>TikTok</span><span>Instagram</span>
   </div>
@@ -196,15 +196,15 @@ footer{background:var(--bg2);padding:60px 5% 30px;border-top:1px solid var(--bor
   <div class="section-head">
     <span class="tag" data-i18n="pricing.tag">Fiyatlandırma</span>
     <h2 data-i18n="pricing.h2">Sizin İçin En Uygun Plan</h2>
-    <p>İster ilk şarkınızı yayınlayın, ister bir label yönetin. Şeffaf fiyatlandırma, gizli ücret yok.</p>
+    <p data-i18n="pricing.sub">İster ilk şarkınızı yayınlayın, ister bir label yönetin. Şeffaf fiyatlandırma, gizli ücret yok.</p>
   </div>
 
   <div class="price-grid">
     <div class="price-card">
       <div class="price-name" data-i18n="plan.single">SINGLE/ALBÜM</div>
-      <div class="price-desc">Tek bir single veya albüm için hızlı ve global profesyonel dağıtım.</div>
-      <div><span class="price-amount">399₺</span><span class="price-period">/ adet</span></div>
-      <button class="btn btn-dark" onclick="openSignup('SINGLE')">Adım At →</button>
+      <div class="price-desc" data-i18n="plan.single_desc">Tek bir single veya albüm için hızlı ve global profesyonel dağıtım.</div>
+      <div><span class="price-amount">399₺</span><span class="price-period" data-i18n="plan.per_release">/ adet</span></div>
+      <button class="btn btn-dark" onclick="openSignup('SINGLE')" data-i18n="plan.cta_single">Adım At →</button>
       <ul class="price-feats">
         <li>1 adet single veya albüm için global dağıtım</li>
         <li>Gelirin %100'ü size ait</li>
@@ -216,9 +216,9 @@ footer{background:var(--bg2);padding:60px 5% 30px;border-top:1px solid var(--bor
 
     <div class="price-card popular">
       <div class="price-name" data-i18n="plan.unlimited">SINIRSIZ DAĞITIM</div>
-      <div class="price-desc">Sınırsız şarkı yayınlayan, aktif üretim sanatçıları için en popüler plan.</div>
-      <div><span class="price-amount">1.199₺</span><span class="price-period">/ yıllık</span></div>
-      <button class="btn btn-gold" onclick="openSignup('SINIRSIZ')">Şimdi Başla →</button>
+      <div class="price-desc" data-i18n="plan.unlimited_desc">Sınırsız şarkı yayınlayan, aktif üretim sanatçıları için en popüler plan.</div>
+      <div><span class="price-amount">1.199₺</span><span class="price-period" data-i18n="plan.per_year">/ yıllık</span></div>
+      <button class="btn btn-gold" onclick="openSignup('SINIRSIZ')" data-i18n="plan.cta_unlimited">Şimdi Başla →</button>
       <ul class="price-feats">
         <li>12 ay sınırsız single & albüm dağıtımı</li>
         <li>Gelirin %100'ü size ait</li>
@@ -231,7 +231,7 @@ footer{background:var(--bg2);padding:60px 5% 30px;border-top:1px solid var(--bor
 
     <div class="price-card">
       <div class="price-name" data-i18n="plan.label">LABEL</div>
-      <div class="price-desc">Kataloglu olan label, prodüksiyon şirketi veya müzik topluluğu için ideal.</div>
+      <div class="price-desc" data-i18n="plan.label_desc">Kataloglu olan label, prodüksiyon şirketi veya müzik topluluğu için ideal.</div>
       <div><span class="price-amount" style="font-size:38px;letter-spacing:2px">BİZE SORUN</span></div><small style="color:var(--muted);font-size:12px;display:block;margin-top:8px">Sanatçı sayısı ve katalog hacmine göre özel fiyat</small>
       <button class="btn btn-dark" onclick="openSignup('LABEL')">Fiyat İçin İletişim →</button>
       <ul class="price-feats">
@@ -252,14 +252,14 @@ footer{background:var(--bg2);padding:60px 5% 30px;border-top:1px solid var(--bor
     <h2 data-i18n="feat.h2">Müziğinizden Fazlasını Sunuyoruz</h2>
   </div>
   <div class="feat-grid">
-    <div class="feat"><div class="feat-ico">🌍</div><h3 data-i18n="feat.global">Global Dağıtım</h3><p>Spotify, Apple Music, YouTube Music, Amazon Music, TIDAL, Deezer ve 150+ platforma 48 saatte yayın.</p></div>
-    <div class="feat"><div class="feat-ico">📊</div><h3 data-i18n="feat.analytics">Detaylı Analitik</h3><p>Günlük dinlenme verileri, ülke bazlı raporlar ve sanatçı bazlı gelir takibi tek panelde.</p></div>
-    <div class="feat"><div class="feat-ico">💰</div><h3 data-i18n="feat.royalty">Şeffaf Telif</h3><p>Aylık / üç aylık otomatik telif raporları. IBAN'a doğrudan ödeme.</p></div>
-    <div class="feat"><div class="feat-ico">🎯</div><h3 data-i18n="feat.pr">PR & Influencer</h3><p>TikTok & Instagram'da 500+ fenomenli organik viral kampanyalar.</p></div>
-    <div class="feat"><div class="feat-ico">🛡️</div><h3 data-i18n="feat.content_id">Content ID & Claim</h3><p>YouTube ve Meta'da otomatik Content ID koruması.</p></div>
-    <div class="feat"><div class="feat-ico">🎬</div><h3 data-i18n="feat.video">Video Dağıtım</h3><p>Müzik videolarınızı YouTube Music, Apple Music ve TIDAL'a dağıtın.</p></div>
-    <div class="feat"><div class="feat-ico">🎧</div><h3 data-i18n="feat.atmos">Dolby Atmos</h3><p>Spatial Audio ve Dolby Atmos master'ları için profesyonel teslimat.</p></div>
-    <div class="feat"><div class="feat-ico">⚡</div><h3 data-i18n="feat.fast">Hızlı Onboarding</h3><p>Üye olun, kapağınızı ve sesinizi yükleyin, paketinizi seçin — 48 saatte yayında.</p></div>
+    <div class="feat"><div class="feat-ico">🌍</div><h3 data-i18n="feat.global">Global Dağıtım</h3><p><span data-i18n="feat.global_desc">Spotify, Apple Music, YouTube Music, Amazon Music, TIDAL, Deezer ve 150+ platforma 48 saatte yayın.</span></p></div>
+    <div class="feat"><div class="feat-ico">📊</div><h3 data-i18n="feat.analytics">Detaylı Analitik</h3><p><span data-i18n="feat.analytics_desc">Günlük dinlenme verileri, ülke bazlı raporlar ve sanatçı bazlı gelir takibi tek panelde.</span></p></div>
+    <div class="feat"><div class="feat-ico">💰</div><h3 data-i18n="feat.royalty">Şeffaf Telif</h3><p><span data-i18n="feat.royalty_desc">Aylık / üç aylık otomatik telif raporları. IBAN'a doğrudan ödeme.</span></p></div>
+    <div class="feat"><div class="feat-ico">🎯</div><h3 data-i18n="feat.pr">PR & Influencer</h3><p><span data-i18n="feat.pr_desc">TikTok & Instagram'da 500+ fenomenli organik viral kampanyalar.</span></p></div>
+    <div class="feat"><div class="feat-ico">🛡️</div><h3 data-i18n="feat.content_id">Content ID & Claim</h3><p><span data-i18n="feat.content_id_desc">YouTube ve Meta'da otomatik Content ID koruması.</span></p></div>
+    <div class="feat"><div class="feat-ico">🎬</div><h3 data-i18n="feat.video">Video Dağıtım</h3><p><span data-i18n="feat.video_desc">Müzik videolarınızı YouTube Music, Apple Music ve TIDAL'a dağıtın.</span></p></div>
+    <div class="feat"><div class="feat-ico">🎧</div><h3 data-i18n="feat.atmos">Dolby Atmos</h3><p><span data-i18n="feat.atmos_desc">Spatial Audio ve Dolby Atmos master'ları için profesyonel teslimat.</span></p></div>
+    <div class="feat"><div class="feat-ico">⚡</div><h3 data-i18n="feat.fast">Hızlı Onboarding</h3><p><span data-i18n="feat.fast_desc">Üye olun, kapağınızı ve sesinizi yükleyin, paketinizi seçin — 48 saatte yayında.</span></p></div>
   </div>
 </section>
 
@@ -267,7 +267,7 @@ footer{background:var(--bg2);padding:60px 5% 30px;border-top:1px solid var(--bor
   <div class="section-head">
     <span class="tag" data-i18n="artists.tag">Sanatçılarımız</span>
     <h2 data-i18n="artists.h2">AURA SONIC OFFICIAL Roster</h2>
-    <p>Türkçe ve uluslararası sahnenin yeni sesleri. Sen de aramıza katıl.</p>
+    <p data-i18n="artists.sub">Türkçe ve uluslararası sahnenin yeni sesleri. Sen de aramıza katıl.</p>
   </div>
   <div class="artist-grid">
     <div class="artist-card"><img src="askinozturk.jpg" alt="Aşkın Öztürk"><div class="name">Aşkın Öztürk</div></div>
@@ -285,11 +285,11 @@ footer{background:var(--bg2);padding:60px 5% 30px;border-top:1px solid var(--bor
 
 <section id="contact">
   <div class="cta-final">
-    <h2>Müziğin Geleceği Senin Elinde 🎵</h2>
-    <p>Sanatçı, prodüktör veya label olarak hemen üye ol — 48 saat içinde ilk yayını çıkar. Sorularınız için 7/24 destek ekibimiz hazır.</p>
+    <h2 data-i18n="final.h2">Müziğin Geleceği Senin Elinde 🎵</h2>
+    <p data-i18n="final.p">Sanatçı, prodüktör veya label olarak hemen üye ol — 48 saat içinde ilk yayını çıkar. Sorularınız için 7/24 destek ekibimiz hazır.</p>
     <div class="hero-cta">
       <a class="btn btn-gold" onclick="openSignup()" data-i18n="nav.signup">Üye Ol →</a>
-      <a class="btn btn-ghost" href="https://wa.me/447882747808" target="_blank">WhatsApp ile İletişim</a>
+      <a class="btn btn-ghost" href="https://wa.me/447882747808" target="_blank" data-i18n="final.wa">WhatsApp ile İletişim</a>
     </div>
   </div>
 </section>
@@ -301,20 +301,20 @@ footer{background:var(--bg2);padding:60px 5% 30px;border-top:1px solid var(--bor
         <img src="aurasonicofficial-logo.png" alt="">
         <div><div class="logo-text">AURA SONIC</div><div class="logo-sub">Official Label & Distribution</div></div>
       </a>
-      <p style="color:var(--muted2);font-size:13px;margin-top:18px;max-width:300px;line-height:1.6">Bağımsız sanatçılar ve label'lar için profesyonel müzik dağıtım platformu. Aura Sonic Group LTD.</p>
+      <p style="color:var(--muted2);font-size:13px;margin-top:18px;max-width:300px;line-height:1.6"><span data-i18n="foot.about">Bağımsız sanatçılar ve label'lar için profesyonel müzik dağıtım platformu. Aura Sonic Group LTD.</span></p>
     </div>
     <div>
       <h5 data-i18n="foot.platform">Platform</h5>
       <a href="#features" data-i18n="nav.services">Hizmetler</a>
       <a href="#pricing" data-i18n="nav.pricing">Fiyatlandırma</a>
       <a href="#artists" data-i18n="nav.artists">Sanatçılarımız</a>
-      <a href="radyo/">7/24 Radyo</a>
+      <a href="radyo/" data-i18n="nav.radio">7/24 Radyo</a>
     </div>
     <div>
       <h5 data-i18n="foot.member">Üyelik</h5>
-      <a href="login/">Giriş Yap</a>
-      <a onclick="openSignup()">Üye Ol</a><a href="odeme/">Ödeme Talimatları</a>
-      <a href="#contact">Destek</a>
+      <a href="login/" data-i18n="nav.login">Giriş Yap</a>
+      <a onclick="openSignup()" data-i18n="nav.signup">Üye Ol</a><a href="odeme/" data-i18n="foot.payment">Ödeme Talimatları</a>
+      <a href="#contact" data-i18n="foot.contact">Destek</a>
     </div>
     <div>
       <h5 data-i18n="foot.contact">İletişim</h5>
@@ -510,5 +510,20 @@ function copyConfirm(){
 
 
 
-<script src="assets/i18n.js"></script></body>
+<script src="assets/i18n.js"></script>
+<script>
+(function(){
+  // EN POPULER rozetini dil degisince guncelle
+  const orig = window.setLang;
+  window.setLang = function(l){
+    orig(l);
+    const dict = (window.I18N && window.I18N[l]) || {};
+    const popText = dict['plan.popular'] || '⭐ EN POPÜLER';
+    let st = document.getElementById('i18nPopStyle');
+    if(!st){ st = document.createElement('style'); st.id='i18nPopStyle'; document.head.appendChild(st); }
+    st.textContent = ".price-card.popular::before{content:'" + popText.replace(/'/g,"\\'") + "'}";
+  };
+  if(window.I18N){ window.setLang(localStorage.getItem('aura_lang') || 'tr'); }
+})();
+</script></body>
 </html>
