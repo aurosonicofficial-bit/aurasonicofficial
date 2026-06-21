@@ -697,5 +697,106 @@ Kapak ve ses dosyalarini WhatsApp/email ile gonderecegim.`;
   }, 600);
 }
 </script>
+
+<style>
+.onboard-banner{background:linear-gradient(135deg,rgba(34,211,238,.12),rgba(34,197,94,.08));border:1px solid #22D3EE;border-radius:14px;padding:24px 28px;margin-bottom:24px}
+.onboard-banner h2{font-family:'Bebas Neue';font-size:24px;letter-spacing:2px;color:#22D3EE;margin-bottom:6px}
+.onboard-banner p{color:var(--muted2);font-size:14px;line-height:1.6;margin-bottom:18px}
+.onboard-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+.onboard-step{background:var(--bg2);border:1px solid var(--border2);padding:14px;border-radius:10px;display:flex;align-items:center;gap:12px;font-size:13px}
+.onboard-step .num{width:28px;height:28px;border-radius:50%;background:var(--bg3);color:var(--muted);display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0}
+.onboard-step.done .num{background:#22C55E;color:#0F1421}
+.onboard-step.pending .num{background:var(--orange);color:#1A0F00}
+.empty-state{text-align:center;padding:60px 30px;background:var(--bg2);border:1px dashed var(--border2);border-radius:14px}
+.empty-state .ico{font-size:54px;margin-bottom:14px;opacity:.4}
+.empty-state h3{font-size:18px;margin-bottom:8px}
+.empty-state p{color:var(--muted2);font-size:14px;max-width:420px;margin:0 auto 18px}
+</style>
+
+<script>
+(function personalize(){
+  let user;
+  try { user = JSON.parse(localStorage.getItem('aura_user') || '{}'); } catch(e){ user = {}; }
+  if(!user.email){ user = {email:'guest', name:'AŞKIN ÖZTÜRK', initials:'AÖ', isAdmin:true, plan:'LABEL'}; }
+
+  // Header: isim + avatar
+  document.querySelector('.user-info .n').textContent = (user.name || 'Yeni Üye').toUpperCase();
+  document.querySelector('.user-info .e').textContent = user.isAdmin ? 'AURA SONIC OFFICIAL — LABEL' : (user.plan + ' ÜYE · ' + user.email);
+  document.querySelector('.avatar').textContent = user.initials || 'YÜ';
+
+  if(user.isAdmin) return; // admin -> tum veriler kalsin
+
+  // === YENI MUSTERI MODU ===
+  // 1) Aktif Uyelik karti -> "Inceleme asamasinda"
+  const homeView = document.querySelector('section[data-view="home"]');
+  if(homeView){
+    const card = homeView.querySelector('.card');
+    if(card){
+      card.innerHTML =
+        '<div class="row">' +
+          '<div class="flex1">' +
+            '<span class="badge pending">⏳ İnceleme Aşamasında</span>' +
+            '<div style="font-size:18px;margin-top:10px;color:var(--gold)"><b>'+ (user.name || 'Yeni Üye') +'</b> · '+ (user.plan||'SINIRSIZ') +' Plan</div>' +
+            '<div style="font-size:13px;color:var(--muted2);margin-top:6px">Başvurun ekibimiz tarafından inceleniyor · Aktivasyon 24-48 saat</div>' +
+          '</div>' +
+          '<button class="btn" onclick="alert(\'Ödeme bilgileri için e-postanı kontrol et veya WhatsApp\\u0027dan iletişime geç.\')">Ödeme Talimatı</button>' +
+        '</div>';
+      card.style.background = 'linear-gradient(135deg,rgba(245,158,11,.12),transparent)';
+      card.style.borderColor = 'var(--orange)';
+    }
+
+    // 2) Onboarding banner ekle
+    const banner = document.createElement('div');
+    banner.className = 'onboard-banner';
+    banner.innerHTML =
+      '<h2>👋 HOŞ GELDİN, '+ (user.name||'YENİ ÜYE').toUpperCase() +'!</h2>' +
+      '<p>AURA SONIC OFFICIAL ailesine katıldığın için teşekkürler. Hesabını aktive etmek için aşağıdaki adımları tamamla — onaylandıktan sonra ilk yayınını başlatabilirsin.</p>' +
+      '<div class="onboard-steps">' +
+        '<div class="onboard-step done"><div class="num">✓</div><div><b>Üyelik başvurusu</b><br><small style="color:var(--muted)">Tamamlandı</small></div></div>' +
+        '<div class="onboard-step pending"><div class="num">2</div><div><b>Ödeme</b><br><small style="color:var(--muted)">E-postanı kontrol et</small></div></div>' +
+        '<div class="onboard-step"><div class="num">3</div><div><b>Sanatçı Profili</b><br><small style="color:var(--muted)">Profil sayfasından</small></div></div>' +
+        '<div class="onboard-step"><div class="num">4</div><div><b>IBAN Bilgisi</b><br><small style="color:var(--muted)">Ödemeler bölümü</small></div></div>' +
+        '<div class="onboard-step"><div class="num">5</div><div><b>İlk Yayın</b><br><small style="color:var(--muted)">Yayınlarım menüsü</small></div></div>' +
+      '</div>';
+    homeView.insertBefore(banner, homeView.firstChild);
+
+    // 3) Stat metric'leri sifirla
+    const metrics = homeView.querySelectorAll('.metric .value');
+    if(metrics[0]) metrics[0].textContent = '₺0,00';
+    if(metrics[1]) metrics[1].textContent = '0';
+    if(metrics[2]) metrics[2].textContent = '1';   // sadece kendisi
+    if(metrics[3]) { metrics[3].textContent = '0'; const sub = homeView.querySelector('.metric .sub'); if(sub) sub.textContent = 'Henüz veri yok'; }
+  }
+
+  // Releases sayfasini bosalt
+  const relGrid = document.getElementById('release-grid');
+  if(relGrid){
+    relGrid.outerHTML =
+      '<div class="empty-state">' +
+        '<div class="ico">💿</div>' +
+        '<h3>Henüz yayının yok</h3>' +
+        '<p>Hesabın aktive edildikten sonra ilk single, EP veya albümünü buradan oluşturabilirsin. 48 saatte 150+ platformda yayında.</p>' +
+        '<button class="btn" onclick="openNewRelease()">+ İlk Yayını Oluştur</button>' +
+      '</div>';
+  }
+  // Artists sayfasini bosalt
+  const artGrid = document.getElementById('artist-grid');
+  if(artGrid){
+    artGrid.outerHTML =
+      '<div class="artist-grid"><div class="artist-card" style="padding:30px;text-align:center">' +
+        '<div class="artist-avatar" style="background:linear-gradient(135deg,var(--gold),var(--gold2))">'+ (user.initials||'YÜ') +'</div>' +
+        '<div class="n">'+ (user.name||'Yeni Üye') +'</div>' +
+        '<div class="c">Profil tamamlanmadı</div>' +
+        '<div style="margin-top:10px;font-size:12px;color:var(--muted)">0 yayın</div>' +
+      '</div></div>';
+  }
+
+  // Yayinlarim baslik sayisini guncelle
+  document.querySelectorAll('.section-head h2').forEach(h=>{
+    if(h.textContent.includes('Yayınlarım')) h.textContent = 'Yayınlarım (0)';
+    if(h.textContent.includes('Label Sanatçıları')) h.textContent = 'Sanatçı Profilim (1)';
+  });
+})();
+</script>
 </body>
 </html>

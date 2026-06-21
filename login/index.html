@@ -149,6 +149,20 @@ function doLogin(e){
   // Beni hatirla -> localStorage
   if(d.remember) localStorage.setItem('aura_email', d.email);
 
+  // Kullanici profilini olustur
+  const adminEmails = ['askin.ozturk.com@gmail.com','info@aurasonicofficial.co.uk','admin@aurasonicofficial.com'];
+  const isAdmin = adminEmails.includes(d.email.toLowerCase());
+  const nameFromEmail = d.email.split('@')[0].replace(/[._-]+/g,' ').replace(/\b\w/g, c => c.toUpperCase());
+  const user = {
+    email: d.email,
+    name: isAdmin ? 'Aşkın Öztürk' : nameFromEmail,
+    initials: isAdmin ? 'AÖ' : (nameFromEmail.split(' ').map(s=>s[0]).join('').slice(0,2).toUpperCase() || 'YÜ'),
+    isAdmin: isAdmin,
+    plan: isAdmin ? 'LABEL' : 'SINIRSIZ',
+    joinedAt: new Date().toISOString()
+  };
+  localStorage.setItem('aura_user', JSON.stringify(user));
+
   // Basari -> portal'a yonlendir
   okBox.classList.add('show');
   setTimeout(()=>{ window.location.href = '../portal/'; }, 900);
