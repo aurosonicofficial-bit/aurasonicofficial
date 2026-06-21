@@ -385,15 +385,99 @@ ${d.notlar || '-'}
   const mailto = 'mailto:info@aurasonicofficial.co.uk?subject=' + subj + '&body=' + encodeURIComponent(body);
   const wa = 'https://wa.me/447882747808?text=' + encodeURIComponent(body);
 
-  window.open(mailto, '_blank');
-  setTimeout(()=>{
-    if(confirm('✓ Basvuru e-postaniz hazir.\n\nAlternatif olarak WhatsApp uzerinden de gondermek ister misiniz?')){
-      window.open(wa, '_blank');
-    }
-    closeSignup();
-    e.target.reset();
-  }, 600);
+  closeSignup();
+  showConfirm({
+    title: 'BAŞVURUN HAZIR!',
+    lead: 'Aşağıdaki kanallardan birini seçerek bize ulaştır — 24 saat içinde dönüş yaparız.',
+    subj: 'AURA SONIC Üye Başvurusu - ' + d.sanatci + ' (' + d.plan + ')',
+    body: body
+  });
+  e.target.reset();
 }
 </script>
+
+<style id="confirmPanelCss">
+.confirm-bg{position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:3000;display:none;align-items:center;justify-content:center;padding:20px}
+.confirm-bg.show{display:flex}
+.confirm-box{background:#0F1421;border:2px solid #C9A84C;border-radius:18px;padding:32px;max-width:560px;width:100%;max-height:92vh;overflow-y:auto;font-family:'Outfit',sans-serif;color:#fff}
+.confirm-box .ico-big{font-size:54px;text-align:center;margin-bottom:8px}
+.confirm-box h2{font-family:'Bebas Neue';font-size:28px;letter-spacing:2px;color:#C9A84C;text-align:center;margin-bottom:8px}
+.confirm-box .lead{text-align:center;color:rgba(255,255,255,.78);font-size:14px;margin-bottom:24px;line-height:1.6}
+.confirm-box .msg-preview{background:#1A2138;border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:14px;font-family:monospace;font-size:11px;color:rgba(255,255,255,.7);max-height:140px;overflow-y:auto;white-space:pre-wrap;margin-bottom:20px}
+.send-btns{display:grid;gap:10px}
+.send-btn{display:flex;align-items:center;gap:14px;padding:14px 18px;border-radius:12px;background:#1A2138;border:1px solid rgba(255,255,255,.08);color:#fff;text-decoration:none;cursor:pointer;transition:.2s;font-family:'Outfit';font-size:14px;font-weight:600}
+.send-btn:hover{border-color:#C9A84C;background:#242C44;transform:translateX(4px)}
+.send-btn .em{font-size:24px}
+.send-btn .ti{flex:1;text-align:left}
+.send-btn .ti small{display:block;color:rgba(255,255,255,.55);font-size:11px;font-weight:400;margin-top:2px}
+.send-btn.wa{background:linear-gradient(135deg,#25D366 0%,#128C7E 100%);border-color:#25D366}
+.send-btn.wa:hover{box-shadow:0 8px 24px rgba(37,211,102,.35)}
+.send-btn.gmail{background:linear-gradient(135deg,#EA4335 0%,#C5221F 100%);border-color:#EA4335}
+.send-btn.copy{background:linear-gradient(135deg,#C9A84C,#E8C96A);color:#1A0F00;border-color:#C9A84C}
+.confirm-close{margin-top:18px;width:100%;padding:11px;background:transparent;border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.7);border-radius:10px;cursor:pointer;font-family:'Outfit';font-size:13px}
+.confirm-close:hover{color:#fff;border-color:#C9A84C}
+.toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:#22C55E;color:#0F1421;padding:14px 24px;border-radius:999px;font-weight:700;font-size:14px;box-shadow:0 12px 40px rgba(34,197,94,.4);z-index:5000;opacity:0;transition:.3s;pointer-events:none}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(-10px)}
+</style>
+
+<div class="confirm-bg" id="confirmPanel" onclick="if(event.target===this)closeConfirm()">
+  <div class="confirm-box">
+    <div class="ico-big">✅</div>
+    <h2 id="confirmTitle">BAŞVURUN HAZIR!</h2>
+    <p class="lead" id="confirmLead">Aşağıdaki kanallardan biriyle bize ulaştır — anında ulaşır, 24 saat içinde dönüş yaparız.</p>
+
+    <div class="msg-preview" id="confirmMsg"></div>
+
+    <div class="send-btns">
+      <a class="send-btn wa" id="btnWaUK" target="_blank">
+        <span class="em">🇬🇧</span>
+        <span class="ti"><b>WhatsApp ile Gönder (UK)</b><small>+44 7882 747 808 · 7/24 aktif</small></span>
+        <span>→</span>
+      </a>
+      <a class="send-btn wa" id="btnWaTR" target="_blank" style="background:linear-gradient(135deg,#128C7E,#075E54)">
+        <span class="em">🇹🇷</span>
+        <span class="ti"><b>WhatsApp ile Gönder (TR)</b><small>+90 532 060 6612</small></span>
+        <span>→</span>
+      </a>
+      <a class="send-btn gmail" id="btnGmail" target="_blank">
+        <span class="em">📧</span>
+        <span class="ti"><b>Gmail ile Gönder</b><small>info@aurasonicofficial.co.uk</small></span>
+        <span>→</span>
+      </a>
+      <button class="send-btn copy" onclick="copyConfirm()">
+        <span class="em">📋</span>
+        <span class="ti"><b>Bilgileri Kopyala</b><small>Sonra istediğin yere yapıştırabilirsin</small></span>
+        <span>→</span>
+      </button>
+    </div>
+
+    <button class="confirm-close" onclick="closeConfirm()">Kapat</button>
+  </div>
+</div>
+
+<div class="toast" id="toast">✓ Panoya kopyalandı</div>
+
+<script>
+window.__auraConfirm = {body:'', subj:''};
+function showConfirm(opts){
+  window.__auraConfirm = opts;
+  document.getElementById('confirmTitle').textContent = opts.title || 'BAŞVURUN HAZIR!';
+  document.getElementById('confirmLead').textContent = opts.lead || 'Aşağıdaki kanallardan biriyle bize ulaştır.';
+  document.getElementById('confirmMsg').textContent = opts.body;
+  const enc = encodeURIComponent(opts.body);
+  document.getElementById('btnWaUK').href = 'https://wa.me/447882747808?text=' + enc;
+  document.getElementById('btnWaTR').href = 'https://wa.me/905320606612?text=' + enc;
+  document.getElementById('btnGmail').href = 'https://mail.google.com/mail/?view=cm&fs=1&to=info@aurasonicofficial.co.uk&su=' + encodeURIComponent(opts.subj || 'AURA SONIC Başvuru') + '&body=' + enc;
+  document.getElementById('confirmPanel').classList.add('show');
+}
+function closeConfirm(){ document.getElementById('confirmPanel').classList.remove('show'); }
+function copyConfirm(){
+  navigator.clipboard.writeText(window.__auraConfirm.body || '').then(()=>{
+    const t = document.getElementById('toast'); t.classList.add('show');
+    setTimeout(()=>t.classList.remove('show'), 1800);
+  });
+}
+</script>
+
 </body>
 </html>
