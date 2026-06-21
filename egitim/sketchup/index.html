@@ -502,7 +502,7 @@ function showQuiz(q){
   quiz.classList.add('show');
 }
 
-function nextStep(){ if(curStep < STEPS.length-1) showStep(curStep+1); else alert('Bölüm 2 yakında! Şimdilik Bölüm 1\'i bitirdin. 🎉'); }
+function nextStep(){ if(curStep < STEPS.length-1) showStep(curStep+1); else window.location.href='bolum-2/'; }
 function prevStep(){ if(curStep > 0) showStep(curStep-1); }
 function goStep(i){ showStep(i); }
 function toggleMute(){ muted = !muted; document.getElementById('muteBtn').textContent = muted ? '🔇' : '🔊'; document.getElementById('muteBtn').classList.toggle('active', muted); if(muted) synth.cancel(); }

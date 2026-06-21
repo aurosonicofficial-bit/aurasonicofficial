@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>SketchUp Bölüm 2 — Çizim Araçları · AURA SONIC ACADEMY</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="../../../aurasonicofficial-logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --gold:#C9A84C;--gold2:#E8C96A;--gold4:rgba(201,168,76,.1);
+  --bg:#0A0E1A;--bg2:#0F1421;--bg3:#1A2138;--bg4:#242C44;
+  --white:#fff;--muted:rgba(255,255,255,.55);--muted2:rgba(255,255,255,.8);
+  --border:rgba(201,168,76,.25);--border2:rgba(255,255,255,.08);
+  --green:#22C55E;--red:#EF4444;
+}
+html,body{height:100%;font-family:'Outfit',sans-serif;background:var(--bg);color:var(--white);overflow:hidden}
+a{color:inherit;text-decoration:none}
+
+/* TOP BAR */
+.topbar{position:fixed;top:0;left:0;right:0;height:60px;background:rgba(10,14,26,.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 24px;z-index:100}
+.brand{display:flex;align-items:center;gap:12px}
+.brand img{height:34px;filter:drop-shadow(0 0 10px rgba(201,168,76,.4))}
+.brand-text{font-family:'Bebas Neue';font-size:18px;letter-spacing:2px;color:var(--gold);line-height:1}
+.brand-sub{font-size:9px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-top:2px}
+.lesson-info{text-align:center}
+.lesson-info .ch{font-size:10px;letter-spacing:2px;color:var(--gold);text-transform:uppercase}
+.lesson-info .t{font-size:14px;font-weight:600;margin-top:2px}
+.ctrl-btn{background:var(--bg3);border:1px solid var(--border2);color:var(--white);padding:8px 14px;border-radius:8px;cursor:pointer;font-family:'Outfit';font-size:12px;font-weight:600;transition:.2s}
+.ctrl-btn:hover{border-color:var(--gold);color:var(--gold)}
+
+/* STAGE */
+.stage{position:absolute;top:60px;left:0;right:0;bottom:140px;display:grid;grid-template-columns:1fr 380px}
+
+/* VIEWPORT — top-down paper */
+.viewport{position:relative;background:#F5F1E8;overflow:hidden}
+/* Grid (reference lines) */
+.grid{position:absolute;inset:0;background-image:linear-gradient(rgba(120,100,60,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(120,100,60,.08) 1px,transparent 1px);background-size:40px 40px;pointer-events:none}
+/* Main axes (red X, green Y) */
+.axis-x{position:absolute;left:0;right:0;top:50%;height:2px;background:linear-gradient(90deg,transparent,#D02828,#D02828,transparent);pointer-events:none}
+.axis-y{position:absolute;top:0;bottom:0;left:50%;width:2px;background:linear-gradient(180deg,transparent,#28A028,#28A028,transparent);pointer-events:none}
+
+/* SketchUp toolbar */
+.su-toolbar{position:absolute;top:0;left:0;right:0;height:44px;background:#E8E4DC;border-bottom:1px solid #BCB5A4;display:flex;align-items:center;padding:0 12px;gap:4px;z-index:5}
+.su-tool{width:34px;height:34px;border-radius:4px;background:#F5F1E8;border:1px solid #BCB5A4;display:flex;align-items:center;justify-content:center;color:#444;font-size:18px;cursor:pointer;font-weight:600;transition:.2s;position:relative}
+.su-tool:hover{background:var(--gold);border-color:var(--gold);color:#1A0F00}
+.su-tool.active{background:var(--gold);border-color:var(--gold);color:#1A0F00;box-shadow:0 0 0 2px rgba(201,168,76,.4)}
+.su-tool .kk{position:absolute;bottom:-2px;right:-2px;font-size:9px;background:#1A0F00;color:var(--gold);padding:1px 4px;border-radius:3px;font-weight:700;font-family:monospace}
+.su-sep{width:1px;height:24px;background:#BCB5A4;margin:0 6px}
+
+/* Drawing layer (SVG) */
+.draw-svg{position:absolute;top:44px;left:0;right:0;bottom:0;pointer-events:none}
+.stroke{fill:none;stroke:#1A0F00;stroke-width:2;stroke-dasharray:1000;stroke-dashoffset:1000;transition:stroke-dashoffset 1.2s ease-in-out}
+.stroke.drawn{stroke-dashoffset:0}
+.face-fill{fill:rgba(201,168,76,.18);opacity:0;transition:opacity .8s ease}
+.face-fill.show{opacity:1}
+.dim-label{position:absolute;background:#1A0F00;color:#FFF;padding:5px 10px;border-radius:5px;font-family:monospace;font-size:12px;font-weight:700;opacity:0;transition:opacity .3s;pointer-events:none;z-index:30;white-space:nowrap}
+.dim-label.show{opacity:1}
+.dim-label::after{content:'';position:absolute;left:50%;bottom:-5px;transform:translateX(-50%);border:5px solid transparent;border-top-color:#1A0F00}
+.measure-input{position:absolute;background:#1A0F00;color:var(--gold);border:1px solid var(--gold);padding:6px 14px;border-radius:6px;font-family:monospace;font-size:14px;font-weight:700;letter-spacing:2px;opacity:0;transition:.3s;pointer-events:none;z-index:30}
+.measure-input.show{opacity:1}
+.measure-input::before{content:'⌨ ';font-family:'Outfit'}
+
+/* Animated cursor (pencil) */
+.cursor{position:absolute;width:32px;height:32px;z-index:50;pointer-events:none;transition:left 1.2s cubic-bezier(.4,.2,.2,1), top 1.2s cubic-bezier(.4,.2,.2,1);opacity:0;transform:translate(-2px,-30px)}
+.cursor.show{opacity:1}
+.cursor svg{filter:drop-shadow(0 4px 8px rgba(0,0,0,.4))}
+.cursor.clicking::after{content:'';position:absolute;left:-4px;top:25px;width:24px;height:24px;border-radius:50%;border:3px solid #1A0F00;animation:ripple .6s ease-out}
+@keyframes ripple{0%{transform:scale(.4);opacity:1}100%{transform:scale(1.8);opacity:0}}
+
+/* Highlight */
+.highlight{position:absolute;border:3px solid var(--gold);border-radius:6px;box-shadow:0 0 0 4px rgba(201,168,76,.3),0 0 30px rgba(201,168,76,.7);pointer-events:none;opacity:0;transition:.4s;z-index:40}
+.highlight.show{opacity:1;animation:pulse 1.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 4px rgba(201,168,76,.3),0 0 30px rgba(201,168,76,.7)}50%{box-shadow:0 0 0 8px rgba(201,168,76,.2),0 0 50px rgba(201,168,76,.9)}}
+
+/* RIGHT PANEL */
+.panel{background:var(--bg2);border-left:1px solid var(--border2);padding:24px;overflow-y:auto;display:flex;flex-direction:column}
+.avatar{display:flex;align-items:center;gap:14px;padding-bottom:18px;border-bottom:1px solid var(--border2);margin-bottom:18px}
+.avatar-img{width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue';font-size:22px;color:#1A0F00}
+.avatar-img.talking{animation:talk .4s ease-in-out infinite alternate}
+@keyframes talk{0%{transform:scale(1)}100%{transform:scale(1.08)}}
+.avatar-info .n{font-weight:700;font-size:14px}
+.avatar-info .r{font-size:11px;color:var(--gold);letter-spacing:1px;text-transform:uppercase;margin-top:2px}
+.step-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.step-header .ix{font-size:11px;color:var(--muted);letter-spacing:2px;text-transform:uppercase}
+.step-header .of{font-size:11px;color:var(--gold)}
+.step-title{font-family:'Bebas Neue';font-size:26px;letter-spacing:2px;color:var(--gold);line-height:1.1;margin-bottom:12px}
+.step-text{font-size:14px;color:var(--muted2);line-height:1.7;margin-bottom:16px}
+.step-tip{background:var(--gold4);border:1px solid var(--border);padding:14px;border-radius:10px;font-size:12px;color:var(--muted2);line-height:1.6;margin-bottom:16px}
+.step-tip b{color:var(--gold)}
+.step-action{background:var(--bg3);padding:14px;border-radius:10px;margin-bottom:16px;border-left:3px solid var(--gold)}
+.step-action b{display:block;font-size:11px;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px}
+.step-action span{font-size:13px;color:var(--white)}
+.kbd{display:inline-block;background:var(--bg4);border:1px solid var(--border2);border-bottom-width:2px;padding:3px 8px;border-radius:5px;font-family:monospace;font-size:11px;font-weight:700;color:var(--gold);margin:0 2px}
+
+/* BOTTOM */
+.bottombar{position:fixed;bottom:0;left:0;right:0;height:140px;background:var(--bg2);border-top:1px solid var(--border);padding:18px 24px;z-index:100;display:flex;flex-direction:column;gap:14px}
+.progress-bar{display:flex;gap:6px;align-items:center}
+.dot{flex:1;height:6px;background:var(--bg4);border-radius:3px;position:relative;overflow:hidden;cursor:pointer;transition:.2s}
+.dot:hover{background:var(--bg3)}
+.dot .fill{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0;transition:width .3s}
+.dot.done .fill{width:100%}
+.dot.current .fill{width:100%;animation:cur 2s ease-in-out infinite}
+@keyframes cur{0%,100%{opacity:1}50%{opacity:.5}}
+.nav-row{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.big-btn{padding:14px 24px;border-radius:12px;border:none;font-family:'Outfit';font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:8px;transition:.25s;letter-spacing:.5px}
+.big-btn:disabled{opacity:.35;cursor:not-allowed}
+.big-btn.prev{background:var(--bg3);color:var(--muted2);border:1px solid var(--border2)}
+.big-btn.prev:hover:not(:disabled){border-color:var(--gold);color:var(--gold)}
+.big-btn.next{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1A0F00;flex:1;max-width:280px;justify-content:center}
+.big-btn.next:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(201,168,76,.4)}
+.audio-controls{display:flex;gap:8px;align-items:center}
+.audio-controls .ic{width:38px;height:38px;border-radius:50%;background:var(--bg3);border:1px solid var(--border2);color:var(--white);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px}
+.audio-controls .ic:hover{border-color:var(--gold);color:var(--gold)}
+
+/* Welcome */
+.welcome{position:fixed;inset:0;background:rgba(10,14,26,.98);z-index:200;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;transition:opacity .5s}
+.welcome.hide{opacity:0;pointer-events:none}
+.welcome h1{font-family:'Bebas Neue';font-size:64px;letter-spacing:4px;color:var(--gold);margin-bottom:8px;line-height:1}
+.welcome .tag{display:inline-block;background:var(--gold4);color:var(--gold);padding:6px 16px;border-radius:999px;font-size:12px;letter-spacing:2px;margin-bottom:24px;font-weight:700}
+.welcome h2{font-size:26px;font-weight:600;margin-bottom:14px}
+.welcome p{font-size:15px;color:var(--muted2);max-width:560px;line-height:1.7;margin-bottom:30px}
+.welcome .meta{display:flex;gap:30px;margin-bottom:36px;flex-wrap:wrap;justify-content:center}
+.welcome .meta div{text-align:center}
+.welcome .meta b{display:block;font-family:'Bebas Neue';font-size:26px;color:var(--gold);letter-spacing:1px}
+.welcome .meta small{font-size:11px;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase}
+
+/* Quiz */
+.quiz{display:none;position:absolute;inset:0;background:rgba(15,20,33,.95);z-index:80;align-items:center;justify-content:center;padding:40px}
+.quiz.show{display:flex}
+.quiz-card{background:var(--bg2);border:1px solid var(--gold);border-radius:18px;padding:32px;max-width:500px;width:100%;text-align:center}
+.quiz-card h3{font-family:'Bebas Neue';font-size:24px;color:var(--gold);letter-spacing:2px;margin-bottom:16px}
+.quiz-card .q{font-size:16px;margin-bottom:20px;line-height:1.5}
+.quiz-opt{display:block;width:100%;background:var(--bg3);border:1px solid var(--border2);color:var(--white);padding:14px;border-radius:10px;cursor:pointer;font-family:'Outfit';font-size:14px;text-align:left;transition:.2s;margin-bottom:10px}
+.quiz-opt:hover{border-color:var(--gold)}
+.quiz-opt.correct{background:rgba(34,197,94,.2);border-color:var(--green);color:var(--green)}
+.quiz-opt.wrong{background:rgba(239,68,68,.2);border-color:var(--red);color:var(--red)}
+
+@media(max-width:900px){.stage{grid-template-columns:1fr;grid-template-rows:1fr 280px}.panel{border-left:0;border-top:1px solid var(--border2)}}
+</style>
+</head>
+<body>
+
+<!-- WELCOME -->
+<div class="welcome" id="welcome">
+  <div class="tag">⭐ AURA SONIC ACADEMY · BÖLÜM 2</div>
+  <h1>ÇİZİM ARAÇLARI</h1>
+  <h2>Bölüm 2 · Çizgi, Dikdörtgen, Çember</h2>
+  <p>Artık SketchUp'ta gezinmeyi biliyorsun. Şimdi sıra çizmeye geldi. Bu bölümde çizgi, dikdörtgen ve çember araçlarını kullanarak ilk şekillerini oluşturacak ve ölçüleri klavyeyle nasıl girdiğini öğreneceksin.</p>
+  <div class="meta">
+    <div><b>11</b><small>Adım</small></div>
+    <div><b>~6</b><small>Dakika</small></div>
+    <div><b>Başlangıç</b><small>Seviye</small></div>
+    <div><b>Türkçe</b><small>Anlatım</small></div>
+  </div>
+  <button class="big-btn next" onclick="startLesson()">🚀 Derse Başla</button>
+  <p style="margin-top:24px;font-size:11px;color:var(--muted)">Önce <a href="../" style="color:var(--gold)">Bölüm 1'i</a> tamamladığından emin ol.</p>
+</div>
+
+<!-- TOP -->
+<header class="topbar">
+  <a class="brand" href="../../../">
+    <img src="../../../aurasonicofficial-logo.png" alt="">
+    <div><div class="brand-text">AURA SONIC ACADEMY</div><div class="brand-sub">SketchUp Eğitim Serisi</div></div>
+  </a>
+  <div class="lesson-info">
+    <div class="ch">BÖLÜM 2 / 8</div>
+    <div class="t">Çizim Araçları</div>
+  </div>
+  <button class="ctrl-btn" onclick="window.location.href='../'">← Bölüm 1</button>
+</header>
+
+<!-- STAGE -->
+<div class="stage">
+  <div class="viewport" id="viewport">
+    <div class="su-toolbar">
+      <div class="su-tool" id="tool-select" title="Seç">↖<span class="kk">Sp</span></div>
+      <div class="su-sep"></div>
+      <div class="su-tool" id="tool-line" title="Çizgi">/<span class="kk">L</span></div>
+      <div class="su-tool" id="tool-rect" title="Dikdörtgen">▭<span class="kk">R</span></div>
+      <div class="su-tool" id="tool-circle" title="Çember">○<span class="kk">C</span></div>
+      <div class="su-sep"></div>
+      <div class="su-tool" id="tool-eraser" title="Sil">⌫<span class="kk">E</span></div>
+      <div class="su-sep"></div>
+      <div class="su-tool" id="tool-orbit" title="Orbit">🌐</div>
+      <div class="su-tool" id="tool-zoom" title="Zoom">🔍</div>
+    </div>
+
+    <div class="grid"></div>
+    <div class="axis-x"></div>
+    <div class="axis-y"></div>
+
+    <svg class="draw-svg" id="drawSvg" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid meet">
+      <!-- Çizgi animasyonu -->
+      <line id="line1" class="stroke" x1="200" y1="300" x2="200" y2="300"/>
+      <line id="line2" class="stroke" x1="200" y1="200" x2="200" y2="200"/>
+      <line id="line3" class="stroke" x1="500" y1="200" x2="500" y2="200"/>
+      <line id="line4" class="stroke" x1="500" y1="300" x2="500" y2="300"/>
+      <polygon id="lineFill" class="face-fill" points="200,200 500,200 500,300 200,300"/>
+
+      <!-- Dikdörtgen tek hamle -->
+      <rect id="rect1" class="stroke" x="150" y="150" width="0" height="0"/>
+      <rect id="rectFill" class="face-fill" x="150" y="150" width="0" height="0"/>
+
+      <!-- Cember -->
+      <circle id="circle1" class="stroke" cx="400" cy="250" r="0"/>
+      <circle id="circleFill" class="face-fill" cx="400" cy="250" r="0"/>
+    </svg>
+
+    <div class="dim-label" id="dimLabel">300 cm</div>
+    <div class="measure-input" id="measureInput">3,00</div>
+
+    <div class="cursor" id="cursor">
+      <svg width="32" height="32" viewBox="0 0 32 32">
+        <path d="M4 28 L20 12 L28 20 L12 28 Z" fill="#FFC107" stroke="#1A0F00" stroke-width="1.5"/>
+        <path d="M20 12 L24 8 L28 12 L28 20" fill="#1A0F00" stroke="#1A0F00" stroke-width="1.5"/>
+      </svg>
+    </div>
+    <div class="highlight" id="highlight"></div>
+
+    <div class="quiz" id="quiz">
+      <div class="quiz-card">
+        <h3>🧠 HIZLI SORU</h3>
+        <div class="q" id="quizQ"></div>
+        <div id="quizOpts"></div>
+      </div>
+    </div>
+  </div>
+
+  <aside class="panel">
+    <div class="avatar">
+      <div class="avatar-img" id="avatarImg">AÖ</div>
+      <div class="avatar-info">
+        <div class="n">Aşkın Hoca</div>
+        <div class="r">SketchUp Eğitmeni · AI Ses</div>
+      </div>
+    </div>
+    <div class="step-header"><div class="ix" id="stepIx">ADIM 1</div><div class="of" id="stepOf">/ 11</div></div>
+    <div class="step-title" id="stepTitle"></div>
+    <div class="step-text" id="stepText"></div>
+    <div class="step-tip" id="stepTip" style="display:none"><b>💡 İPUCU:</b> <span id="stepTipText"></span></div>
+    <div class="step-action" id="stepAction" style="display:none"><b>🎯 ŞIMDI YAP</b><span id="stepActionText"></span></div>
+  </aside>
+</div>
+
+<footer class="bottombar">
+  <div class="progress-bar" id="progressBar"></div>
+  <div class="nav-row">
+    <button class="big-btn prev" id="prevBtn" onclick="prevStep()">← Önceki</button>
+    <div class="audio-controls">
+      <button class="ic" id="muteBtn" onclick="toggleMute()">🔊</button>
+      <button class="ic" onclick="replayNarration()">↻</button>
+    </div>
+    <button class="big-btn next" id="nextBtn" onclick="nextStep()">Sonraki Adım →</button>
+  </div>
+</footer>
+
+<script>
+const STEPS = [
+  { title:"Çizimle tanışalım",
+    text:"Üstten bakışla bir kağıdın üzerindeyiz. Kılavuz çizgileri ölçek için. Kırmızı çizgi X ekseni, yeşil çizgi Y ekseni.",
+    voice:"Bu derste sahnemizi üstten görüyoruz. Sanki bir kağıdın üzerinde plan çizer gibi düşün. Şimdi araç çubuğundaki çizim araçlarını inceleyelim.",
+    tip:"Bu üstten görünüm aslında SketchUp'ın 'Top' sahne ayarıdır. Numarik tuş takımındaki <span class='kbd'>2</span> ile her zaman geçiş yapabilirsin." },
+
+  { title:"Çizgi aracı (L)",
+    text:"Tüm çizimlerin atası: tek tıkla başla, ikinci tıkla bitir.",
+    voice:"İlk araç: çizgi. Klavye kısayolu L harfi. Çizgi aracıyla iki nokta arasında çizgi çizersin. İlk tıklamada başlangıç noktası, ikinci tıklamada bitiş noktası belirlenir.",
+    tip:"Klavyeden <span class='kbd'>L</span> harfine bas, çizgi aracı aktif olur. Önce başlangıç noktasına, sonra bitiş noktasına tıkla.",
+    highlight:{el:'tool-line'},
+    activate:'tool-line',
+    cursor:{toolHover:'tool-line'} },
+
+  { title:"İlk çizgini çizelim",
+    text:"İzle: 3 metre uzunluğunda bir çizgi çiziyorum.",
+    voice:"Şimdi çizgi çiziyorum. İlk noktaya tıklıyorum, fareyi sağa doğru hareket ettiriyorum ve klavyeden 3 metre yazıp Enter'a basıyorum. Çizgi tam 3 metre uzunluğunda olur.",
+    tip:"Sihir: Fare hareket halindeyken klavyeden ölçü yazıp Enter'a basarsan, çizgi tam o ölçüde olur. <b>Ölçü kontrolü hep klavyededir.</b>",
+    activate:'tool-line',
+    drawLine:1,
+    showDim:{x:'35%',y:'58%',t:'3,00 m'} },
+
+  { title:"Kapalı şekil = yüzey",
+    text:"Çizgileri kapatınca SketchUp otomatik olarak yüzey oluşturur. Bunun büyüsüne dikkat.",
+    voice:"Şimdi sihirli kısım. Çizgilerle kapalı bir şekil oluşturursan, SketchUp otomatik olarak içini yüzey olarak doldurur. Bu yüzey, bir sonraki bölümde 3D'ye çevireceğimiz temel.",
+    tip:"Yüzey kuralı: Tüm çizgilerin <b>aynı düzlemde</b> olması ve <b>kapalı</b> olması gerekir.",
+    activate:'tool-line',
+    drawShape:true },
+
+  { title:"Dikdörtgen aracı (R)",
+    text:"Çizgi çizgi uğraşmak yerine, dikdörtgeni tek hamlede çiz.",
+    voice:"Dikdörtgen aracı, kısayolu R harfi. Çizgi aracından çok daha hızlı. İki köşe seçiyorsun, dikdörtgen hazır.",
+    tip:"Profesyoneller plan çizerken hep <span class='kbd'>R</span> kullanır — çizgi çizgi uğraşmaz.",
+    highlight:{el:'tool-rect'},
+    activate:'tool-rect',
+    cursor:{toolHover:'tool-rect'} },
+
+  { title:"Ölçülü dikdörtgen",
+    text:"En güçlü trick: 4,5 ; 3 yaz, Enter — tam ölçüde dikdörtgen.",
+    voice:"En büyük gücün bu: dikdörtgen çizerken klavyeden virgülle ayrılmış iki sayı yazıp Enter'a basarsan, tam o ölçüde dikdörtgen alırsın. Örneğin 4,5 noktalı virgül 3 yazarsan 4,5 metreye 3 metre dikdörtgen olur.",
+    tip:"Format: <span class='kbd'>genişlik;yükseklik</span> sonra <span class='kbd'>Enter</span>. Türkçe Windows'ta ondalık ayracı virgül, alan ayracı ise noktalı virgül.",
+    activate:'tool-rect',
+    drawRect:true,
+    showMeasure:{x:'45%',y:'70%',t:'4,5;3,0'} },
+
+  { title:"Çember aracı (C)",
+    text:"Yuvarlak şekiller için çember. Merkez seç, yarıçap belirle.",
+    voice:"Çember aracı, kısayolu C harfi. Önce merkez noktasını tıklarsın, fareyi uzaklaştırarak yarıçapı ayarlarsın. Veya klavyeden direkt yazarsın: örneğin 1,5 metre.",
+    tip:"Çember aslında çok kenarlı bir poligondur. Varsayılan 24 kenarı vardır. Daha pürüzsüz istersen kenar sayısını artırırsın.",
+    highlight:{el:'tool-circle'},
+    activate:'tool-circle',
+    cursor:{toolHover:'tool-circle'} },
+
+  { title:"Çember çiziyorum",
+    text:"İzle: 1,5 metre yarıçaplı çember.",
+    voice:"Çember çiziyorum. Merkeze tıklıyorum, dışarı doğru hareket ediyorum, klavyeden 1 nokta 5 yazıp Enter'a basıyorum. 1,5 metre yarıçaplı tam yuvarlak.",
+    tip:"Çember çizdikten sonra hemen <span class='kbd'>24s</span> yazıp Enter'a basarsan kenar sayısını 24'ten istediğine değiştirir. Örneğin 64s pürüzsüz görünüm.",
+    activate:'tool-circle',
+    drawCircle:true,
+    showMeasure:{x:'52%',y:'72%',t:'1,50 m'} },
+
+  { title:"3 araç, 3 kısayol",
+    text:"En çok kullanacağın 3 çizim aracını ezberle:",
+    voice:"Bölüm sonu özet. L harfi çizgi. R harfi dikdörtgen. C harfi çember. Hepsinde ortak kural: fare ile başlat, klavyeden ölçü yaz, Enter ile bitir.",
+    action:"<b>Çizgi:</b> <span class='kbd'>L</span> · iki nokta · ölçü + Enter<br><b>Dikdörtgen:</b> <span class='kbd'>R</span> · iki köşe · gen;yük + Enter<br><b>Çember:</b> <span class='kbd'>C</span> · merkez · yarıçap + Enter",
+    tip:"Kuralı kavradın mı? <b>Ölçü her zaman klavyeden, fareden değil.</b> Profesyonel olmanın sırrı bu." },
+
+  { title:"Quiz 🧠",
+    text:"Hadi göster bakalım — bir soru!",
+    voice:"Hadi göreyim. 4 metreye 3 metre dikdörtgen çizmek için klavyeden ne yazarsın?",
+    quiz:{
+      q:"4 m × 3 m dikdörtgen çizmek için klavyeden ne yazıp Enter'a basarsın?",
+      opts:[
+        {t:"4*3",ok:false},
+        {t:"4;3",ok:true},
+        {t:"4,3",ok:false},
+        {t:"4-3",ok:false}
+      ]
+    }},
+
+  { title:"Bölüm 2 tamamlandı! 🎉",
+    text:"Artık çizgi, dikdörtgen ve çember çizebiliyorsun. Bir sonraki bölümde bu yüzeyleri 3D objelere dönüştüreceğiz!",
+    voice:"Aferin! Bölüm iki tamamlandı. Artık plan çizmenin temelini biliyorsun. Bölüm üçte Push Pull aracıyla 2 boyutlu çizimleri 3 boyutlu hacme dönüştüreceğiz. Mimarlığa bir adım daha yaklaştın.",
+    tip:"<b>Ödev:</b> SketchUp'ı aç, bir oda planı çiz. 4 metre çarpı 5 metre dikdörtgen ve içine 1 metre yarıçaplı bir masa çember olarak ekle. 10 dakikanı alır.",
+    final:true }
+];
+
+let curStep = 0;
+let muted = false;
+const synth = window.speechSynthesis;
+let trVoice = null;
+function loadVoice(){ const all = synth.getVoices(); trVoice = all.find(v => v.lang.startsWith('tr')) || all[0]; }
+if(synth){ loadVoice(); synth.onvoiceschanged = loadVoice; }
+
+function speak(text){
+  if(muted || !synth || !text) return;
+  synth.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  if(trVoice) u.voice = trVoice;
+  u.lang = 'tr-TR'; u.rate = 0.95;
+  document.getElementById('avatarImg').classList.add('talking');
+  u.onend = ()=> document.getElementById('avatarImg').classList.remove('talking');
+  synth.speak(u);
+}
+
+function buildProgress(){
+  document.getElementById('progressBar').innerHTML = STEPS.map((_,i) => `<div class="dot" onclick="goStep(${i})"><div class="fill"></div></div>`).join('');
+}
+
+function clearViewport(){
+  document.querySelectorAll('.su-tool').forEach(t => t.classList.remove('active'));
+  document.getElementById('cursor').classList.remove('show','clicking');
+  document.getElementById('highlight').classList.remove('show');
+  document.getElementById('quiz').classList.remove('show');
+  document.getElementById('dimLabel').classList.remove('show');
+  document.getElementById('measureInput').classList.remove('show');
+}
+
+function resetDrawings(){
+  ['line1','line2','line3','line4'].forEach(id => document.getElementById(id).classList.remove('drawn'));
+  document.getElementById('lineFill').classList.remove('show');
+  const rect = document.getElementById('rect1'); rect.setAttribute('width',0); rect.setAttribute('height',0); rect.classList.remove('drawn');
+  document.getElementById('rectFill').classList.remove('show');
+  const circle = document.getElementById('circle1'); circle.setAttribute('r',0); circle.classList.remove('drawn');
+  document.getElementById('circleFill').classList.remove('show');
+}
+
+function showStep(i){
+  curStep = Math.max(0, Math.min(STEPS.length-1, i));
+  const s = STEPS[curStep];
+
+  document.getElementById('stepIx').textContent = 'ADIM ' + (curStep+1);
+  document.getElementById('stepOf').textContent = '/ ' + STEPS.length;
+  document.getElementById('stepTitle').textContent = s.title;
+  document.getElementById('stepText').textContent = s.text;
+
+  if(s.tip){ document.getElementById('stepTip').style.display='block'; document.getElementById('stepTipText').innerHTML = s.tip; }
+  else document.getElementById('stepTip').style.display='none';
+
+  if(s.action){ document.getElementById('stepAction').style.display='block'; document.getElementById('stepActionText').innerHTML = ' ' + s.action; }
+  else document.getElementById('stepAction').style.display='none';
+
+  document.querySelectorAll('.dot').forEach((d,idx) => {
+    d.classList.remove('done','current');
+    if(idx < curStep) d.classList.add('done');
+    if(idx === curStep) d.classList.add('current');
+  });
+
+  document.getElementById('prevBtn').disabled = (curStep === 0);
+  document.getElementById('nextBtn').textContent = (curStep === STEPS.length-1) ? 'Bölüm 3 →' : 'Sonraki Adım →';
+
+  clearViewport();
+  resetDrawings();
+
+  if(s.activate){ const el = document.getElementById(s.activate); if(el) el.classList.add('active'); }
+
+  if(s.highlight){
+    const hl = document.getElementById('highlight');
+    if(s.highlight.el){
+      const el = document.getElementById(s.highlight.el);
+      const rect = el.getBoundingClientRect();
+      const vp = document.getElementById('viewport').getBoundingClientRect();
+      hl.style.left = (rect.left - vp.left - 4) + 'px';
+      hl.style.top  = (rect.top - vp.top - 4) + 'px';
+      hl.style.width  = (rect.width + 8) + 'px';
+      hl.style.height = (rect.height + 8) + 'px';
+      setTimeout(()=> hl.classList.add('show'), 100);
+    }
+  }
+
+  if(s.cursor){
+    const c = document.getElementById('cursor');
+    let x = s.cursor.x, y = s.cursor.y;
+    if(s.cursor.toolHover){
+      const el = document.getElementById(s.cursor.toolHover);
+      const rect = el.getBoundingClientRect();
+      const vp = document.getElementById('viewport').getBoundingClientRect();
+      x = rect.left - vp.left + rect.width/2;
+      y = rect.top - vp.top + rect.height/2;
+    }
+    c.style.left = x + 'px'; c.style.top = y + 'px';
+    setTimeout(()=> { c.classList.add('show'); setTimeout(()=> c.classList.add('clicking'), 800); }, 300);
+  }
+
+  if(s.drawLine){
+    setTimeout(()=> {
+      const l = document.getElementById('line' + s.drawLine);
+      // animate from start to end position
+      l.setAttribute('x2', s.drawLine === 1 ? 500 : 0);
+      l.setAttribute('y2', 300);
+      l.classList.add('drawn');
+    }, 500);
+  }
+
+  if(s.drawShape){
+    setTimeout(()=> {
+      const l1 = document.getElementById('line1'); l1.setAttribute('x2',500); l1.setAttribute('y2',300); l1.classList.add('drawn');
+      setTimeout(()=> { const l2 = document.getElementById('line2'); l2.setAttribute('x2',500); l2.setAttribute('y2',200); l2.classList.add('drawn'); },1200);
+      setTimeout(()=> { const l3 = document.getElementById('line3'); l3.setAttribute('x2',200); l3.setAttribute('y2',200); l3.classList.add('drawn'); },2400);
+      setTimeout(()=> { const l4 = document.getElementById('line4'); l4.setAttribute('x2',200); l4.setAttribute('y2',300); l4.classList.add('drawn'); document.getElementById('lineFill').classList.add('show'); },3600);
+    }, 500);
+  }
+
+  if(s.drawRect){
+    setTimeout(()=> {
+      const r = document.getElementById('rect1');
+      r.classList.add('drawn');
+      // animate width/height
+      let w = 0, h = 0;
+      const tw = 450, th = 200;
+      const t0 = performance.now();
+      function anim(t){
+        const p = Math.min(1, (t-t0)/1200);
+        r.setAttribute('width', Math.round(tw*p));
+        r.setAttribute('height', Math.round(th*p));
+        if(p<1) requestAnimationFrame(anim);
+        else {
+          const f = document.getElementById('rectFill');
+          f.setAttribute('width',tw); f.setAttribute('height',th);
+          f.classList.add('show');
+        }
+      }
+      requestAnimationFrame(anim);
+    }, 500);
+  }
+
+  if(s.drawCircle){
+    setTimeout(()=> {
+      const c = document.getElementById('circle1');
+      c.classList.add('drawn');
+      let r = 0; const tr = 130;
+      const t0 = performance.now();
+      function anim(t){
+        const p = Math.min(1, (t-t0)/1200);
+        c.setAttribute('r', Math.round(tr*p));
+        if(p<1) requestAnimationFrame(anim);
+        else {
+          const f = document.getElementById('circleFill');
+          f.setAttribute('r',tr);
+          f.classList.add('show');
+        }
+      }
+      requestAnimationFrame(anim);
+    }, 500);
+  }
+
+  if(s.showDim){
+    const d = document.getElementById('dimLabel');
+    d.style.left = s.showDim.x; d.style.top = s.showDim.y; d.textContent = s.showDim.t;
+    setTimeout(()=> d.classList.add('show'), 1800);
+  }
+  if(s.showMeasure){
+    const m = document.getElementById('measureInput');
+    m.style.left = s.showMeasure.x; m.style.top = s.showMeasure.y; m.textContent = s.showMeasure.t;
+    setTimeout(()=> m.classList.add('show'), 1500);
+  }
+
+  if(s.quiz){ setTimeout(()=> showQuiz(s.quiz), 1000); }
+
+  setTimeout(()=> speak(s.voice || s.text), 400);
+}
+
+function showQuiz(q){
+  const quiz = document.getElementById('quiz');
+  document.getElementById('quizQ').textContent = q.q;
+  const opts = document.getElementById('quizOpts');
+  opts.innerHTML = '';
+  q.opts.forEach(o => {
+    const b = document.createElement('button');
+    b.className = 'quiz-opt'; b.textContent = o.t;
+    b.onclick = ()=> {
+      opts.querySelectorAll('.quiz-opt').forEach(x => x.style.pointerEvents='none');
+      b.classList.add(o.ok ? 'correct' : 'wrong');
+      if(o.ok){ speak('Doğru! 4 noktalı virgül 3 yazar Enter\'a basarsın.'); setTimeout(()=> quiz.classList.remove('show'), 1800); }
+      else { const c = q.opts.findIndex(x => x.ok); opts.children[c].classList.add('correct'); speak('Yanlış. Doğrusu 4 noktalı virgül 3.'); }
+    };
+    opts.appendChild(b);
+  });
+  quiz.classList.add('show');
+}
+
+function nextStep(){ if(curStep < STEPS.length-1) showStep(curStep+1); else alert('Bölüm 3 yakında! Bölüm 2\'yi başarıyla tamamladın. 🎉'); }
+function prevStep(){ if(curStep > 0) showStep(curStep-1); }
+function goStep(i){ showStep(i); }
+function toggleMute(){ muted = !muted; document.getElementById('muteBtn').textContent = muted ? '🔇' : '🔊'; if(muted) synth.cancel(); }
+function replayNarration(){ if(!muted) speak(STEPS[curStep].voice || STEPS[curStep].text); }
+
+function startLesson(){
+  document.getElementById('welcome').classList.add('hide');
+  setTimeout(()=> { buildProgress(); showStep(0); }, 300);
+}
+
+document.addEventListener('keydown', e => {
+  if(document.getElementById('welcome').classList.contains('hide')){
+    if(e.key === 'ArrowRight' || e.key === ' '){ e.preventDefault(); nextStep(); }
+    if(e.key === 'ArrowLeft') prevStep();
+    if(e.key === 'm' || e.key === 'M') toggleMute();
+  }
+});
+</script>
+</body>
+</html>
