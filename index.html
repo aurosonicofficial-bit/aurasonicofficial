@@ -165,8 +165,8 @@ footer{background:var(--bg2);padding:60px 5% 30px;border-top:1px solid var(--bor
 </header>
 
 <div class="stats">
-  <div class="stat"><div class="stat-n">10+</div><div class="stat-l">Aktif Sanatçı</div></div>
-  <div class="stat"><div class="stat-n">56+</div><div class="stat-l">Yayında Eser</div></div>
+  <div class="stat"><div class="stat-n">100+</div><div class="stat-l">Aktif Sanatçı</div></div>
+  <div class="stat"><div class="stat-n">2.000+</div><div class="stat-l">Yayında Eser</div></div>
   <div class="stat"><div class="stat-n">%100</div><div class="stat-l">Şeffaf Pay</div></div>
 </div>
 
@@ -217,8 +217,8 @@ footer{background:var(--bg2);padding:60px 5% 30px;border-top:1px solid var(--bor
     <div class="price-card">
       <div class="price-name">LABEL</div>
       <div class="price-desc">Kataloglu olan label, prodüksiyon şirketi veya müzik topluluğu için ideal.</div>
-      <div><span class="price-amount">3.499₺</span><span class="price-period">/ yıllık</span></div>
-      <button class="btn btn-dark" onclick="openSignup('LABEL')">Label Ol →</button>
+      <div><span class="price-amount" style="font-size:38px;letter-spacing:2px">BİZE SORUN</span></div><small style="color:var(--muted);font-size:12px;display:block;margin-top:8px">Sanatçı sayısı ve katalog hacmine göre özel fiyat</small>
+      <button class="btn btn-dark" onclick="openSignup('LABEL')">Fiyat İçin İletişim →</button>
       <ul class="price-feats">
         <li>Sınırsız sanatçı & sınırsız yayın</li>
         <li>48 saatte yayında</li>
@@ -317,7 +317,7 @@ footer{background:var(--bg2);padding:60px 5% 30px;border-top:1px solid var(--bor
 <div class="modal-bg" id="signupModal" onclick="if(event.target===this)closeSignup()">
   <div class="modal">
     <h3>AURA SONIC ÜYE BAŞVURUSU</h3>
-    <p class="lead">Formu doldur — 24 saat içinde ödeme talimatları ve hesap aktivasyonu için e-posta göndereceğiz.</p>
+    <p class="lead">Formu doldur — başvurun ekibimiz tarafından incelenir. Uygun bulunan başvurulara <b style="color:var(--gold)">24 saat içinde</b> ödeme talimatları ve hesap aktivasyon e-postası gönderilir. Aramıza her gelen değil, <b style="color:var(--gold)">vizyon sahibi sanatçı ve label'lar</b> katılır.</p>
 
     <form id="signupForm" onsubmit="submitSignup(event)">
       <div class="field row2">
@@ -334,7 +334,7 @@ footer{background:var(--bg2);padding:60px 5% 30px;border-top:1px solid var(--bor
           <option value="">— Seçiniz —</option>
           <option value="SINGLE">SINGLE/ALBÜM — 399₺ / adet</option>
           <option value="SINIRSIZ">SINIRSIZ DAĞITIM — 1.199₺ / yıllık</option>
-          <option value="LABEL">LABEL — 3.499₺ / yıllık (10+ sanatçı)</option>
+          <option value="LABEL">LABEL — Özel fiyatlandırma (bize sorun)</option>
         </select>
       </div>
       <div class="field row2">
