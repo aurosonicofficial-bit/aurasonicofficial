@@ -884,5 +884,122 @@ function copyConfirm(){
 }
 </script>
 
-<script src="../assets/i18n.js"></script></body>
+<script src="../assets/i18n.js"></script>
+<style>
+.req-row{display:grid;grid-template-columns:90px 1.5fr 110px 1.5fr 110px 200px;gap:14px;padding:14px 16px;background:var(--bg2);border:1px solid var(--border2);border-radius:10px;margin-bottom:8px;align-items:center;font-size:13px}
+.req-row.done{opacity:.55}
+.req-row .nm{font-weight:600}.req-row .mt{color:var(--muted);font-size:12px}
+.req-act{display:flex;gap:6px}
+.req-act button{padding:6px 10px;border-radius:7px;border:none;font-family:Outfit;font-weight:600;font-size:11px;cursor:pointer;transition:.2s}
+.req-act .ok{background:#22C55E;color:#0F1421}.req-act .no{background:#EF4444;color:#fff}.req-act .ef{background:#F59E0B;color:#1A0F00}.req-act .mt2{background:#22D3EE;color:#0F1421}
+.req-filter{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.req-filter button{padding:8px 14px;border-radius:999px;border:1px solid var(--border2);background:var(--bg2);color:var(--muted2);cursor:pointer;font-family:Outfit;font-size:12px;font-weight:600}
+.req-filter button.active{background:var(--gold);color:#1A0F00;border-color:var(--gold)}
+@media(max-width:900px){.req-row{grid-template-columns:1fr;gap:8px}}
+</style>
+
+<script>
+(function adminPanel(){
+  let user; try{ user = JSON.parse(localStorage.getItem('aura_user')||'{}'); }catch(e){user={}}
+  if(!user.isAdmin) return;
+
+  // Sidebar linki
+  const navs = document.querySelectorAll('.nav');
+  const adminNav = navs[navs.length-1];
+  if(adminNav){
+    const label = document.createElement('div'); label.className='nav-label'; label.textContent='ADMIN';
+    const link = document.createElement('a'); link.dataset.view='requests';
+    link.innerHTML='<span class="icon">📥</span> Gelen Talepler<span class="badge-new" id="reqBadge">0</span>';
+    link.onclick = ()=>{ window.setView && window.setView('requests'); };
+    adminNav.parentNode.insertBefore(label, adminNav.nextSibling);
+    const newNav = document.createElement('div'); newNav.className='nav';
+    newNav.appendChild(link);
+    adminNav.parentNode.insertBefore(newNav, label.nextSibling);
+  }
+
+  // Ornek veri
+  if(!localStorage.getItem('aura_requests')){
+    const samples = [
+      {id:1,date:'2026-06-21',name:'Mehmet Yılmaz',artist:'M.YILMAZ',plan:'SINIRSIZ',email:'mehmet@gmail.com',phone:'+90 555 111 2233',genre:'Pop',status:'pending'},
+      {id:2,date:'2026-06-21',name:'Ayşe Demir',artist:'AYDA',plan:'SINGLE',email:'ayse.d@gmail.com',phone:'+90 555 222 3344',genre:'Türk Pop',status:'pending'},
+      {id:3,date:'2026-06-20',name:'Hasan Kara',artist:'KARA',plan:'LABEL',email:'hasan@karamuzik.com',phone:'+90 532 333 4455',genre:'Rock',status:'pending'},
+      {id:4,date:'2026-06-19',name:'Selin Aktaş',artist:'SELYN',plan:'SINIRSIZ',email:'selin@aktas.com',phone:'+90 555 444 5566',genre:'Electronic',status:'mitas'},
+      {id:5,date:'2026-06-18',name:'Burak Öz',artist:'BO',plan:'SINGLE',email:'burak.oz@gmail.com',phone:'+90 555 555 6677',genre:'Hip-Hop',status:'ef'},
+      {id:6,date:'2026-06-17',name:'Cem Yıldız',artist:'CY MUSIC',plan:'SINIRSIZ',email:'cem@yildiz.tv',phone:'+90 555 666 7788',genre:'Pop-Rock',status:'pending'},
+      {id:7,date:'2026-06-15',name:'Fatma Şen',artist:'F.SEN',plan:'SINGLE',email:'fatma@sen.com',phone:'+90 555 777 8899',genre:'Türk Sanat',status:'rejected'}
+    ];
+    localStorage.setItem('aura_requests', JSON.stringify(samples));
+  }
+
+  // View ekle
+  const content = document.querySelector('.content');
+  if(!content) return;
+  const view = document.createElement('section');
+  view.className = 'view'; view.dataset.view='requests';
+  view.innerHTML = `
+    <div class="section-head"><h2 id="reqTitle">📥 Gelen Talepler</h2>
+      <div class="actions"><input type="text" id="reqSearch" placeholder="🔍 Sanatçı, email, plan..." style="width:280px"></div>
+    </div>
+    <div class="req-filter">
+      <button data-st="all" class="active">Tümü</button>
+      <button data-st="pending">⏳ Bekleyen</button>
+      <button data-st="mitas">🏢 MITAS'a Gönderildi</button>
+      <button data-st="ef">🎪 Eğlence Fabrikası'na Gönderildi</button>
+      <button data-st="rejected">❌ Reddedildi</button>
+    </div>
+    <div id="reqList"></div>
+  `;
+  content.appendChild(view);
+
+  const STATUS = {
+    pending:{l:'⏳ Bekliyor',c:'pending'},
+    mitas:{l:'🏢 MITAS',c:'distributed'},
+    ef:{l:'🎪 Eğlence Fab.',c:'distributed'},
+    rejected:{l:'❌ Reddedildi',c:'pending'}
+  };
+
+  let currentFilter = 'all';
+  function render(){
+    const all = JSON.parse(localStorage.getItem('aura_requests')||'[]');
+    const q = (document.getElementById('reqSearch')?.value||'').toLowerCase();
+    let arr = all.filter(r => currentFilter==='all' || r.status===currentFilter);
+    if(q) arr = arr.filter(r => (r.name+r.artist+r.email+r.plan+r.genre).toLowerCase().includes(q));
+    const pendingCount = all.filter(r=>r.status==='pending').length;
+    const badge = document.getElementById('reqBadge'); if(badge) badge.textContent = pendingCount;
+    document.getElementById('reqTitle').textContent = '📥 Gelen Talepler ('+ arr.length +')';
+    const list = document.getElementById('reqList');
+    if(arr.length===0){ list.innerHTML='<div style="padding:50px;text-align:center;color:var(--muted)">Bu filtreye uygun talep yok.</div>'; return; }
+    list.innerHTML = arr.map(r => `
+      <div class="req-row ${r.status!=='pending'?'done':''}">
+        <div class="mt">${r.date}</div>
+        <div><div class="nm">${r.artist}</div><div class="mt">${r.name} · ${r.genre||'-'}</div></div>
+        <div><span class="badge ${r.plan==='LABEL'?'live':r.plan==='SINIRSIZ'?'distributed':'pending'}">${r.plan}</span></div>
+        <div><div>${r.email}</div><div class="mt">${r.phone}</div></div>
+        <div><span class="badge ${STATUS[r.status].c}">${STATUS[r.status].l}</span></div>
+        <div class="req-act">
+          ${r.status==='pending' ? `
+            <button class="mt2" onclick="aReq(${r.id},'mitas')">MITAS</button>
+            <button class="ef" onclick="aReq(${r.id},'ef')">EF</button>
+            <button class="no" onclick="aReq(${r.id},'rejected')">Reddet</button>
+          ` : `<button class="ok" onclick="aReq(${r.id},'pending')">↩ Geri Al</button>`}
+        </div>
+      </div>
+    `).join('');
+  }
+
+  window.aReq = function(id, st){
+    const arr = JSON.parse(localStorage.getItem('aura_requests')||'[]');
+    const r = arr.find(x=>x.id===id); if(!r) return;
+    r.status = st; localStorage.setItem('aura_requests', JSON.stringify(arr));
+    render();
+  };
+
+  view.querySelectorAll('.req-filter button').forEach(b=>{
+    b.onclick = ()=>{ view.querySelectorAll('.req-filter button').forEach(x=>x.classList.remove('active')); b.classList.add('active'); currentFilter=b.dataset.st; render(); };
+  });
+  view.querySelector('#reqSearch').addEventListener('input', render);
+  render();
+})();
+</script>
+</body>
 </html>
