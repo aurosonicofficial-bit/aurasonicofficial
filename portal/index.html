@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>AURA SONIC OFFICIAL — Label Portal</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --gold:#C9A84C; --gold2:#E8C96A; --gold3:rgba(201,168,76,.15); --gold4:rgba(201,168,76,.08);
+  --bg:#0A0E1A; --bg2:#0F1421; --bg3:#1A2138; --bg4:#242C44;
+  --white:#FFFFFF; --muted:rgba(255,255,255,.55); --muted2:rgba(255,255,255,.75);
+  --border:rgba(201,168,76,.22); --border2:rgba(255,255,255,.08);
+  --green:#22C55E; --blue:#22D3EE; --red:#EF4444; --orange:#F59E0B;
+}
+html,body{background:var(--bg);color:var(--white);font-family:'Outfit',sans-serif;min-height:100vh}
+a{color:inherit;text-decoration:none}
+
+/* ── LAYOUT ── */
+.app{display:grid;grid-template-columns:240px 1fr;min-height:100vh}
+.sidebar{background:var(--bg2);border-right:1px solid var(--border2);padding:24px 0;position:sticky;top:0;height:100vh;overflow-y:auto}
+.brand{padding:0 22px 22px;border-bottom:1px solid var(--border2);margin-bottom:18px}
+.brand-logo{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:3px;color:var(--gold);line-height:1}
+.brand-sub{font-size:10px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-top:4px}
+.nav-label{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;padding:14px 22px 8px}
+.nav a{display:flex;align-items:center;gap:12px;padding:11px 22px;color:var(--muted2);font-size:14px;font-weight:500;border-left:3px solid transparent;transition:.2s;cursor:pointer}
+.nav a:hover{background:var(--gold4);color:var(--white)}
+.nav a.active{background:var(--gold4);color:var(--gold);border-left-color:var(--gold)}
+.nav a .icon{width:18px;text-align:center;font-size:15px}
+.badge-new{font-size:9px;background:var(--orange);color:#1A0F00;padding:2px 6px;border-radius:8px;margin-left:auto;font-weight:700}
+
+.main{padding:0}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:18px 32px;border-bottom:1px solid var(--border2);background:var(--bg2)}
+.topbar .title{font-size:22px;font-weight:600}
+.user{display:flex;align-items:center;gap:12px}
+.avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));display:flex;align-items:center;justify-content:center;color:#1A0F00;font-weight:700}
+.user-info{text-align:right;line-height:1.2}
+.user-info .n{font-weight:600;font-size:14px}
+.user-info .e{font-size:11px;color:var(--muted)}
+
+.content{padding:28px 32px;max-width:1500px}
+
+/* ── CARDS / METRICS ── */
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.card{background:var(--bg2);border:1px solid var(--border2);border-radius:14px;padding:22px}
+.metric{display:flex;flex-direction:column;gap:10px}
+.metric .label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.metric .value{font-size:32px;font-weight:700;color:var(--white);font-family:'Bebas Neue',sans-serif;letter-spacing:1px}
+.metric .sub{font-size:12px;color:var(--green)}
+.metric-ico{width:42px;height:42px;border-radius:10px;background:var(--gold3);color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:6px}
+
+.section-head{display:flex;align-items:center;justify-content:space-between;margin:30px 0 14px}
+.section-head h2{font-size:18px;font-weight:600}
+.section-head .actions{display:flex;gap:10px}
+
+.btn{background:var(--gold);color:#1A0F00;border:none;padding:10px 18px;border-radius:8px;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif;font-size:14px;transition:.2s}
+.btn:hover{background:var(--gold2)}
+.btn-ghost{background:transparent;color:var(--gold);border:1px solid var(--gold)}
+.btn-ghost:hover{background:var(--gold4)}
+
+input[type=text],input[type=email],input[type=password],select,textarea{
+  background:var(--bg3);border:1px solid var(--border2);color:var(--white);padding:10px 14px;border-radius:8px;
+  font-family:'Outfit',sans-serif;font-size:14px;width:100%;outline:none;transition:border-color .2s
+}
+input:focus,select:focus,textarea:focus{border-color:var(--gold)}
+label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;display:block;margin-bottom:6px}
+
+/* ── STATUS BADGES ── */
+.badge{display:inline-flex;align-items:center;gap:6px;padding:5px 11px;border-radius:14px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+.badge.live{background:rgba(34,197,94,.15);color:var(--green)}
+.badge.distributed{background:rgba(34,211,238,.15);color:var(--blue)}
+.badge.pending{background:rgba(245,158,11,.15);color:var(--orange)}
+.badge.active{background:rgba(34,197,94,.15);color:var(--green)}
+
+/* ── RELEASES GRID ── */
+.release-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:18px}
+.release-card{background:var(--bg2);border:1px solid var(--border2);border-radius:12px;overflow:hidden;cursor:pointer;transition:.25s}
+.release-card:hover{transform:translateY(-4px);border-color:var(--gold);box-shadow:0 8px 24px rgba(201,168,76,.15)}
+.release-cover{aspect-ratio:1;background:linear-gradient(135deg,var(--bg3),var(--bg4));display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue';font-size:48px;color:var(--gold);letter-spacing:4px}
+.release-info{padding:14px}
+.release-info .title{font-weight:600;font-size:14px;margin-bottom:4px;color:var(--white)}
+.release-info .artist{font-size:12px;color:var(--muted2);margin-bottom:8px}
+.release-info .meta{font-size:11px;color:var(--muted);margin-bottom:10px}
+
+/* ── TABLE ── */
+table{width:100%;border-collapse:collapse}
+th{text-align:left;padding:13px 12px;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;border-bottom:1px solid var(--border2);font-weight:600}
+td{padding:14px 12px;border-bottom:1px solid var(--border2);font-size:14px}
+tr:last-child td{border-bottom:none}
+
+/* ── ROUTING / TABS ── */
+.view{display:none}
+.view.active{display:block;animation:fade .2s}
+@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+
+/* ── ANNOUNCE BOX ── */
+.notice{background:var(--gold4);border:1px solid var(--border);padding:16px;border-radius:10px;font-size:13px;line-height:1.6;color:var(--muted2)}
+.notice b{color:var(--gold)}
+
+/* ── ARTISTS ── */
+.artist-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:18px}
+.artist-card{background:var(--bg2);border:1px solid var(--border2);border-radius:12px;padding:20px;text-align:center;transition:.2s}
+.artist-card:hover{border-color:var(--gold);transform:translateY(-2px)}
+.artist-avatar{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue';font-size:30px;color:#1A0F00;letter-spacing:1px}
+.artist-card .n{font-weight:600;font-size:15px;margin-bottom:4px}
+.artist-card .c{font-size:12px;color:var(--muted)}
+
+/* ── CHART ── */
+.chart{height:240px;background:linear-gradient(to top,var(--gold4),transparent);border-bottom:2px solid var(--gold);border-radius:0 0 10px 10px;display:flex;align-items:end;justify-content:space-around;padding:0 20px;margin-top:14px}
+.chart .bar{width:36px;background:linear-gradient(to top,var(--gold),var(--gold2));border-radius:6px 6px 0 0;opacity:.85;position:relative}
+.chart .bar::after{content:attr(data-val);position:absolute;top:-22px;left:50%;transform:translateX(-50%);font-size:11px;color:var(--gold);font-weight:600}
+.chart-labels{display:flex;justify-content:space-around;padding:8px 20px 0;font-size:11px;color:var(--muted)}
+
+.row{display:flex;gap:14px;align-items:center}
+.flex1{flex:1}
+.hr{height:1px;background:var(--border2);margin:18px 0}
+
+/* ── FILTERS ── */
+.filters{display:flex;gap:14px;margin-bottom:18px;flex-wrap:wrap}
+.filters > div{flex:1;min-width:180px}
+
+/* ── MOBILE ── */
+@media(max-width:900px){
+  .app{grid-template-columns:1fr}
+  .sidebar{display:none}
+  .grid-4{grid-template-columns:1fr 1fr}
+  .grid-3,.grid-2{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="app">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="brand">
+    <div class="brand-logo">AURA SONIC</div>
+    <div class="brand-sub">Official Label Portal</div>
+  </div>
+
+  <div class="nav-label">MENÜ</div>
+  <div class="nav">
+    <a data-view="home" class="active"><span class="icon">🏠</span> Ana Sayfa</a>
+    <a data-view="releases"><span class="icon">💿</span> Yayınlarım</a>
+    <a data-view="artists"><span class="icon">🎤</span> Sanatçılar</a>
+    <a data-view="stats"><span class="icon">📊</span> İstatistikler</a>
+    <a data-view="payments"><span class="icon">💳</span> Ödemeler</a>
+    <a data-view="reports"><span class="icon">📄</span> Gelir Raporları</a>
+    <a data-view="profile"><span class="icon">👤</span> Profil</a>
+  </div>
+
+  <div class="nav-label">PLATFORM</div>
+  <div class="nav">
+    <a data-view="youtube"><span class="icon">📺</span> YouTube Claim<span class="badge-new">Yeni</span></a>
+    <a data-view="spotify"><span class="icon">🎧</span> Spotify Claim</a>
+    <a data-view="video"><span class="icon">🎬</span> Video Dağıtım<span class="badge-new">Yeni</span></a>
+  </div>
+
+  <div class="nav-label">DİĞER</div>
+  <div class="nav">
+    <a data-view="support"><span class="icon">🛟</span> Destek</a>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<main class="main">
+  <header class="topbar">
+    <div class="title" id="page-title">Ana Sayfa</div>
+    <div class="user">
+      <div class="user-info">
+        <div class="n">AŞKIN ÖZTÜRK</div>
+        <div class="e">AURA SONIC OFFICIAL</div>
+      </div>
+      <div class="avatar">AÖ</div>
+    </div>
+  </header>
+
+  <div class="content">
+
+    <!-- ─── HOME ─── -->
+    <section class="view active" data-view="home">
+      <div class="card" style="background:linear-gradient(135deg,var(--gold4),transparent);border-color:var(--gold)">
+        <div class="row">
+          <div class="flex1">
+            <span class="badge active">✓ Aktif Üyelik</span>
+            <div style="font-size:18px;margin-top:10px;color:var(--gold)"><b>AURA SONIC OFFICIAL</b> · Label Plan</div>
+            <div style="font-size:13px;color:var(--muted2);margin-top:6px">Bitiş: <b>21 Mar 2027 · 17:30</b> · 273 gün kaldı</div>
+          </div>
+          <button class="btn">Üyeliği Uzat</button>
+        </div>
+      </div>
+
+      <div class="grid-4" style="margin-top:24px">
+        <div class="card metric">
+          <div class="metric-ico">💰</div>
+          <div class="label">Kullanılabilir Bakiye</div>
+          <div class="value">₺0,00</div>
+        </div>
+        <div class="card metric">
+          <div class="metric-ico">🎵</div>
+          <div class="label">Toplam Yayın</div>
+          <div class="value">56</div>
+        </div>
+        <div class="card metric">
+          <div class="metric-ico">🎤</div>
+          <div class="label">Sanatçı</div>
+          <div class="value">10</div>
+        </div>
+        <div class="card metric">
+          <div class="metric-ico">▶</div>
+          <div class="label">Spotify Dinlenme</div>
+          <div class="value">1.263</div>
+          <div class="sub">↗ +8 (7 gün)</div>
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-top:24px">
+        <div class="card">
+          <div class="section-head" style="margin:0 0 14px"><h2>📢 Duyurular & Haberler</h2></div>
+          <div class="notice">
+            <b>Yapay Zeka İçerikleri ve Teslimat Süreçleri</b><br>
+            Dijital mağazalarda yapılan yeni güncellemeler doğrultusunda; artık kapak görselleri, ses dosyaları, şarkı sözleri ve sanatçı profilleri için ek doğrulama gerekebilir. Lütfen yayın açıklamalarını eksiksiz doldurun.
+          </div>
+        </div>
+        <div class="card">
+          <div class="section-head" style="margin:0 0 14px"><h2>🛟 Son Destek Talepleri</h2></div>
+          <table>
+            <tr><td><b>YAYIN TARİHİ</b><br><small style="color:var(--muted)">Teknik · 08 Haz 2026</small></td><td><span class="badge live">Kapatıldı</span></td></tr>
+            <tr><td><b>YouTube Claim Başvurusu</b><br><small style="color:var(--muted)">Diğer · 04 Haz 2026</small></td><td><span class="badge live">Kapatıldı</span></td></tr>
+            <tr><td><b>YouTube OAC Süreci</b><br><small style="color:var(--muted)">Diğer · 02 Haz 2026</small></td><td><span class="badge live">Kapatıldı</span></td></tr>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── RELEASES ─── -->
+    <section class="view" data-view="releases">
+      <div class="section-head">
+        <h2>Yayınlarım (56)</h2>
+        <div class="actions">
+          <input type="text" placeholder="🔍 Yayın, sanatçı, UPC, ISRC ara..." style="width:280px">
+          <button class="btn">+ Yeni Yayın Oluştur</button>
+        </div>
+      </div>
+      <div class="filters">
+        <div><label>Sanatçı</label><select><option>Tüm Sanatçılar</option><option>Aşkın Öztürk</option><option>LARA</option><option>Naxo Veyra</option></select></div>
+        <div><label>Durum</label><select><option>Tüm Durumlar</option><option>Yayında</option><option>Mağazalara İletildi</option><option>İncelemede</option></select></div>
+        <div><label>Yıl</label><select><option>Tümü</option><option>2026</option><option>2025</option></select></div>
+      </div>
+
+      <div class="release-grid" id="release-grid"></div>
+    </section>
+
+    <!-- ─── ARTISTS ─── -->
+    <section class="view" data-view="artists">
+      <div class="section-head">
+        <h2>Label Sanatçıları (10)</h2>
+        <button class="btn">+ Yeni Sanatçı Ekle</button>
+      </div>
+      <div class="artist-grid" id="artist-grid"></div>
+    </section>
+
+    <!-- ─── STATS ─── -->
+    <section class="view" data-view="stats">
+      <div class="section-head"><h2>🟢 Label İstatistikleri (Spotify)</h2>
+        <div class="actions">
+          <button class="btn-ghost btn">7 Gün</button>
+          <button class="btn">28 Gün</button>
+          <button class="btn-ghost btn">90 Gün</button>
+        </div>
+      </div>
+      <div class="notice"><b>ℹ Sadece Spotify verileri:</b> Diğer mağaza istatistikleri Gelir Raporları'nda gösterilir.</div>
+
+      <div class="grid-4" style="margin-top:22px">
+        <div class="card metric"><div class="label">Toplam Dinlenme</div><div class="value">1.263</div><div class="sub">↗ Güncel: 2026-06-20</div></div>
+        <div class="card metric"><div class="label">7 Günlük Artış</div><div class="value">+8</div></div>
+        <div class="card metric"><div class="label">Albüm</div><div class="value">51</div></div>
+        <div class="card metric"><div class="label">Şarkı</div><div class="value">52</div></div>
+      </div>
+
+      <div class="card" style="margin-top:24px">
+        <h2 style="font-size:16px;margin-bottom:6px">📈 Günlük Kazanılan Dinlenme</h2>
+        <small style="color:var(--muted)">14 Haz – 20 Haz 2026</small>
+        <div class="chart">
+          <div class="bar" style="height:90%" data-val="4"></div>
+          <div class="bar" style="height:25%" data-val="1"></div>
+          <div class="bar" style="height:30%" data-val="1"></div>
+          <div class="bar" style="height:8%" data-val="0"></div>
+          <div class="bar" style="height:8%" data-val="0"></div>
+          <div class="bar" style="height:8%" data-val="0"></div>
+          <div class="bar" style="height:50%" data-val="2"></div>
+        </div>
+        <div class="chart-labels"><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span></div>
+      </div>
+
+      <div class="section-head" style="margin-top:30px"><h2>Albümler (51)</h2><input type="text" placeholder="🔍 Albüm ara..." style="width:260px"></div>
+      <div class="card">
+        <table>
+          <tr><th>Albüm</th><th>Sanatçı</th><th>Dinlenme</th><th>7g</th><th>Durum</th></tr>
+          <tr><td><b>SEN BENDEN GİDERKEN</b></td><td>Aşkın Öztürk</td><td>425</td><td style="color:var(--green)">+5</td><td><span class="badge live">Yayında</span></td></tr>
+          <tr><td><b>KÜL OLSUN</b></td><td>LARA</td><td>312</td><td style="color:var(--green)">+2</td><td><span class="badge live">Yayında</span></td></tr>
+          <tr><td><b>SON YALAN</b></td><td>LARA</td><td>198</td><td style="color:var(--green)">+1</td><td><span class="badge live">Yayında</span></td></tr>
+          <tr><td><b>STRANDED</b></td><td>Kael Voss</td><td>156</td><td style="color:var(--muted)">0</td><td><span class="badge live">Yayında</span></td></tr>
+          <tr><td><b>SALT SILENCE</b></td><td>Vael Cross</td><td>108</td><td style="color:var(--muted)">0</td><td><span class="badge live">Yayında</span></td></tr>
+          <tr><td><b>NON PIANGERÒ PIÙ</b></td><td>MariAmel</td><td>64</td><td style="color:var(--muted)">0</td><td><span class="badge live">Yayında</span></td></tr>
+        </table>
+      </div>
+    </section>
+
+    <!-- ─── PAYMENTS ─── -->
+    <section class="view" data-view="payments">
+      <div class="grid-4">
+        <div class="card metric"><div class="metric-ico">💰</div><div class="label">Kullanılabilir Bakiye</div><div class="value">₺0,00</div><small style="color:var(--muted)">Bekleyen: ₺0,00</small><button class="btn" style="margin-top:10px">Ödeme Talebi Oluştur</button></div>
+        <div class="card metric"><div class="metric-ico">📈</div><div class="label">Toplam Kazanç</div><div class="value">₺0,00</div></div>
+        <div class="card metric"><div class="metric-ico">⬇</div><div class="label">Toplam Ödenen</div><div class="value">₺0,00</div></div>
+        <div class="card metric"><div class="metric-ico">📅</div><div class="label">Bu Ay</div><div class="value">₺0,00</div></div>
+      </div>
+
+      <div class="card" style="margin-top:24px">
+        <div class="row" style="justify-content:space-between;align-items:flex-start">
+          <div>
+            <h2 style="font-size:16px;margin-bottom:4px">🏦 Ödeme Alacağınız IBAN</h2>
+            <small style="color:var(--muted)">Ödeme alabilmek için doğrulanmış bir IBAN bilgisi gereklidir.</small>
+          </div>
+          <span class="badge active">✓ Tanımlı</span>
+        </div>
+        <div class="hr"></div>
+        <div class="grid-3">
+          <div><label>Banka</label><input type="text" value="Akbank" readonly></div>
+          <div><label>Para Birimi</label><input type="text" value="TL (₺)" readonly></div>
+          <div><label>IBAN</label><input type="text" value="TR75 **** **** **** 0487 03" readonly></div>
+        </div>
+        <small style="color:var(--muted);display:block;margin-top:12px">💡 Güncelleme gerekirse Destek ekibiyle iletişime geçin.</small>
+      </div>
+
+      <div class="card" style="margin-top:24px">
+        <div class="section-head" style="margin:0 0 14px"><h2>Ödeme Talepleri Geçmişi</h2><button class="btn-ghost btn">⬇ Dışa Aktar</button></div>
+        <table>
+          <tr><th>Tarih</th><th>Tutar</th><th>Durum</th><th>Fatura</th><th>Tamamlanma</th></tr>
+          <tr><td colspan="5" style="text-align:center;color:var(--muted);padding:30px">Henüz oluşturulmuş bir ödeme talebi bulunmuyor.</td></tr>
+        </table>
+      </div>
+    </section>
+
+    <!-- ─── REPORTS ─── -->
+    <section class="view" data-view="reports">
+      <h2 style="font-size:20px;margin-bottom:8px">📄 Gelir Raporları</h2>
+      <small style="color:var(--muted);display:block;margin-bottom:20px">Aylık veya üç aylık telif raporlarınızı indirin.</small>
+      <div class="card">
+        <h2 style="font-size:16px;margin-bottom:14px">Rapor Geçmişi</h2>
+        <table>
+          <tr><th>Dönem</th><th>Tutar</th><th>Tür</th><th>İndir</th><th>Oluşturulma</th></tr>
+          <tr><td colspan="5" style="text-align:center;color:var(--muted);padding:30px">Henüz rapor bulunamadı.</td></tr>
+        </table>
+      </div>
+    </section>
+
+    <!-- ─── PROFILE ─── -->
+    <section class="view" data-view="profile">
+      <div class="grid-2">
+        <div>
+          <div class="card" style="text-align:center">
+            <div class="avatar" style="width:90px;height:90px;font-size:32px;margin:0 auto 12px">AÖ</div>
+            <h2 style="font-size:18px">AŞKIN ÖZTÜRK</h2>
+            <small style="color:var(--muted)">askin.ozturk.com@gmail.com</small>
+          </div>
+          <div class="card" style="margin-top:18px">
+            <h2 style="font-size:14px;margin-bottom:14px">Hesap Bilgileri</h2>
+            <div class="row" style="justify-content:space-between"><span style="color:var(--muted)">Üyelik Tarihi</span><b>21 Mart 2026</b></div>
+            <div class="hr"></div>
+            <div class="row" style="justify-content:space-between"><span style="color:var(--muted)">Hesap Durumu</span><span class="badge active">✓ Tanımlı</span></div>
+          </div>
+          <div class="card" style="margin-top:18px;text-align:center">
+            <small style="color:var(--muted)">🎁 Referans Kodunuz</small>
+            <div style="font-family:'Bebas Neue';font-size:36px;color:var(--gold);letter-spacing:6px;margin:12px 0">AURA-AÖ</div>
+            <button class="btn-ghost btn">Kopyala</button>
+            <div style="font-size:11px;color:var(--muted);margin-top:8px">Davet ettikleriniz (0)</div>
+          </div>
+        </div>
+
+        <div>
+          <div class="card">
+            <h2 style="font-size:16px;margin-bottom:14px">👤 Kişisel Bilgiler</h2>
+            <div class="grid-2">
+              <div><label>İsim</label><input type="text" value="AŞKIN" readonly></div>
+              <div><label>Soy İsim</label><input type="text" value="ÖZTÜRK" readonly></div>
+              <div><label>E-posta</label><input type="email" value="askin.ozturk.com@gmail.com" readonly></div>
+              <div><label>Telefon</label><input type="text" value="+90 *** *** **12" readonly></div>
+              <div style="grid-column:1/-1"><label>Label Adı</label><input type="text" value="AURA SONIC OFFICIAL" readonly></div>
+            </div>
+          </div>
+
+          <div class="card" style="margin-top:18px">
+            <h2 style="font-size:16px;margin-bottom:14px">🔒 Şifre Değiştir</h2>
+            <div style="display:grid;gap:12px">
+              <div><label>Mevcut Şifre</label><input type="password"></div>
+              <div class="grid-2">
+                <div><label>Yeni Şifre</label><input type="password"></div>
+                <div><label>Yeni Şifre Tekrar</label><input type="password"></div>
+              </div>
+              <button class="btn" style="justify-self:start">Şifreyi Güncelle</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── PLACEHOLDERS ─── -->
+    <section class="view" data-view="youtube"><h2>📺 YouTube Claim Yönetimi</h2><div class="card" style="margin-top:14px"><p style="color:var(--muted2);line-height:1.7">YouTube'da içeriklerinizi koruyun. Eşleşen yüklemeler için Content ID claim başlatın.</p><button class="btn" style="margin-top:18px">+ Yeni Claim Başvurusu</button></div></section>
+    <section class="view" data-view="spotify"><h2>🎧 Spotify for Artists Bağlama</h2><div class="card" style="margin-top:14px"><p style="color:var(--muted2);line-height:1.7">Sanatçılarınızın Spotify for Artists hesaplarını label'a bağlayın.</p><button class="btn" style="margin-top:18px">+ Talep Oluştur</button></div></section>
+    <section class="view" data-view="video"><h2>🎬 Video Dağıtım</h2><div class="card" style="margin-top:14px"><p style="color:var(--muted2);line-height:1.7">Müzik videolarınızı YouTube Music, Apple Music ve TIDAL'a dağıtın.</p><button class="btn" style="margin-top:18px">+ Yeni Video Yükle</button></div></section>
+    <section class="view" data-view="support">
+      <h2>🛟 Destek</h2>
+      <div class="card" style="margin-top:14px">
+        <div class="section-head" style="margin:0 0 14px"><h2 style="font-size:16px">Destek Talepleri</h2><button class="btn">+ Yeni Talep</button></div>
+        <table>
+          <tr><th>Konu</th><th>Kategori</th><th>Tarih</th><th>Durum</th></tr>
+          <tr><td><b>Yayın Tarihi Talebi</b></td><td>Teknik</td><td>08 Haz 2026</td><td><span class="badge live">Kapatıldı</span></td></tr>
+          <tr><td><b>YouTube Claim Yönetimi</b></td><td>Diğer</td><td>04 Haz 2026</td><td><span class="badge live">Kapatıldı</span></td></tr>
+        </table>
+      </div>
+    </section>
+
+  </div>
+</main>
+</div>
+
+<script>
+// ── 10 AURASONIC SANATÇISI ──
+const ARTISTS = [
+  {name:'Aşkın Öztürk', init:'AÖ', cat:'Türk Pop / Cinematic', releases:8},
+  {name:'LARA',          init:'LR', cat:'Pop / Vocal',         releases:7},
+  {name:'Naxo Veyra',    init:'NV', cat:'Electronic / Dark',   releases:6},
+  {name:'Vael Cross',    init:'VC', cat:'Alternative Rock',    releases:7},
+  {name:'Kael Voss',     init:'KV', cat:'Cinematic / Score',   releases:6},
+  {name:'MariAmel',      init:'MA', cat:'Soul / Classical',    releases:5},
+  {name:'Chronos',       init:'CH', cat:'Synthwave',           releases:5},
+  {name:'Esin Banu',     init:'EB', cat:'Türk Sanat Müziği',   releases:4},
+  {name:'Lyra Sage',     init:'LS', cat:'Ambient / New Age',   releases:4},
+  {name:'İremsezin',     init:'İS', cat:'İndie Pop',           releases:4},
+];
+
+// ── 56 YAYIN (örnek liste) ──
+const RELEASES = [
+  {t:'SEN BENDEN GİDERKEN', a:'Aşkın Öztürk', y:'2026', id:'ASR-01-26-001', s:'live'},
+  {t:'KÜL OLSUN',           a:'LARA',         y:'2026', id:'ASR-01-26-002', s:'live'},
+  {t:'SON YALAN',           a:'LARA',         y:'2026', id:'ASR-01-26-003', s:'live'},
+  {t:'GECE BENİM',          a:'LARA',         y:'2026', id:'ASR-01-26-004', s:'live'},
+  {t:'LET ME MOVE',         a:'Naxo Veyra',   y:'2026', id:'ASR-01-26-005', s:'distributed'},
+  {t:'HEAVEN LOOKED BETTER',a:'Vael Cross',   y:'2026', id:'ASR-01-26-006', s:'distributed'},
+  {t:'ASHES, LIT CIGARETTE',a:'Aşkın Öztürk', y:'2026', id:'ASR-01-26-007', s:'distributed'},
+  {t:'STRANDED',            a:'Kael Voss',    y:'2026', id:'ASR-01-26-008', s:'live'},
+  {t:'THE OTHER SIDE',      a:'Kael Voss',    y:'2026', id:'ASR-01-26-009', s:'live'},
+  {t:'SALT SILENCE',        a:'Vael Cross',   y:'2026', id:'ASR-01-26-010', s:'live'},
+  {t:'NON PIANGERÒ PIÙ',    a:'MariAmel',     y:'2026', id:'ASR-01-26-011', s:'live'},
+  {t:'NO SPARK LEFT',       a:'Vael Cross',   y:'2026', id:'ASR-01-26-012', s:'live'},
+  {t:'HELAL ETMİYORUM',     a:'Aşkın Öztürk', y:'2026', id:'ASR-01-26-013', s:'live'},
+  {t:'DON\'T SAY GOODBYE',  a:'Aşkın Öztürk', y:'2026', id:'ASR-01-26-014', s:'pending'},
+  {t:'GİTME DEMEM',         a:'Aşkın Öztürk', y:'2026', id:'ASR-01-26-015', s:'pending'},
+  {t:'ZORUNA MI GİTTİ',     a:'Aşkın Öztürk', y:'2026', id:'ASR-01-26-016', s:'live'},
+  {t:'NIGHTFALL',           a:'Chronos',      y:'2026', id:'ASR-01-26-017', s:'live'},
+  {t:'NEON RAIN',           a:'Chronos',      y:'2026', id:'ASR-01-26-018', s:'live'},
+  {t:'WHISPER',             a:'Lyra Sage',    y:'2026', id:'ASR-01-26-019', s:'live'},
+  {t:'BREATHING ROOM',      a:'Lyra Sage',    y:'2026', id:'ASR-01-26-020', s:'live'},
+];
+// 36 daha (sentetik):
+for(let i=21;i<=56;i++){
+  const ar = ARTISTS[i%ARTISTS.length];
+  RELEASES.push({t:'RELEASE #'+i, a:ar.name, y:'2025', id:'ASR-01-25-'+String(i).padStart(3,'0'), s:'live'});
+}
+
+const STATUS = {live:'YAYINDA',distributed:'MAĞAZALARA İLETİLDİ',pending:'İNCELEMEDE'};
+
+// ── RENDER RELEASES ──
+function renderReleases(){
+  const grid = document.getElementById('release-grid');
+  grid.innerHTML = RELEASES.map(r => `
+    <div class="release-card">
+      <div class="release-cover">${r.t.substring(0,2)}</div>
+      <div class="release-info">
+        <div class="title">${r.t}</div>
+        <div class="artist">👤 ${r.a}</div>
+        <div class="meta">📅 ${r.y} · ${r.id}</div>
+        <span class="badge ${r.s}">${STATUS[r.s]}</span>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ── RENDER ARTISTS ──
+function renderArtists(){
+  const grid = document.getElementById('artist-grid');
+  grid.innerHTML = ARTISTS.map(a => `
+    <div class="artist-card">
+      <div class="artist-avatar">${a.init}</div>
+      <div class="n">${a.name}</div>
+      <div class="c">${a.cat}</div>
+      <div style="margin-top:10px;font-size:12px;color:var(--muted)">${a.releases} yayın</div>
+    </div>
+  `).join('');
+}
+
+// ── ROUTING ──
+function setView(name){
+  document.querySelectorAll('.nav a').forEach(a => a.classList.toggle('active', a.dataset.view === name));
+  document.querySelectorAll('.view').forEach(v => v.classList.toggle('active', v.dataset.view === name));
+  const title = document.querySelector(`.nav a[data-view="${name}"]`).textContent.replace('Yeni','').trim();
+  document.getElementById('page-title').textContent = title;
+  location.hash = name;
+}
+document.querySelectorAll('.nav a').forEach(a => a.onclick = () => setView(a.dataset.view));
+
+// init
+renderReleases();
+renderArtists();
+const startView = location.hash.replace('#','') || 'home';
+setView(startView);
+</script>
+</body>
+</html>
