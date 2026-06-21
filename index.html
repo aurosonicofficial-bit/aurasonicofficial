@@ -298,7 +298,7 @@ footer{background:var(--bg2);padding:60px 5% 30px;border-top:1px solid var(--bor
     <div>
       <h5>Üyelik</h5>
       <a href="login/">Giriş Yap</a>
-      <a onclick="openSignup()">Üye Ol</a>
+      <a onclick="openSignup()">Üye Ol</a><a href="odeme/">Ödeme Talimatları</a>
       <a href="#contact">Destek</a>
     </div>
     <div>
@@ -388,9 +388,10 @@ ${d.notlar || '-'}
   closeSignup();
   showConfirm({
     title: 'BAŞVURUN HAZIR!',
-    lead: 'Aşağıdaki kanallardan birini seçerek bize ulaştır — 24 saat içinde dönüş yaparız.',
+    lead: 'Aşağıdaki kanallardan birini seçerek bize ulaştır — 24 saat içinde dönüş yaparız. Hızlı aktivasyon için ödeme talimatlarını da görebilirsin.',
     subj: 'AURA SONIC Üye Başvurusu - ' + d.sanatci + ' (' + d.plan + ')',
-    body: body
+    body: body,
+    plan: d.plan
   });
   e.target.reset();
 }
@@ -444,6 +445,11 @@ ${d.notlar || '-'}
         <span class="ti"><b>Gmail ile Gönder</b><small>info@aurasonicofficial.co.uk</small></span>
         <span>→</span>
       </a>
+      <a class="send-btn" id="btnOdeme" target="_blank" style="background:linear-gradient(135deg,#F59E0B,#D97706);border-color:#F59E0B;color:#1A0F00">
+        <span class="em">💳</span>
+        <span class="ti"><b>Ödeme Talimatlarını Görüntüle</b><small>IBAN bilgisi + dekont gönderim</small></span>
+        <span>→</span>
+      </a>
       <button class="send-btn copy" onclick="copyConfirm()">
         <span class="em">📋</span>
         <span class="ti"><b>Bilgileri Kopyala</b><small>Sonra istediğin yere yapıştırabilirsin</small></span>
@@ -468,6 +474,7 @@ function showConfirm(opts){
   document.getElementById('btnWaUK').href = 'https://wa.me/447882747808?text=' + enc;
   document.getElementById('btnWaTR').href = 'https://wa.me/905320606612?text=' + enc;
   document.getElementById('btnGmail').href = 'https://mail.google.com/mail/?view=cm&fs=1&to=info@aurasonicofficial.co.uk&su=' + encodeURIComponent(opts.subj || 'AURA SONIC Başvuru') + '&body=' + enc;
+  const odemeBtn = document.getElementById('btnOdeme'); if(odemeBtn){ odemeBtn.href = 'odeme/' + (opts.plan ? '?plan=' + opts.plan : ''); }
   document.getElementById('confirmPanel').classList.add('show');
 }
 function closeConfirm(){ document.getElementById('confirmPanel').classList.remove('show'); }
