@@ -272,7 +272,7 @@ tr:last-child td{border-bottom:none}
         <h2>Yayınlarım (2.000+)</h2>
         <div class="actions">
           <input type="text" placeholder="🔍 Yayın, sanatçı, UPC, ISRC ara..." style="width:280px">
-          <button class="btn">+ Yeni Yayın Oluştur</button>
+          <button class="btn" onclick="openNewRelease()">+ Yeni Yayın Oluştur</button>
         </div>
       </div>
       <div class="filters">
@@ -439,9 +439,9 @@ tr:last-child td{border-bottom:none}
     </section>
 
     <!-- ─── PLACEHOLDERS ─── -->
-    <section class="view" data-view="youtube"><h2>📺 YouTube Claim Yönetimi</h2><div class="card" style="margin-top:14px"><p style="color:var(--muted2);line-height:1.7">YouTube'da içeriklerinizi koruyun. Eşleşen yüklemeler için Content ID claim başlatın.</p><button class="btn" style="margin-top:18px">+ Yeni Claim Başvurusu</button></div></section>
+    <section class="view" data-view="youtube"><h2>📺 YouTube Claim Yönetimi</h2><div class="card" style="margin-top:14px"><p style="color:var(--muted2);line-height:1.7">YouTube'da içeriklerinizi koruyun. Eşleşen yüklemeler için Content ID claim başlatın.</p><button class="btn" style="margin-top:18px" onclick="openNewRelease('youtube')">+ Yeni Claim Başvurusu</button></div></section>
     <section class="view" data-view="spotify"><h2>🎧 Spotify for Artists Bağlama</h2><div class="card" style="margin-top:14px"><p style="color:var(--muted2);line-height:1.7">Sanatçılarınızın Spotify for Artists hesaplarını label'a bağlayın.</p><button class="btn" style="margin-top:18px">+ Talep Oluştur</button></div></section>
-    <section class="view" data-view="video"><h2>🎬 Video Dağıtım</h2><div class="card" style="margin-top:14px"><p style="color:var(--muted2);line-height:1.7">Müzik videolarınızı YouTube Music, Apple Music ve TIDAL'a dağıtın.</p><button class="btn" style="margin-top:18px">+ Yeni Video Yükle</button></div></section>
+    <section class="view" data-view="video"><h2>🎬 Video Dağıtım</h2><div class="card" style="margin-top:14px"><p style="color:var(--muted2);line-height:1.7">Müzik videolarınızı YouTube Music, Apple Music ve TIDAL'a dağıtın.</p><button class="btn" style="margin-top:18px" onclick="openNewRelease('video')">+ Yeni Video Yükle</button></div></section>
     <section class="view" data-view="support">
       <h2>🛟 Destek</h2>
       <div class="card" style="margin-top:14px">
@@ -576,5 +576,126 @@ setView(startView);
     <button class="close" onclick="document.getElementById('applyModal').classList.remove('open')">Kapat</button>
   </div>
 </div>
+
+<!-- ──────── YENI YAYIN MODAL ──────── -->
+<div class="modal-bg" id="releaseModal" onclick="if(event.target===this)closeNewRelease()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:2000;align-items:center;justify-content:center;padding:20px">
+  <div class="modal" style="background:var(--bg2);border:1px solid var(--gold);border-radius:18px;padding:36px;max-width:680px;width:100%;max-height:92vh;overflow-y:auto">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px">
+      <div>
+        <h2 style="font-family:'Bebas Neue';font-size:28px;color:var(--gold);letter-spacing:2px" id="releaseTitle">YENİ YAYIN OLUŞTUR</h2>
+        <p style="color:var(--muted2);font-size:13px;margin-top:6px;line-height:1.5">Yayın bilgilerini girin. Onayınız sonrası 48 saat içinde 150+ mağazaya iletilir.</p>
+      </div>
+      <button onclick="closeNewRelease()" style="background:transparent;border:1px solid var(--border2);color:var(--muted);width:34px;height:34px;border-radius:8px;cursor:pointer;font-size:18px">✕</button>
+    </div>
+
+    <form id="releaseForm" onsubmit="submitRelease(event)">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px">
+        <div><label style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;display:block;margin-bottom:6px">Yayın Türü *</label>
+          <select name="tur" required style="width:100%;background:var(--bg3);border:1px solid var(--border2);color:#fff;padding:11px 14px;border-radius:9px;font-family:'Outfit';font-size:14px;outline:none">
+            <option value="single">Single (Tek Şarkı)</option>
+            <option value="ep">EP (3-6 Şarkı)</option>
+            <option value="album">Albüm (7+ Şarkı)</option>
+            <option value="video">Müzik Videosu</option>
+          </select>
+        </div>
+        <div><label style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;display:block;margin-bottom:6px">Sanatçı *</label>
+          <select name="sanatci" required style="width:100%;background:var(--bg3);border:1px solid var(--border2);color:#fff;padding:11px 14px;border-radius:9px;font-family:'Outfit';font-size:14px;outline:none">
+            <option value="Aşkın Öztürk">Aşkın Öztürk</option><option value="LARA">LARA</option>
+            <option value="Naxo Veyra">Naxo Veyra</option><option value="Vael Cross">Vael Cross</option>
+            <option value="Kael Voss">Kael Voss</option><option value="MariAmel">MariAmel</option>
+            <option value="Chronos">Chronos</option><option value="Esin Banu">Esin Banu</option>
+            <option value="Lyra Sage">Lyra Sage</option><option value="İremsezin">İremsezin</option>
+            <option value="DİĞER">+ Yeni Sanatçı</option>
+          </select>
+        </div>
+      </div>
+      <div style="margin-bottom:14px"><label style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;display:block;margin-bottom:6px">Yayın / Şarkı Adı *</label>
+        <input type="text" name="ad" required placeholder="Örn: SEN BENDEN GİDERKEN" style="width:100%;background:var(--bg3);border:1px solid var(--border2);color:#fff;padding:11px 14px;border-radius:9px;font-family:'Outfit';font-size:14px;outline:none">
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px">
+        <div><label style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;display:block;margin-bottom:6px">Tür</label>
+          <input type="text" name="genre" placeholder="Pop, Rock, Türk Pop..." style="width:100%;background:var(--bg3);border:1px solid var(--border2);color:#fff;padding:11px 14px;border-radius:9px;font-family:'Outfit';font-size:14px;outline:none">
+        </div>
+        <div><label style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;display:block;margin-bottom:6px">Yayın Tarihi *</label>
+          <input type="date" name="tarih" required style="width:100%;background:var(--bg3);border:1px solid var(--border2);color:#fff;padding:11px 14px;border-radius:9px;font-family:'Outfit';font-size:14px;outline:none">
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px">
+        <div><label style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;display:block;margin-bottom:6px">Söz Yazarı</label>
+          <input type="text" name="soz" placeholder="Söz yazarı adı" style="width:100%;background:var(--bg3);border:1px solid var(--border2);color:#fff;padding:11px 14px;border-radius:9px;font-family:'Outfit';font-size:14px;outline:none">
+        </div>
+        <div><label style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;display:block;margin-bottom:6px">Besteci</label>
+          <input type="text" name="beste" placeholder="Besteci adı" style="width:100%;background:var(--bg3);border:1px solid var(--border2);color:#fff;padding:11px 14px;border-radius:9px;font-family:'Outfit';font-size:14px;outline:none">
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px">
+        <div><label style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;display:block;margin-bottom:6px">Kapak Görseli (3000x3000 JPG)</label>
+          <input type="file" name="kapak" accept="image/*" style="width:100%;background:var(--bg3);border:1px solid var(--border2);color:#fff;padding:8px 10px;border-radius:9px;font-family:'Outfit';font-size:13px;outline:none">
+        </div>
+        <div><label style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;display:block;margin-bottom:6px">Ses Dosyası (WAV/FLAC)</label>
+          <input type="file" name="ses" accept="audio/*" style="width:100%;background:var(--bg3);border:1px solid var(--border2);color:#fff;padding:8px 10px;border-radius:9px;font-family:'Outfit';font-size:13px;outline:none">
+        </div>
+      </div>
+      <div style="margin-bottom:14px"><label style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;display:block;margin-bottom:6px">Şarkı Sözleri / Notlar</label>
+        <textarea name="notlar" rows="3" placeholder="Şarkı sözleri, özel istekler, marketing notu..." style="width:100%;background:var(--bg3);border:1px solid var(--border2);color:#fff;padding:11px 14px;border-radius:9px;font-family:'Outfit';font-size:14px;outline:none;resize:vertical"></textarea>
+      </div>
+
+      <div style="background:var(--gold4);border:1px solid var(--border);padding:13px 16px;border-radius:10px;font-size:12px;color:var(--muted2);line-height:1.6;margin-bottom:18px">
+        <b style="color:var(--gold)">📤 Yükleme:</b> Form gönderildikten sonra kapak ve ses dosyalarını WhatsApp veya e-postaya göndermeniz istenecek. <b style="color:var(--gold)">⏱ 48 saat</b> içinde Spotify, Apple Music ve 150+ platformda yayında.
+      </div>
+
+      <div style="display:flex;gap:10px">
+        <button type="button" class="btn-ghost btn" onclick="closeNewRelease()">İptal</button>
+        <button type="submit" class="btn" style="flex:1;justify-content:center">🚀 Yayın Talebi Gönder</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+function openNewRelease(kind){
+  const m = document.getElementById('releaseModal');
+  m.style.display = 'flex';
+  if(kind === 'video'){ document.querySelector('#releaseForm [name=tur]').value='video'; document.getElementById('releaseTitle').textContent='YENİ VİDEO YÜKLE'; }
+  else if(kind === 'youtube'){ document.getElementById('releaseTitle').textContent='YOUTUBE CLAIM TALEBİ'; }
+  else { document.getElementById('releaseTitle').textContent='YENİ YAYIN OLUŞTUR'; }
+}
+function closeNewRelease(){ document.getElementById('releaseModal').style.display='none'; }
+
+function submitRelease(e){
+  e.preventDefault();
+  const d = Object.fromEntries(new FormData(e.target));
+  const body =
+`AURA SONIC YENI YAYIN TALEBI
+====================================
+
+Tur:           ${d.tur}
+Sanatci:       ${d.sanatci}
+Yayin Adi:     ${d.ad}
+Genre:         ${d.genre || '-'}
+Yayin Tarihi:  ${d.tarih}
+Soz Yazari:    ${d.soz || '-'}
+Besteci:       ${d.beste || '-'}
+Kapak Dosya:   ${d.kapak && d.kapak.name ? d.kapak.name : '(yuklenecek)'}
+Ses Dosya:     ${d.ses && d.ses.name ? d.ses.name : '(yuklenecek)'}
+
+Notlar:
+${d.notlar || '-'}
+
+====================================
+Kapak ve ses dosyalarini WhatsApp/email ile gonderecegim.`;
+
+  const subj = encodeURIComponent('[YENİ YAYIN] ' + d.sanatci + ' — ' + d.ad);
+  const mailto = 'mailto:info@aurasonicofficial.co.uk?subject=' + subj + '&body=' + encodeURIComponent(body);
+  const wa = 'https://wa.me/447882747808?text=' + encodeURIComponent(body);
+
+  window.open(mailto, '_blank');
+  setTimeout(()=>{
+    alert('✅ Yayın talebiniz oluşturuldu!\n\n📧 E-postanız açıldı: info@aurasonicofficial.co.uk\n📱 Veya WhatsApp: +44 7882 747 808\n\n📤 Kapak ve ses dosyalarını da göndermeniz gerekiyor.\n⏱ 48 saat içinde yayında olacak.');
+    if(confirm('WhatsApp üzerinden de göndermek ister misiniz? (Kapak/ses dosyası WhatsApp ile daha kolay)')) window.open(wa, '_blank');
+    closeNewRelease(); e.target.reset();
+  }, 600);
+}
+</script>
 </body>
 </html>
