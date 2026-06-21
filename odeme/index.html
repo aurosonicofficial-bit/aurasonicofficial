@@ -100,7 +100,7 @@ footer a{color:var(--muted2)}footer a:hover{color:var(--gold)}
   .info-row .copy{margin-left:0}
   .dekont-btns{grid-template-columns:1fr}
 }
-</style>
+.lang-switch{display:flex;gap:4px;border:1px solid var(--border2);border-radius:999px;padding:4px;background:rgba(15,20,33,.6)}.lang-switch button{background:transparent;border:none;color:var(--muted);padding:6px 9px;border-radius:999px;font-size:11px;font-weight:700;cursor:pointer;font-family:Outfit;transition:.2s}.lang-switch button:hover{color:var(--gold)}.lang-switch button.active{background:var(--gold);color:#1A0F00}[dir=rtl] body{direction:rtl}</style>
 </head>
 <body>
 
@@ -109,15 +109,15 @@ footer a{color:var(--muted2)}footer a:hover{color:var(--gold)}
     <img src="../aurasonicofficial-logo.png" alt="">
     <div><div class="logo-text">AURA SONIC</div><div class="logo-sub">Official Label Portal</div></div>
   </a>
-  <a class="nav-back" href="../">← Ana Sayfa</a>
+  <a class="nav-back" href="../" data-i18n="nav.home">← Ana Sayfa</a>
 </nav>
 
 <div class="container">
 
   <div class="head">
-    <div class="badge">💳 ÖDEME TALİMATLARI</div>
-    <h1>HEMEN ÜYELİĞİNİ AKTİVE ET</h1>
-    <p>Aşağıdaki banka hesabına havale/EFT yap, dekontunu WhatsApp veya e-posta ile bize gönder. <b style="color:var(--gold)">24 saat içinde</b> hesabın aktif edilir.</p>
+    <div class="badge" data-i18n="pay.badge">💳 ÖDEME TALİMATLARI</div>
+    <h1 data-i18n="pay.h1">HEMEN ÜYELİĞİNİ AKTİVE ET</h1>
+    <p><span data-i18n="pay.lead">Aşağıdaki banka hesabına havale/EFT yap, dekontunu WhatsApp veya e-posta ile bize gönder.</span> <b style="color:var(--gold)">24 saat içinde</b> hesabın aktif edilir.</p>
   </div>
 
   <!-- PLAN SEÇİMİ -->
@@ -179,25 +179,25 @@ footer a{color:var(--muted2)}footer a:hover{color:var(--gold)}
 
   <!-- ADIMLAR -->
   <div class="steps">
-    <h2>3 ADIMDA AKTİVASYON</h2>
+    <h2 data-i18n="pay.steps">3 ADIMDA AKTİVASYON</h2>
     <div class="step">
       <div class="num">1</div>
       <div>
-        <h3>Bankadan EFT/Havale Yap</h3>
+        <h3 data-i18n="pay.s1t">Bankadan EFT/Havale Yap</h3>
         <p>Mobil bankacılık veya şube üzerinden yukarıdaki IBAN'a ödemeni yap. <b>Açıklama satırına</b> mutlaka adını + plan adını yaz.</p>
       </div>
     </div>
     <div class="step">
       <div class="num">2</div>
       <div>
-        <h3>Dekontu Bize Gönder</h3>
+        <h3 data-i18n="pay.s2t">Dekontu Bize Gönder</h3>
         <p>Aşağıdaki "Dekont Gönder" butonları ile WhatsApp veya e-posta üzerinden dekontunun fotoğrafını/PDF'ini ulaştır.</p>
       </div>
     </div>
     <div class="step">
       <div class="num">3</div>
       <div>
-        <h3>24 Saat İçinde Aktivasyon</h3>
+        <h3 data-i18n="pay.s3t">24 Saat İçinde Aktivasyon</h3>
         <p>Ödemen kontrol edilir, hesabın aktive edilir ve giriş bilgilerin e-posta ile sana ulaşır. İlk yayını oluşturabilirsin!</p>
       </div>
     </div>
@@ -205,16 +205,16 @@ footer a{color:var(--muted2)}footer a:hover{color:var(--gold)}
 
   <!-- DEKONT GÖNDER -->
   <div class="dekont-section">
-    <h2>📤 DEKONTUNU GÖNDER</h2>
+    <h2 data-i18n="pay.send_h">📤 DEKONTUNU GÖNDER</h2>
     <p>Ödemen sonrası dekontunu (ekran görüntüsü, PDF veya fotoğraf) aşağıdaki kanallardan birine gönder. <b style="color:var(--gold)">En hızlı: WhatsApp</b></p>
     <div class="dekont-btns">
       <a class="dekont-btn wa" id="btnWA" target="_blank">
         <span style="font-size:20px">📱</span>
-        <span>WhatsApp ile Dekont Gönder</span>
+        <span data-i18n="pay.wa">WhatsApp ile Dekont Gönder</span>
       </a>
       <a class="dekont-btn em" id="btnEM" target="_blank">
         <span style="font-size:20px">📧</span>
-        <span>E-posta ile Dekont Gönder</span>
+        <span data-i18n="pay.em">E-posta ile Dekont Gönder</span>
       </a>
     </div>
   </div>
@@ -322,5 +322,5 @@ function cp(id, btn){
   });
 }
 </script>
-</body>
+<script src="../assets/i18n.js"></script></body>
 </html>

@@ -1,0 +1,123 @@
+// AURA SONIC i18n — TR/EN/DE/AR/FR/ES
+window.I18N = {
+tr:{
+ 'nav.services':'Hizmetler','nav.pricing':'Fiyatlandırma','nav.artists':'Sanatçılarımız','nav.radio':'Radyo','nav.contact':'İletişim','nav.login':'Giriş Yap','nav.signup':'Üye Ol →','nav.home':'← Ana Sayfa',
+ 'hero.badge':'● Yeni: AI Destekli Dağıtım Paneli Aktif!','hero.h1a':'Müziğinizi','hero.h1b':'Tüm Dünyaya Duyurun','hero.sub':'Şarkılarınızı Spotify, Apple Music ve 150+ dijital platforma yükleyin. Gizli ücret yok, %100 şeffaflık.','hero.cta1':'Paketleri İncele →','hero.cta2':'Üye Ol',
+ 'stat.artists':'Aktif Sanatçı','stat.releases':'Yayında Eser','stat.share':'Şeffaf Pay','dsp.title':'150+ Dijital Mağaza & Streaming Platformuna Dağıtım',
+ 'pricing.tag':'Fiyatlandırma','pricing.h2':'Sizin İçin En Uygun Plan','pricing.sub':'İster ilk şarkınızı yayınlayın, ister bir label yönetin. Şeffaf fiyatlandırma.','plan.single':'SINGLE/ALBÜM','plan.unlimited':'SINIRSIZ DAĞITIM','plan.label':'LABEL','plan.popular':'⭐ EN POPÜLER','plan.askus':'BİZE SORUN','plan.per_release':'/ adet','plan.per_year':'/ yıllık','plan.cta_single':'Adım At →','plan.cta_unlimited':'Şimdi Başla →','plan.cta_label':'Fiyat İçin İletişim →',
+ 'feat.tag':'Hizmetlerimiz','feat.h2':'Müziğinizden Fazlasını Sunuyoruz','feat.global':'Global Dağıtım','feat.analytics':'Detaylı Analitik','feat.royalty':'Şeffaf Telif','feat.pr':'PR & Influencer','feat.content_id':'Content ID & Claim','feat.video':'Video Dağıtım','feat.atmos':'Dolby Atmos','feat.fast':'Hızlı Onboarding',
+ 'artists.tag':'Sanatçılarımız','artists.h2':'AURA SONIC OFFICIAL Roster','artists.sub':'Türkçe ve uluslararası sahnenin yeni sesleri. Sen de aramıza katıl.',
+ 'final.h2':'Müziğin Geleceği Senin Elinde 🎵','final.p':'Sanatçı, prodüktör veya label olarak hemen üye ol — 48 saat içinde ilk yayını çıkar.','final.wa':'WhatsApp ile İletişim',
+ 'foot.platform':'Platform','foot.member':'Üyelik','foot.contact':'İletişim','foot.about':'Bağımsız sanatçılar ve label’lar için profesyonel müzik dağıtım platformu.','foot.rights':'Tüm hakları saklıdır','foot.payment':'Ödeme Talimatları',
+ 'su.title':'AURA SONIC ÜYE BAŞVURUSU','su.lead':'Formu doldur — başvurun ekibimiz tarafından incelenir. Uygun bulunan başvurulara 24 saat içinde dönüş yapılır.','su.name':'Ad Soyad','su.artist':'Sanatçı / Label Adı','su.email':'E-posta','su.phone':'WhatsApp Telefon','su.plan':'Plan Seçimi','su.select':'— Seçiniz —','su.genre':'Müzik Türü','su.social':'Instagram / Spotify','su.notes':'Notlar','su.cancel':'İptal','su.submit':'Başvuruyu Gönder →',
+ 'cf.title':'BAŞVURUN HAZIR!','cf.lead':'Aşağıdaki kanaldan biriyle gönder — 24 saat içinde dönüş yaparız.','cf.wa_uk':'WhatsApp ile Gönder (UK)','cf.wa_tr':'WhatsApp ile Gönder (TR)','cf.gmail':'Gmail ile Gönder','cf.copy':'Bilgileri Kopyala','cf.pay':'Ödeme Talimatlarını Görüntüle','cf.close':'Kapat',
+ 'login.welcome':'HOŞ GELDİNİZ','login.sub':'Üye paneline erişmek için giriş yapın','login.email':'E-POSTA','login.password':'ŞİFRE','login.remember':'Beni hatırla','login.forgot':'Şifremi unuttum','login.submit':'GİRİŞ YAP →','login.or':'VEYA','login.nomember':'Henüz üye değil misiniz?','login.signup':'Üye Ol →',
+ 'pay.badge':'💳 ÖDEME TALİMATLARI','pay.h1':'HEMEN ÜYELİĞİNİ AKTİVE ET','pay.lead':'Aşağıdaki banka hesabına havale/EFT yap, dekontunu WhatsApp veya e-posta ile gönder.','pay.bank':'Banka','pay.holder':'Alıcı / Hesap Sahibi','pay.iban':'IBAN','pay.amount':'Tutar','pay.ref':'Açıklama / Referans','pay.copy':'Kopyala','pay.copied':'✓ Kopyalandı','pay.steps':'3 ADIMDA AKTİVASYON','pay.s1t':'Bankadan EFT/Havale Yap','pay.s2t':'Dekontu Bize Gönder','pay.s3t':'24 Saat İçinde Aktivasyon','pay.send_h':'📤 DEKONTUNU GÖNDER','pay.wa':'WhatsApp ile Dekont Gönder','pay.em':'E-posta ile Dekont Gönder'
+},
+en:{
+ 'nav.services':'Services','nav.pricing':'Pricing','nav.artists':'Our Artists','nav.radio':'Radio','nav.contact':'Contact','nav.login':'Login','nav.signup':'Join Now →','nav.home':'← Home',
+ 'hero.badge':'● New: AI-Powered Distribution Panel is Live!','hero.h1a':'Bring Your Music','hero.h1b':'To The Entire World','hero.sub':'Upload your tracks to Spotify, Apple Music & 150+ digital platforms. No hidden fees, 100% transparent.','hero.cta1':'View Plans →','hero.cta2':'Join Now',
+ 'stat.artists':'Active Artists','stat.releases':'Releases Live','stat.share':'Transparent Split','dsp.title':'Distribution to 150+ Digital Stores & Streaming Platforms',
+ 'pricing.tag':'Pricing','pricing.h2':'The Right Plan For You','pricing.sub':'Whether you release your first single or run a label. Transparent pricing, no hidden fees.','plan.single':'SINGLE/ALBUM','plan.unlimited':'UNLIMITED','plan.label':'LABEL','plan.popular':'⭐ MOST POPULAR','plan.askus':'CONTACT US','plan.per_release':'/ release','plan.per_year':'/ yearly','plan.cta_single':'Get Started →','plan.cta_unlimited':'Start Now →','plan.cta_label':'Request Quote →',
+ 'feat.tag':'Our Services','feat.h2':'More Than Just Distribution','feat.global':'Global Distribution','feat.analytics':'Detailed Analytics','feat.royalty':'Transparent Royalties','feat.pr':'PR & Influencer','feat.content_id':'Content ID & Claim','feat.video':'Video Distribution','feat.atmos':'Dolby Atmos','feat.fast':'Fast Onboarding',
+ 'artists.tag':'Our Artists','artists.h2':'AURA SONIC OFFICIAL Roster','artists.sub':'New voices in Turkish and international music. Join the family.',
+ 'final.h2':'The Future of Music Is In Your Hands 🎵','final.p':'Sign up as an artist, producer or label — release in 48 hours.','final.wa':'Contact via WhatsApp',
+ 'foot.platform':'Platform','foot.member':'Membership','foot.contact':'Contact','foot.about':'Professional music distribution platform for independent artists and labels.','foot.rights':'All rights reserved','foot.payment':'Payment Instructions',
+ 'su.title':'AURA SONIC MEMBERSHIP APPLICATION','su.lead':'Fill in the form — our team reviews your application. Successful applicants are contacted within 24 hours.','su.name':'Full Name','su.artist':'Artist / Label Name','su.email':'Email','su.phone':'WhatsApp Phone','su.plan':'Plan Selection','su.select':'— Select —','su.genre':'Music Genre','su.social':'Instagram / Spotify','su.notes':'Notes','su.cancel':'Cancel','su.submit':'Submit Application →',
+ 'cf.title':'YOUR APPLICATION IS READY!','cf.lead':'Send via one of the channels below — we reply within 24 hours.','cf.wa_uk':'Send via WhatsApp (UK)','cf.wa_tr':'Send via WhatsApp (TR)','cf.gmail':'Send via Gmail','cf.copy':'Copy Details','cf.pay':'View Payment Instructions','cf.close':'Close',
+ 'login.welcome':'WELCOME','login.sub':'Sign in to access your member panel','login.email':'EMAIL','login.password':'PASSWORD','login.remember':'Remember me','login.forgot':'Forgot password','login.submit':'LOG IN →','login.or':'OR','login.nomember':"Don't have an account?",'login.signup':'Sign Up →',
+ 'pay.badge':'💳 PAYMENT INSTRUCTIONS','pay.h1':'ACTIVATE YOUR MEMBERSHIP NOW','pay.lead':'Transfer to the bank account below, send your receipt via WhatsApp or email.','pay.bank':'Bank','pay.holder':'Account Holder','pay.iban':'IBAN','pay.amount':'Amount','pay.ref':'Reference / Note','pay.copy':'Copy','pay.copied':'✓ Copied','pay.steps':'ACTIVATION IN 3 STEPS','pay.s1t':'Make Bank Transfer','pay.s2t':'Send Us The Receipt','pay.s3t':'Activated Within 24 Hours','pay.send_h':'📤 SEND YOUR RECEIPT','pay.wa':'Send Receipt via WhatsApp','pay.em':'Send Receipt via Email'
+},
+de:{
+ 'nav.services':'Dienste','nav.pricing':'Preise','nav.artists':'Unsere Künstler','nav.radio':'Radio','nav.contact':'Kontakt','nav.login':'Anmelden','nav.signup':'Beitreten →','nav.home':'← Startseite',
+ 'hero.badge':'● Neu: KI-gestütztes Vertriebs-Panel ist live!','hero.h1a':'Bring deine Musik','hero.h1b':'In die ganze Welt','hero.sub':'Lade deine Songs auf Spotify, Apple Music und 150+ digitale Plattformen hoch. Keine versteckten Gebühren.','hero.cta1':'Pakete ansehen →','hero.cta2':'Beitreten',
+ 'stat.artists':'Aktive Künstler','stat.releases':'Veröffentlichungen','stat.share':'Transparente Aufteilung','dsp.title':'Vertrieb an 150+ digitale Shops & Streaming-Plattformen',
+ 'pricing.tag':'Preise','pricing.h2':'Der richtige Plan für dich','pricing.sub':'Erste Single oder Label-Betrieb. Transparente Preise.','plan.single':'SINGLE/ALBUM','plan.unlimited':'UNBEGRENZT','plan.label':'LABEL','plan.popular':'⭐ AM BELIEBTESTEN','plan.askus':'KONTAKT','plan.per_release':'/ Stück','plan.per_year':'/ jährlich','plan.cta_single':'Loslegen →','plan.cta_unlimited':'Jetzt starten →','plan.cta_label':'Angebot anfordern →',
+ 'feat.tag':'Unsere Dienste','feat.h2':'Mehr als nur Vertrieb','feat.global':'Globaler Vertrieb','feat.analytics':'Detaillierte Analysen','feat.royalty':'Transparente Tantiemen','feat.pr':'PR & Influencer','feat.content_id':'Content ID & Claim','feat.video':'Video-Vertrieb','feat.atmos':'Dolby Atmos','feat.fast':'Schnelles Onboarding',
+ 'artists.tag':'Unsere Künstler','artists.h2':'AURA SONIC OFFICIAL Roster','artists.sub':'Neue Stimmen aus der türkischen und internationalen Musikszene.',
+ 'final.h2':'Die Zukunft der Musik liegt in deiner Hand 🎵','final.p':'Melde dich als Künstler, Produzent oder Label an — Veröffentlichung in 48 Stunden.','final.wa':'Kontakt per WhatsApp',
+ 'foot.platform':'Plattform','foot.member':'Mitgliedschaft','foot.contact':'Kontakt','foot.about':'Professionelle Musikvertriebsplattform für unabhängige Künstler und Labels.','foot.rights':'Alle Rechte vorbehalten','foot.payment':'Zahlungsanweisungen',
+ 'su.title':'AURA SONIC MITGLIEDSCHAFTSANTRAG','su.lead':'Formular ausfüllen — unser Team prüft deine Anfrage. Antwort innerhalb von 24 Stunden.','su.name':'Vollständiger Name','su.artist':'Künstler / Label Name','su.email':'E-Mail','su.phone':'WhatsApp Telefon','su.plan':'Plan-Auswahl','su.select':'— Auswählen —','su.genre':'Musikgenre','su.social':'Instagram / Spotify','su.notes':'Notizen','su.cancel':'Abbrechen','su.submit':'Antrag senden →',
+ 'cf.title':'DEIN ANTRAG IST BEREIT!','cf.lead':'Sende über einen der Kanäle unten — Antwort innerhalb von 24 Stunden.','cf.wa_uk':'Per WhatsApp senden (UK)','cf.wa_tr':'Per WhatsApp senden (TR)','cf.gmail':'Per Gmail senden','cf.copy':'Details kopieren','cf.pay':'Zahlungsanweisungen ansehen','cf.close':'Schließen',
+ 'login.welcome':'WILLKOMMEN','login.sub':'Anmelden um auf das Mitglieder-Panel zuzugreifen','login.email':'E-MAIL','login.password':'PASSWORT','login.remember':'Angemeldet bleiben','login.forgot':'Passwort vergessen','login.submit':'ANMELDEN →','login.or':'ODER','login.nomember':'Noch kein Konto?','login.signup':'Registrieren →',
+ 'pay.badge':'💳 ZAHLUNGSANWEISUNGEN','pay.h1':'AKTIVIERE JETZT DEINE MITGLIEDSCHAFT','pay.lead':'Überweise auf das unten stehende Konto, sende den Beleg per WhatsApp oder E-Mail.','pay.bank':'Bank','pay.holder':'Kontoinhaber','pay.iban':'IBAN','pay.amount':'Betrag','pay.ref':'Verwendungszweck','pay.copy':'Kopieren','pay.copied':'✓ Kopiert','pay.steps':'AKTIVIERUNG IN 3 SCHRITTEN','pay.s1t':'Überweisung tätigen','pay.s2t':'Sende uns den Beleg','pay.s3t':'Aktivierung innerhalb 24 Stunden','pay.send_h':'📤 SENDE DEINEN BELEG','pay.wa':'Beleg per WhatsApp senden','pay.em':'Beleg per E-Mail senden'
+},
+ar:{
+ 'nav.services':'الخدمات','nav.pricing':'الأسعار','nav.artists':'فنانونا','nav.radio':'راديو','nav.contact':'اتصل بنا','nav.login':'تسجيل الدخول','nav.signup':'انضم ←','nav.home':'← الرئيسية',
+ 'hero.badge':'● جديد: لوحة التوزيع المدعومة بالذكاء الاصطناعي مباشرة!','hero.h1a':'انشر موسيقاك','hero.h1b':'إلى كل أنحاء العالم','hero.sub':'حمّل أغانيك على سبوتيفاي وآبل ميوزك و150+ منصة رقمية. لا رسوم خفية.','hero.cta1':'عرض الباقات ←','hero.cta2':'انضم',
+ 'stat.artists':'الفنانون النشطون','stat.releases':'الإصدارات المنشورة','stat.share':'تقاسم شفاف','dsp.title':'التوزيع إلى أكثر من 150 متجراً ومنصة بث',
+ 'pricing.tag':'الأسعار','pricing.h2':'الخطة المناسبة لك','pricing.sub':'سواء كنت تصدر أول أغنية أو تدير شركة. أسعار شفافة.','plan.single':'سينغل/ألبوم','plan.unlimited':'غير محدود','plan.label':'لايبل','plan.popular':'⭐ الأكثر شعبية','plan.askus':'اتصل بنا','plan.per_release':'/ إصدار','plan.per_year':'/ سنوي','plan.cta_single':'ابدأ ←','plan.cta_unlimited':'ابدأ الآن ←','plan.cta_label':'اطلب عرضاً ←',
+ 'feat.tag':'خدماتنا','feat.h2':'أكثر من مجرد توزيع','feat.global':'توزيع عالمي','feat.analytics':'تحليلات مفصلة','feat.royalty':'حقوق ملكية شفافة','feat.pr':'علاقات عامة ومؤثرين','feat.content_id':'Content ID وحماية','feat.video':'توزيع الفيديو','feat.atmos':'Dolby Atmos','feat.fast':'انضمام سريع',
+ 'artists.tag':'فنانونا','artists.h2':'فناني AURA SONIC OFFICIAL','artists.sub':'أصوات جديدة من المشهد الموسيقي التركي والعالمي.',
+ 'final.h2':'مستقبل الموسيقى بين يديك 🎵','final.p':'انضم كفنان أو منتج أو لايبل — الإصدار خلال 48 ساعة.','final.wa':'تواصل عبر واتساب',
+ 'foot.platform':'المنصة','foot.member':'العضوية','foot.contact':'اتصل بنا','foot.about':'منصة توزيع موسيقي احترافية للفنانين المستقلين والشركات.','foot.rights':'جميع الحقوق محفوظة','foot.payment':'تعليمات الدفع',
+ 'su.title':'طلب عضوية AURA SONIC','su.lead':'املأ النموذج — يقوم فريقنا بمراجعة طلبك. الرد خلال 24 ساعة للطلبات المقبولة.','su.name':'الاسم الكامل','su.artist':'اسم الفنان / اللايبل','su.email':'البريد الإلكتروني','su.phone':'هاتف واتساب','su.plan':'اختيار الخطة','su.select':'— اختر —','su.genre':'نوع الموسيقى','su.social':'إنستغرام / سبوتيفاي','su.notes':'ملاحظات','su.cancel':'إلغاء','su.submit':'إرسال الطلب ←',
+ 'cf.title':'طلبك جاهز!','cf.lead':'أرسل عبر إحدى القنوات أدناه — الرد خلال 24 ساعة.','cf.wa_uk':'إرسال عبر واتساب (UK)','cf.wa_tr':'إرسال عبر واتساب (TR)','cf.gmail':'إرسال عبر Gmail','cf.copy':'نسخ التفاصيل','cf.pay':'عرض تعليمات الدفع','cf.close':'إغلاق',
+ 'login.welcome':'أهلاً بك','login.sub':'سجل الدخول للوصول إلى لوحة العضو','login.email':'البريد الإلكتروني','login.password':'كلمة المرور','login.remember':'تذكرني','login.forgot':'نسيت كلمة المرور','login.submit':'تسجيل الدخول ←','login.or':'أو','login.nomember':'ليس لديك حساب؟','login.signup':'سجل ←',
+ 'pay.badge':'💳 تعليمات الدفع','pay.h1':'فعّل عضويتك الآن','pay.lead':'حوّل إلى الحساب البنكي أدناه، أرسل الإيصال عبر واتساب أو البريد الإلكتروني.','pay.bank':'البنك','pay.holder':'صاحب الحساب','pay.iban':'IBAN','pay.amount':'المبلغ','pay.ref':'الوصف / المرجع','pay.copy':'نسخ','pay.copied':'✓ تم النسخ','pay.steps':'التفعيل في 3 خطوات','pay.s1t':'قم بالتحويل البنكي','pay.s2t':'أرسل لنا الإيصال','pay.s3t':'التفعيل خلال 24 ساعة','pay.send_h':'📤 أرسل إيصالك','pay.wa':'إرسال الإيصال عبر واتساب','pay.em':'إرسال الإيصال عبر البريد'
+},
+fr:{
+ 'nav.services':'Services','nav.pricing':'Tarifs','nav.artists':'Nos Artistes','nav.radio':'Radio','nav.contact':'Contact','nav.login':'Connexion','nav.signup':'Rejoindre →','nav.home':'← Accueil',
+ 'hero.badge':"● Nouveau: Panneau de distribution IA en ligne!",'hero.h1a':'Diffusez votre musique','hero.h1b':'Dans le monde entier','hero.sub':'Téléchargez vos titres sur Spotify, Apple Music et 150+ plateformes. Aucuns frais cachés.','hero.cta1':'Voir les forfaits →','hero.cta2':'Rejoindre',
+ 'stat.artists':'Artistes Actifs','stat.releases':'Sorties en Ligne','stat.share':'Partage Transparent','dsp.title':'Distribution vers 150+ magasins numériques et plateformes',
+ 'pricing.tag':'Tarifs','pricing.h2':'Le bon forfait pour vous','pricing.sub':'Premier single ou label, tarifs transparents.','plan.single':'SINGLE/ALBUM','plan.unlimited':'ILLIMITÉ','plan.label':'LABEL','plan.popular':'⭐ LE PLUS POPULAIRE','plan.askus':'CONTACTEZ-NOUS','plan.per_release':'/ sortie','plan.per_year':'/ annuel','plan.cta_single':'Commencer →','plan.cta_unlimited':'Démarrer →','plan.cta_label':'Demander un devis →',
+ 'feat.tag':'Nos Services','feat.h2':"Plus que de la distribution",'feat.global':'Distribution Globale','feat.analytics':'Analyses Détaillées','feat.royalty':'Redevances Transparentes','feat.pr':'PR & Influenceurs','feat.content_id':'Content ID & Claim','feat.video':'Distribution Vidéo','feat.atmos':'Dolby Atmos','feat.fast':'Onboarding Rapide',
+ 'artists.tag':'Nos Artistes','artists.h2':'Roster AURA SONIC OFFICIAL','artists.sub':'Nouvelles voix turques et internationales.',
+ 'final.h2':"L'avenir de la musique est entre vos mains 🎵",'final.p':'Inscrivez-vous comme artiste, producteur ou label — sortie en 48 h.','final.wa':'Contact via WhatsApp',
+ 'foot.platform':'Plateforme','foot.member':'Adhésion','foot.contact':'Contact','foot.about':'Plateforme professionnelle de distribution musicale pour artistes et labels indépendants.','foot.rights':'Tous droits réservés','foot.payment':'Instructions de paiement',
+ 'su.title':"DEMANDE D'ADHÉSION AURA SONIC",'su.lead':"Remplissez le formulaire — notre équipe examine votre demande. Réponse dans 24 heures.",'su.name':'Nom complet','su.artist':'Artiste / Label','su.email':'E-mail','su.phone':'WhatsApp','su.plan':'Choix du plan','su.select':'— Sélectionner —','su.genre':'Genre musical','su.social':'Instagram / Spotify','su.notes':'Notes','su.cancel':'Annuler','su.submit':'Envoyer →',
+ 'cf.title':'VOTRE DEMANDE EST PRÊTE!','cf.lead':"Envoyez via l'un des canaux ci-dessous — réponse dans 24h.",'cf.wa_uk':'Envoyer via WhatsApp (UK)','cf.wa_tr':'Envoyer via WhatsApp (TR)','cf.gmail':'Envoyer via Gmail','cf.copy':'Copier les détails','cf.pay':'Voir les instructions de paiement','cf.close':'Fermer',
+ 'login.welcome':'BIENVENUE','login.sub':'Connectez-vous pour accéder à votre espace','login.email':'E-MAIL','login.password':'MOT DE PASSE','login.remember':'Se souvenir','login.forgot':'Mot de passe oublié','login.submit':'CONNEXION →','login.or':'OU','login.nomember':"Pas encore membre?",'login.signup':"S'inscrire →",
+ 'pay.badge':'💳 INSTRUCTIONS DE PAIEMENT','pay.h1':'ACTIVEZ VOTRE ADHÉSION','pay.lead':"Virez sur le compte ci-dessous, envoyez le reçu via WhatsApp ou e-mail.",'pay.bank':'Banque','pay.holder':'Titulaire','pay.iban':'IBAN','pay.amount':'Montant','pay.ref':'Référence','pay.copy':'Copier','pay.copied':'✓ Copié','pay.steps':'ACTIVATION EN 3 ÉTAPES','pay.s1t':'Faire le virement','pay.s2t':'Envoyer le reçu','pay.s3t':'Activation sous 24h','pay.send_h':'📤 ENVOYEZ VOTRE REÇU','pay.wa':'Envoyer reçu via WhatsApp','pay.em':'Envoyer reçu via e-mail'
+},
+es:{
+ 'nav.services':'Servicios','nav.pricing':'Precios','nav.artists':'Nuestros Artistas','nav.radio':'Radio','nav.contact':'Contacto','nav.login':'Iniciar Sesión','nav.signup':'Únete →','nav.home':'← Inicio',
+ 'hero.badge':'● ¡Nuevo: Panel de distribución con IA en vivo!','hero.h1a':'Lleva tu música','hero.h1b':'A todo el mundo','hero.sub':'Sube tus canciones a Spotify, Apple Music y 150+ plataformas. Sin tarifas ocultas.','hero.cta1':'Ver planes →','hero.cta2':'Únete',
+ 'stat.artists':'Artistas Activos','stat.releases':'Lanzamientos','stat.share':'Reparto Transparente','dsp.title':'Distribución a 150+ tiendas digitales y plataformas',
+ 'pricing.tag':'Precios','pricing.h2':'El plan adecuado para ti','pricing.sub':'Primer single o gestión de label. Precios transparentes.','plan.single':'SINGLE/ÁLBUM','plan.unlimited':'ILIMITADO','plan.label':'LABEL','plan.popular':'⭐ MÁS POPULAR','plan.askus':'CONTÁCTANOS','plan.per_release':'/ lanzamiento','plan.per_year':'/ anual','plan.cta_single':'Comenzar →','plan.cta_unlimited':'Empieza ya →','plan.cta_label':'Pedir presupuesto →',
+ 'feat.tag':'Nuestros Servicios','feat.h2':'Más que distribución','feat.global':'Distribución Global','feat.analytics':'Analíticas Detalladas','feat.royalty':'Regalías Transparentes','feat.pr':'PR & Influencers','feat.content_id':'Content ID & Claim','feat.video':'Distribución de Video','feat.atmos':'Dolby Atmos','feat.fast':'Onboarding Rápido',
+ 'artists.tag':'Nuestros Artistas','artists.h2':'Roster AURA SONIC OFFICIAL','artists.sub':'Nuevas voces turcas e internacionales. Únete a la familia.',
+ 'final.h2':'El futuro de la música está en tus manos 🎵','final.p':'Regístrate como artista, productor o label — lanzamiento en 48h.','final.wa':'Contacto por WhatsApp',
+ 'foot.platform':'Plataforma','foot.member':'Membresía','foot.contact':'Contacto','foot.about':'Plataforma profesional de distribución musical para artistas y labels independientes.','foot.rights':'Todos los derechos reservados','foot.payment':'Instrucciones de pago',
+ 'su.title':'SOLICITUD DE MEMBRESÍA AURA SONIC','su.lead':'Rellena el formulario — nuestro equipo revisa tu solicitud. Respuesta en 24 horas.','su.name':'Nombre completo','su.artist':'Artista / Label','su.email':'Correo','su.phone':'WhatsApp','su.plan':'Plan','su.select':'— Selecciona —','su.genre':'Género musical','su.social':'Instagram / Spotify','su.notes':'Notas','su.cancel':'Cancelar','su.submit':'Enviar solicitud →',
+ 'cf.title':'¡TU SOLICITUD ESTÁ LISTA!','cf.lead':'Envía por uno de los canales abajo — respuesta en 24h.','cf.wa_uk':'Enviar por WhatsApp (UK)','cf.wa_tr':'Enviar por WhatsApp (TR)','cf.gmail':'Enviar por Gmail','cf.copy':'Copiar detalles','cf.pay':'Ver instrucciones de pago','cf.close':'Cerrar',
+ 'login.welcome':'BIENVENIDO','login.sub':'Inicia sesión para acceder al panel','login.email':'CORREO','login.password':'CONTRASEÑA','login.remember':'Recuérdame','login.forgot':'Olvidé mi contraseña','login.submit':'ENTRAR →','login.or':'O','login.nomember':'¿No eres miembro?','login.signup':'Regístrate →',
+ 'pay.badge':'💳 INSTRUCCIONES DE PAGO','pay.h1':'ACTIVA TU MEMBRESÍA YA','pay.lead':'Transfiere a la cuenta abajo, envía el recibo por WhatsApp o email.','pay.bank':'Banco','pay.holder':'Titular','pay.iban':'IBAN','pay.amount':'Importe','pay.ref':'Referencia','pay.copy':'Copiar','pay.copied':'✓ Copiado','pay.steps':'ACTIVACIÓN EN 3 PASOS','pay.s1t':'Realiza la transferencia','pay.s2t':'Envía el recibo','pay.s3t':'Activación en 24h','pay.send_h':'📤 ENVÍA TU RECIBO','pay.wa':'Enviar recibo por WhatsApp','pay.em':'Enviar recibo por email'
+}
+};
+
+window.AURA_LANGS = [
+  {code:'tr', label:'TR'},{code:'en', label:'EN'},{code:'de', label:'DE'},
+  {code:'ar', label:'AR'},{code:'fr', label:'FR'},{code:'es', label:'ES'}
+];
+
+window.setLang = function(l){
+  if(!window.I18N[l]) l='tr';
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k = el.dataset.i18n;
+    if(window.I18N[l][k]) el.textContent = window.I18N[l][k];
+  });
+  document.querySelectorAll('[data-i18n-attr]').forEach(el=>{
+    const [attr,key] = el.dataset.i18nAttr.split('|');
+    if(window.I18N[l][key]) el.setAttribute(attr, window.I18N[l][key]);
+  });
+  document.documentElement.lang = l;
+  document.documentElement.dir = (l==='ar') ? 'rtl' : 'ltr';
+  localStorage.setItem('aura_lang', l);
+  document.querySelectorAll('.lang-switch button').forEach(b=>b.classList.toggle('active', b.dataset.lang===l));
+};
+
+window.initLangSwitcher = function(){
+  const sw = document.querySelector('.lang-switch');
+  if(sw){
+    sw.innerHTML = window.AURA_LANGS.map(L=>`<button data-lang="${L.code}">${L.label}</button>`).join('');
+    sw.querySelectorAll('button').forEach(b=>b.onclick = ()=>window.setLang(b.dataset.lang));
+  }
+  const saved = localStorage.getItem('aura_lang');
+  const browser = (navigator.language||'tr').slice(0,2);
+  const start = saved || (window.I18N[browser] ? browser : 'tr');
+  window.setLang(start);
+};
+
+if(document.readyState !== 'loading') window.initLangSwitcher();
+else document.addEventListener('DOMContentLoaded', window.initLangSwitcher);

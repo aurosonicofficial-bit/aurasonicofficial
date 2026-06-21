@@ -64,11 +64,11 @@ body::before{content:'';position:fixed;top:-300px;left:50%;transform:translateX(
 .foot{text-align:center;margin-top:30px;color:var(--muted);font-size:12px;line-height:1.7}
 .foot a{color:var(--muted2);text-decoration:none}
 .foot a:hover{color:var(--gold)}
-</style>
+.lang-switch{position:absolute;top:24px;right:24px;display:flex;gap:4px;border:1px solid var(--border2);border-radius:999px;padding:4px;background:rgba(15,20,33,.6);backdrop-filter:blur(10px);z-index:5}.lang-switch button{background:transparent;border:none;color:var(--muted);padding:6px 9px;border-radius:999px;font-size:11px;font-weight:700;cursor:pointer;font-family:Outfit;transition:.2s}.lang-switch button:hover{color:var(--gold)}.lang-switch button.active{background:var(--gold);color:#1A0F00}[dir=rtl] body{direction:rtl}</style>
 </head>
 <body>
 
-<a class="back-home" href="../">← Ana Sayfa</a>
+<a class="back-home" href="../" data-i18n="nav.home">← Ana Sayfa</a>
 
 <div class="wrap">
   <div class="brand">
@@ -78,15 +78,15 @@ body::before{content:'';position:fixed;top:-300px;left:50%;transform:translateX(
   </div>
 
   <div class="card">
-    <h1>HOŞ GELDİNİZ</h1>
-    <p class="sub">Üye paneline erişmek için giriş yapın</p>
+    <h1 data-i18n="login.welcome">HOŞ GELDİNİZ</h1>
+    <p class="sub" data-i18n="login.sub">Üye paneline erişmek için giriş yapın</p>
 
     <div class="alert" id="errBox"><span>⚠️</span><span id="errMsg"></span></div>
     <div class="success" id="okBox"><span>✓</span><span>Giriş başarılı, panele yönlendiriliyorsunuz...</span></div>
 
     <form id="loginForm" onsubmit="doLogin(event)">
       <div class="field">
-        <label>E-POSTA</label>
+        <label data-i18n="login.email">E-POSTA</label>
         <div class="ipt">
           <span class="ico">✉</span>
           <input type="email" name="email" required placeholder="ornek@email.com" autocomplete="email">
@@ -94,7 +94,7 @@ body::before{content:'';position:fixed;top:-300px;left:50%;transform:translateX(
       </div>
 
       <div class="field">
-        <label>ŞİFRE</label>
+        <label data-i18n="login.password">ŞİFRE</label>
         <div class="ipt">
           <span class="ico">🔒</span>
           <input type="password" name="password" id="pw" required placeholder="••••••••" autocomplete="current-password">
@@ -103,17 +103,17 @@ body::before{content:'';position:fixed;top:-300px;left:50%;transform:translateX(
       </div>
 
       <div class="row">
-        <label><input type="checkbox" name="remember"> Beni hatırla</label>
-        <a href="mailto:info@aurasonicofficial.co.uk?subject=Sifre%20Sifirlama%20Talebi">Şifremi unuttum</a>
+        <label><input type="checkbox" name="remember"> <span data-i18n="login.remember">Beni hatırla</span></label>
+        <a href="mailto:info@aurasonicofficial.co.uk?subject=Sifre%20Sifirlama%20Talebi" data-i18n="login.forgot">Şifremi unuttum</a>
       </div>
 
-      <button type="submit" class="btn btn-gold">GİRİŞ YAP →</button>
+      <button type="submit" class="btn btn-gold" data-i18n="login.submit">GİRİŞ YAP →</button>
     </form>
 
-    <div class="divider">VEYA</div>
+    <div class="divider" data-i18n="login.or">VEYA</div>
 
     <div class="signup-link">
-      Henüz üye değil misiniz? <a href="../#pricing">Üye Ol →</a>
+      <span data-i18n="login.nomember">Henüz üye değil misiniz?</span> <a href="../#pricing" data-i18n="login.signup">Üye Ol →</a>
     </div>
   </div>
 
@@ -174,5 +174,5 @@ window.addEventListener('DOMContentLoaded', ()=>{
   if(saved){ document.querySelector('input[name=email]').value = saved; document.querySelector('input[name=remember]').checked = true; }
 });
 </script>
-</body>
+<script src="../assets/i18n.js"></script></body>
 </html>
