@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>SketchUp Eğitimi — Bölüm 1 · AURA SONIC ACADEMY</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="../../aurasonicofficial-logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --gold:#C9A84C;--gold2:#E8C96A;--gold4:rgba(201,168,76,.1);
+  --bg:#0A0E1A;--bg2:#0F1421;--bg3:#1A2138;--bg4:#242C44;
+  --white:#fff;--muted:rgba(255,255,255,.55);--muted2:rgba(255,255,255,.8);
+  --border:rgba(201,168,76,.25);--border2:rgba(255,255,255,.08);
+  --green:#22C55E;--blue:#22D3EE;--red:#EF4444;--orange:#F59E0B;
+}
+html,body{height:100%;font-family:'Outfit',sans-serif;background:var(--bg);color:var(--white);overflow:hidden}
+a{color:inherit;text-decoration:none}
+
+/* ── TOP BAR ── */
+.topbar{position:fixed;top:0;left:0;right:0;height:60px;background:rgba(10,14,26,.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 24px;z-index:100}
+.brand{display:flex;align-items:center;gap:12px}
+.brand img{height:34px;filter:drop-shadow(0 0 10px rgba(201,168,76,.4))}
+.brand-text{font-family:'Bebas Neue';font-size:18px;letter-spacing:2px;color:var(--gold);line-height:1}
+.brand-sub{font-size:9px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-top:2px}
+
+.lesson-info{text-align:center}
+.lesson-info .ch{font-size:10px;letter-spacing:2px;color:var(--gold);text-transform:uppercase}
+.lesson-info .t{font-size:14px;font-weight:600;margin-top:2px}
+
+.controls{display:flex;gap:8px;align-items:center}
+.ctrl-btn{background:var(--bg3);border:1px solid var(--border2);color:var(--white);padding:8px 14px;border-radius:8px;cursor:pointer;font-family:'Outfit';font-size:12px;font-weight:600;display:flex;align-items:center;gap:6px;transition:.2s}
+.ctrl-btn:hover{border-color:var(--gold);color:var(--gold)}
+.ctrl-btn.gold{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1A0F00;border:none}
+
+/* ── STAGE ── */
+.stage{position:absolute;top:60px;left:0;right:0;bottom:140px;display:grid;grid-template-columns:1fr 380px;gap:0}
+
+/* SketchUp mock viewport */
+.viewport{position:relative;background:linear-gradient(180deg,#7BAFD4 0%,#B8D4E8 60%,#E8E4DC 60.5%,#D4C9B0 100%);overflow:hidden}
+/* SketchUp toolbar (üst) */
+.su-toolbar{position:absolute;top:0;left:0;right:0;height:44px;background:#E8E4DC;border-bottom:1px solid #BCB5A4;display:flex;align-items:center;padding:0 12px;gap:4px;z-index:5}
+.su-tool{width:32px;height:32px;border-radius:4px;background:#F5F1E8;border:1px solid #BCB5A4;display:flex;align-items:center;justify-content:center;color:#444;font-size:14px;cursor:pointer;transition:.2s}
+.su-tool:hover{background:var(--gold);border-color:var(--gold);color:#1A0F00}
+.su-tool.active{background:var(--gold);border-color:var(--gold);color:#1A0F00;box-shadow:0 0 0 2px rgba(201,168,76,.4)}
+.su-sep{width:1px;height:24px;background:#BCB5A4;margin:0 6px}
+
+/* Axes & figure */
+.scene3d{position:absolute;top:50%;left:50%;width:0;height:0;perspective:900px}
+.cube{position:absolute;width:160px;height:160px;transform-style:preserve-3d;left:-80px;top:-80px;transition:transform 1s cubic-bezier(.4,.2,.2,1)}
+.face{position:absolute;width:160px;height:160px;border:2px solid #8B7A47;background:rgba(232,201,106,.8);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue';font-size:32px;color:#1A0F00;letter-spacing:2px}
+.face.front{transform:translateZ(80px)}
+.face.back{transform:rotateY(180deg) translateZ(80px);background:rgba(201,168,76,.7)}
+.face.right{transform:rotateY(90deg) translateZ(80px);background:rgba(180,150,60,.85)}
+.face.left{transform:rotateY(-90deg) translateZ(80px);background:rgba(180,150,60,.85)}
+.face.top{transform:rotateX(90deg) translateZ(80px);background:rgba(232,201,106,1)}
+.face.bottom{transform:rotateX(-90deg) translateZ(80px);background:rgba(140,110,40,.85)}
+
+.axes{position:absolute;top:50%;left:50%;width:0;height:0}
+.axis{position:absolute;left:0;top:0;transform-origin:left center;height:2px}
+.axis.x{width:200px;background:linear-gradient(90deg,#D02828,#D02828 90%,transparent);transform:rotate(0deg)}
+.axis.y{width:200px;background:linear-gradient(90deg,#28A028,#28A028 90%,transparent);transform:rotate(-30deg)}
+.axis.z{width:160px;background:linear-gradient(90deg,#2858D0,#2858D0 90%,transparent);transform:rotate(-90deg)}
+.axis-label{position:absolute;font-family:'Bebas Neue';font-size:14px;font-weight:700}
+
+/* Person figure */
+.person{position:absolute;left:calc(50% - 12px);top:calc(50% + 30px);width:24px;height:50px;z-index:2}
+.person::before{content:'';position:absolute;top:0;left:8px;width:8px;height:8px;border-radius:50%;background:#1A0F00}
+.person::after{content:'';position:absolute;top:8px;left:6px;width:12px;height:24px;background:#1A0F00;border-radius:6px 6px 0 0}
+
+/* Animated cursor */
+.cursor{position:absolute;width:28px;height:28px;z-index:50;pointer-events:none;transition:left .8s cubic-bezier(.4,.2,.2,1), top .8s cubic-bezier(.4,.2,.2,1);opacity:0;transform:translate(-4px,-2px)}
+.cursor.show{opacity:1}
+.cursor svg{filter:drop-shadow(0 2px 6px rgba(0,0,0,.5))}
+.cursor.clicking::after{content:'';position:absolute;left:-6px;top:-6px;width:40px;height:40px;border-radius:50%;border:3px solid var(--gold);animation:ripple .6s ease-out}
+@keyframes ripple{0%{transform:scale(.3);opacity:1}100%{transform:scale(1.5);opacity:0}}
+
+/* Highlight box */
+.highlight{position:absolute;border:3px solid var(--gold);border-radius:6px;box-shadow:0 0 0 4px rgba(201,168,76,.3),0 0 30px rgba(201,168,76,.6);pointer-events:none;opacity:0;transition:.4s;z-index:40}
+.highlight.show{opacity:1;animation:pulse 1.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 4px rgba(201,168,76,.3),0 0 30px rgba(201,168,76,.6)}50%{box-shadow:0 0 0 8px rgba(201,168,76,.2),0 0 50px rgba(201,168,76,.9)}}
+
+/* ── RIGHT PANEL (NARRATION) ── */
+.panel{background:var(--bg2);border-left:1px solid var(--border2);padding:24px;overflow-y:auto;display:flex;flex-direction:column}
+.avatar{display:flex;align-items:center;gap:14px;padding-bottom:18px;border-bottom:1px solid var(--border2);margin-bottom:18px}
+.avatar-img{width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue';font-size:22px;color:#1A0F00}
+.avatar-img.talking{animation:talk .4s ease-in-out infinite alternate}
+@keyframes talk{0%{transform:scale(1)}100%{transform:scale(1.08)}}
+.avatar-info .n{font-weight:700;font-size:14px}
+.avatar-info .r{font-size:11px;color:var(--gold);letter-spacing:1px;text-transform:uppercase;margin-top:2px}
+
+.step-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.step-header .ix{font-size:11px;color:var(--muted);letter-spacing:2px;text-transform:uppercase}
+.step-header .of{font-size:11px;color:var(--gold)}
+.step-title{font-family:'Bebas Neue';font-size:26px;letter-spacing:2px;color:var(--gold);line-height:1.1;margin-bottom:12px}
+.step-text{font-size:14px;color:var(--muted2);line-height:1.7;margin-bottom:16px}
+.step-tip{background:var(--gold4);border:1px solid var(--border);padding:14px;border-radius:10px;font-size:12px;color:var(--muted2);line-height:1.6;margin-bottom:16px}
+.step-tip b{color:var(--gold)}
+.step-action{background:var(--bg3);padding:14px;border-radius:10px;margin-bottom:16px;border-left:3px solid var(--gold)}
+.step-action b{display:block;font-size:11px;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px}
+.step-action span{font-size:13px;color:var(--white)}
+
+.kbd{display:inline-block;background:var(--bg4);border:1px solid var(--border2);border-bottom-width:2px;padding:3px 8px;border-radius:5px;font-family:monospace;font-size:11px;font-weight:700;color:var(--gold);margin:0 2px}
+
+/* ── BOTTOM BAR (PROGRESS + NAV) ── */
+.bottombar{position:fixed;bottom:0;left:0;right:0;height:140px;background:var(--bg2);border-top:1px solid var(--border);padding:18px 24px;z-index:100;display:flex;flex-direction:column;gap:14px}
+.progress-bar{display:flex;gap:6px;align-items:center}
+.dot{flex:1;height:6px;background:var(--bg4);border-radius:3px;position:relative;overflow:hidden;cursor:pointer;transition:.2s}
+.dot:hover{background:var(--bg3)}
+.dot .fill{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0;transition:width .3s}
+.dot.done .fill{width:100%}
+.dot.current .fill{width:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));animation:cur 2s ease-in-out infinite}
+@keyframes cur{0%,100%{opacity:1}50%{opacity:.5}}
+
+.nav-row{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.big-btn{padding:14px 24px;border-radius:12px;border:none;font-family:'Outfit';font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:8px;transition:.25s;letter-spacing:.5px}
+.big-btn:disabled{opacity:.35;cursor:not-allowed}
+.big-btn.prev{background:var(--bg3);color:var(--muted2);border:1px solid var(--border2)}
+.big-btn.prev:hover:not(:disabled){border-color:var(--gold);color:var(--gold)}
+.big-btn.next{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1A0F00;flex:1;max-width:280px;justify-content:center}
+.big-btn.next:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(201,168,76,.4)}
+
+.audio-controls{display:flex;gap:8px;align-items:center}
+.audio-controls .ic{width:38px;height:38px;border-radius:50%;background:var(--bg3);border:1px solid var(--border2);color:var(--white);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;transition:.2s}
+.audio-controls .ic:hover{border-color:var(--gold);color:var(--gold)}
+.audio-controls .ic.active{background:var(--gold);color:#1A0F00;border-color:var(--gold)}
+
+/* Welcome overlay */
+.welcome{position:fixed;inset:0;background:rgba(10,14,26,.98);z-index:200;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;transition:opacity .5s}
+.welcome.hide{opacity:0;pointer-events:none}
+.welcome h1{font-family:'Bebas Neue';font-size:64px;letter-spacing:4px;color:var(--gold);margin-bottom:8px;line-height:1}
+.welcome .tag{display:inline-block;background:var(--gold4);color:var(--gold);padding:6px 16px;border-radius:999px;font-size:12px;letter-spacing:2px;margin-bottom:24px;font-weight:700}
+.welcome h2{font-size:26px;font-weight:600;margin-bottom:14px}
+.welcome p{font-size:15px;color:var(--muted2);max-width:560px;line-height:1.7;margin-bottom:30px}
+.welcome .meta{display:flex;gap:30px;margin-bottom:36px;flex-wrap:wrap;justify-content:center}
+.welcome .meta div{text-align:center}
+.welcome .meta b{display:block;font-family:'Bebas Neue';font-size:26px;color:var(--gold);letter-spacing:1px}
+.welcome .meta small{font-size:11px;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase}
+
+/* Quiz */
+.quiz{display:none;position:absolute;inset:0;background:rgba(15,20,33,.95);z-index:80;align-items:center;justify-content:center;padding:40px}
+.quiz.show{display:flex}
+.quiz-card{background:var(--bg2);border:1px solid var(--gold);border-radius:18px;padding:32px;max-width:500px;width:100%;text-align:center}
+.quiz-card h3{font-family:'Bebas Neue';font-size:24px;color:var(--gold);letter-spacing:2px;margin-bottom:16px}
+.quiz-card .q{font-size:16px;margin-bottom:20px;line-height:1.5}
+.quiz-card .opts{display:grid;gap:10px}
+.quiz-opt{background:var(--bg3);border:1px solid var(--border2);color:var(--white);padding:14px;border-radius:10px;cursor:pointer;font-family:'Outfit';font-size:14px;text-align:left;transition:.2s}
+.quiz-opt:hover{border-color:var(--gold)}
+.quiz-opt.correct{background:rgba(34,197,94,.2);border-color:var(--green);color:var(--green)}
+.quiz-opt.wrong{background:rgba(239,68,68,.2);border-color:var(--red);color:var(--red)}
+
+/* Mobil */
+@media(max-width:900px){.stage{grid-template-columns:1fr;grid-template-rows:1fr 280px}.panel{border-left:0;border-top:1px solid var(--border2)}}
+</style>
+</head>
+<body>
+
+<!-- WELCOME OVERLAY -->
+<div class="welcome" id="welcome">
+  <div class="tag">⭐ AURA SONIC ACADEMY</div>
+  <h1>SKETCHUP'A MERHABA</h1>
+  <h2>Bölüm 1 · Arayüz ve Temel Hareketler</h2>
+  <p>Bu interaktif derste SketchUp'ı ilk kez açan biri gibi başlayacağız. Arayüzü tanıyacak, sahnede nasıl dönüleceğini, kaydırılacağını ve yaklaşılacağını öğreneceksin.</p>
+  <div class="meta">
+    <div><b>10</b><small>Adım</small></div>
+    <div><b>~5</b><small>Dakika</small></div>
+    <div><b>Başlangıç</b><small>Seviye</small></div>
+    <div><b>Türkçe</b><small>Anlatım</small></div>
+  </div>
+  <button class="big-btn next" onclick="startLesson()">🚀 Derse Başla</button>
+  <p style="margin-top:24px;font-size:11px;color:var(--muted)">İpucu: <b>kulaklık tak</b> — sesli anlatım var.</p>
+</div>
+
+<!-- TOP BAR -->
+<header class="topbar">
+  <a class="brand" href="../../">
+    <img src="../../aurasonicofficial-logo.png" alt="">
+    <div>
+      <div class="brand-text">AURA SONIC ACADEMY</div>
+      <div class="brand-sub">SketchUp Eğitim Serisi</div>
+    </div>
+  </a>
+  <div class="lesson-info">
+    <div class="ch">BÖLÜM 1 / 8</div>
+    <div class="t">Arayüz ve Temel Hareketler</div>
+  </div>
+  <div class="controls">
+    <button class="ctrl-btn" onclick="window.location.href='../../'">← Çıkış</button>
+  </div>
+</header>
+
+<!-- STAGE -->
+<div class="stage">
+
+  <!-- SKETCHUP MOCK VIEWPORT -->
+  <div class="viewport" id="viewport">
+    <div class="su-toolbar" id="toolbar">
+      <div class="su-tool" id="tool-select" title="Seç">↖</div>
+      <div class="su-sep"></div>
+      <div class="su-tool" id="tool-line" title="Çizgi">/</div>
+      <div class="su-tool" id="tool-rect" title="Dikdörtgen">▭</div>
+      <div class="su-tool" id="tool-circle" title="Çember">○</div>
+      <div class="su-sep"></div>
+      <div class="su-tool" id="tool-push" title="Push/Pull">⬆</div>
+      <div class="su-tool" id="tool-move" title="Taşı">✥</div>
+      <div class="su-tool" id="tool-rotate" title="Döndür">↻</div>
+      <div class="su-sep"></div>
+      <div class="su-tool" id="tool-orbit" title="Orbit">🌐</div>
+      <div class="su-tool" id="tool-pan" title="Pan">✋</div>
+      <div class="su-tool" id="tool-zoom" title="Zoom">🔍</div>
+    </div>
+
+    <div class="scene3d" id="scene3d">
+      <div class="axes">
+        <div class="axis x"></div>
+        <div class="axis y"></div>
+        <div class="axis z"></div>
+        <div class="axis-label" style="left:195px;top:-8px;color:#D02828">X</div>
+        <div class="axis-label" style="left:175px;top:-105px;color:#28A028">Y</div>
+        <div class="axis-label" style="left:-12px;top:-170px;color:#2858D0">Z</div>
+      </div>
+      <div class="person"></div>
+      <div class="cube" id="cube">
+        <div class="face front">3D</div>
+        <div class="face back"></div>
+        <div class="face right"></div>
+        <div class="face left"></div>
+        <div class="face top"></div>
+        <div class="face bottom"></div>
+      </div>
+    </div>
+
+    <div class="cursor" id="cursor">
+      <svg width="28" height="28" viewBox="0 0 28 28"><path d="M2 2 L2 22 L8 17 L12 26 L16 24 L12 16 L20 16 Z" fill="#fff" stroke="#1A0F00" stroke-width="1.5"/></svg>
+    </div>
+    <div class="highlight" id="highlight"></div>
+
+    <!-- QUIZ -->
+    <div class="quiz" id="quiz">
+      <div class="quiz-card">
+        <h3>🧠 HIZLI SORU</h3>
+        <div class="q" id="quizQ"></div>
+        <div class="opts" id="quizOpts"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT NARRATION PANEL -->
+  <aside class="panel">
+    <div class="avatar">
+      <div class="avatar-img" id="avatarImg">AÖ</div>
+      <div class="avatar-info">
+        <div class="n">Aşkın Hoca</div>
+        <div class="r">SketchUp Eğitmeni · AI Ses</div>
+      </div>
+    </div>
+
+    <div class="step-header">
+      <div class="ix" id="stepIx">ADIM 1</div>
+      <div class="of" id="stepOf">/ 10</div>
+    </div>
+    <div class="step-title" id="stepTitle">Hoş geldin!</div>
+    <div class="step-text" id="stepText">SketchUp'ı açtığında karşılaşacağın ekran tam olarak böyle görünüyor.</div>
+    <div class="step-tip" id="stepTip" style="display:none"><b>💡 İPUCU:</b> <span id="stepTipText"></span></div>
+    <div class="step-action" id="stepAction" style="display:none"><b>🎯 ŞIMDI YAP</b><span id="stepActionText"></span></div>
+  </aside>
+</div>
+
+<!-- BOTTOM BAR -->
+<footer class="bottombar">
+  <div class="progress-bar" id="progressBar"></div>
+  <div class="nav-row">
+    <button class="big-btn prev" id="prevBtn" onclick="prevStep()">← Önceki</button>
+    <div class="audio-controls">
+      <button class="ic" id="muteBtn" onclick="toggleMute()" title="Sesi kapat/aç">🔊</button>
+      <button class="ic" id="replayBtn" onclick="replayNarration()" title="Anlatımı tekrar oynat">↻</button>
+    </div>
+    <button class="big-btn next" id="nextBtn" onclick="nextStep()">Sonraki Adım →</button>
+  </div>
+</footer>
+
+<script>
+// === DERS ADIMLARI ===
+const STEPS = [
+  { title:"Hoş geldin!",
+    text:"SketchUp'ı açtığında karşılaşacağın ekran tam olarak böyle görünüyor. Ortada sahne, üstte araç çubuğu ve 3 renkli eksen.",
+    voice:"Hoş geldin! SketchUp'a giriş yapıyoruz. Ortada gördüğün renkli çizgiler eksenler. Kırmızı X, yeşil Y, mavi Z eksenidir. Sahnenin tam ortasında ise referans için bir insan figürü vardır.",
+    tip:"Sahnede gördüğün insan figürü, ölçek karşılaştırması için var. Her zaman gerçek boyutlarla çalışıyorsun.",
+    highlight:null, cursor:null },
+
+  { title:"Eksenleri tanıyalım",
+    text:"Sahnede 3 renkli çizgi görüyorsun. Bunlar 3 boyutlu uzayın eksenleri.",
+    voice:"Üç eksen var. Kırmızı X ekseni sağa-sola, yeşil Y ekseni öne-arkaya, mavi Z ekseni yukarı-aşağı yönü gösterir. SketchUp'ta her çizdiğin şey bu eksenlere göre hizalanır.",
+    tip:"Kural: Çizgi çizerken eksen rengine yapışırsa, doğru yönde çiziyorsun demektir.",
+    highlight:null, cursor:null,
+    action:"Eksenlerin renklerini ezberle: <b style='color:#D02828'>X kırmızı</b>, <b style='color:#28A028'>Y yeşil</b>, <b style='color:#2858D0'>Z mavi</b>." },
+
+  { title:"Araç çubuğu",
+    text:"Üst kısımda araç çubuğu var. Çizim, dönüştürme ve görüş araçları burada.",
+    voice:"Üstte gördüğün araç çubuğunda iki ana grup var. Sol tarafta çizim araçları, sağ tarafta ise sahnede dolaşmak için görüş araçları.",
+    tip:"Profesyoneller butona tıklamak yerine klavye kısayolu kullanır. Daha hızlı.",
+    highlight:{el:'toolbar', x:0, y:0, w:'100%', h:'44px'},
+    cursor:{x:200, y:22} },
+
+  { title:"Orbit (Yörünge)",
+    text:"3 boyutlu sahnede dönmek için Orbit aracını kullanıyoruz.",
+    voice:"Orbit aracına bas. Bu araç sahneyi 3 boyutlu olarak döndürmeni sağlar. Kısayol: O harfi.",
+    tip:"Pratik yol: <span class='kbd'>Sağ tık + sürükle</span> ile her zaman orbit yapabilirsin, aracı seçmene gerek yok.",
+    highlight:{el:'tool-orbit'},
+    cursor:{x:0,y:22,toolHover:'tool-orbit',cubeRotate:'rotateY(45deg) rotateX(-25deg)'},
+    activate:'tool-orbit' },
+
+  { title:"Pan (Kaydır)",
+    text:"Sahneyi sağa-sola, yukarı-aşağı kaydırmak için Pan aracı.",
+    voice:"Pan aracı, kameranı yatay ve dikey olarak hareket ettirir. Bir nesneyi tam ortaya almak istediğinde işine yarar.",
+    tip:"Pratik yol: <span class='kbd'>Shift + sağ tık + sürükle</span>",
+    highlight:{el:'tool-pan'},
+    cursor:{x:0,y:22,toolHover:'tool-pan'},
+    activate:'tool-pan' },
+
+  { title:"Zoom (Yakınlaştır)",
+    text:"Detaya inmek için Zoom aracı.",
+    voice:"Zoom aracı, sahneye yakınlaşmana ve uzaklaşmana yarar. En pratik yöntem fare tekerleğini kullanmaktır.",
+    tip:"En kolay: <span class='kbd'>Fare tekerleği</span> ile her zaman zoom yapabilirsin.",
+    highlight:{el:'tool-zoom'},
+    cursor:{x:0,y:22,toolHover:'tool-zoom',cubeScale:1.3},
+    activate:'tool-zoom' },
+
+  { title:"3 hareket, 3 kısayol",
+    text:"En çok kullanacağın bu 3 hareketi ezberle:",
+    voice:"Şimdi en önemli üç klavye kısayolunu ezberliyoruz. Birincisi: sağ tık ve sürükle, orbit yapar. İkincisi: shift sağ tık ve sürükle, pan yapar. Üçüncüsü: fare tekerleği, zoom yapar. Bu üçü, SketchUp'ta saatlerinin yarısını oluşturacak.",
+    tip:"Hepsi farede! Klavyeyi neredeyse hiç kullanmadan sahnede gezebilirsin.",
+    action:"<b>Orbit:</b> <span class='kbd'>Sağ tık + sürükle</span><br><b>Pan:</b> <span class='kbd'>Shift</span> + <span class='kbd'>Sağ tık + sürükle</span><br><b>Zoom:</b> <span class='kbd'>Fare tekerleği</span>",
+    cursor:null,
+    cubeRotate:'rotateY(120deg) rotateX(-20deg)' },
+
+  { title:"Quiz zamanı 🧠",
+    text:"Küçük bir kontrol soralım — hadi gör bakalım!",
+    voice:"Hızlı bir soru. Hangi eksen yukarı-aşağı yönü gösterir?",
+    quiz:{
+      q:"SketchUp'ta hangi renkteki eksen yukarı-aşağı (dikey) yönü gösterir?",
+      opts:[
+        {t:"Kırmızı (X)",ok:false},
+        {t:"Yeşil (Y)",ok:false},
+        {t:"Mavi (Z)",ok:true},
+        {t:"Sarı",ok:false}
+      ]
+    }},
+
+  { title:"Pratik özet",
+    text:"Bu derste öğrendiklerini hatırlayalım.",
+    voice:"Tebrikler. Bu derste arayüzü tanıdık, eksenleri öğrendik, ve sahnede nasıl gezineceğini öğrendik. Bir sonraki derste, sıfırdan ilk şekilini çizmeye başlayacağız.",
+    tip:"<b>Ödev:</b> SketchUp'ı aç, herhangi bir şey yokken sadece bu 3 hareketi 5 dakika dene. Kasla işaretlemiyorsan ezberlemiş sayılmazsın.",
+    cubeRotate:'rotateY(0deg) rotateX(0deg) scale(1)' },
+
+  { title:"Bölüm 1 tamamlandı! 🎉",
+    text:"Harika gidiyorsun! Bir sonraki derste çizgi ve dikdörtgen çizmeyi öğreneceğiz.",
+    voice:"Aferin! Bölüm bir tamamlandı. Şimdi seviyemizde bir adım yukarı çıkıyoruz. Bölüm iki: çizim araçları seni bekliyor.",
+    final:true }
+];
+
+// === STATE ===
+let curStep = 0;
+let muted = false;
+let speech = null;
+const synth = window.speechSynthesis;
+let trVoice = null;
+
+function loadVoice(){
+  const all = synth.getVoices();
+  trVoice = all.find(v => v.lang.startsWith('tr')) || all.find(v => v.lang.startsWith('en')) || all[0];
+}
+if(synth){ loadVoice(); synth.onvoiceschanged = loadVoice; }
+
+function speak(text){
+  if(muted || !synth || !text) return;
+  synth.cancel();
+  speech = new SpeechSynthesisUtterance(text);
+  if(trVoice) speech.voice = trVoice;
+  speech.lang = 'tr-TR';
+  speech.rate = 0.95;
+  speech.pitch = 1;
+  document.getElementById('avatarImg').classList.add('talking');
+  speech.onend = ()=> document.getElementById('avatarImg').classList.remove('talking');
+  synth.speak(speech);
+}
+
+function buildProgress(){
+  const bar = document.getElementById('progressBar');
+  bar.innerHTML = STEPS.map((_,i) => `<div class="dot" onclick="goStep(${i})"><div class="fill"></div></div>`).join('');
+}
+
+function clearViewport(){
+  document.querySelectorAll('.su-tool').forEach(t => t.classList.remove('active'));
+  document.getElementById('cursor').classList.remove('show','clicking');
+  document.getElementById('highlight').classList.remove('show');
+  document.getElementById('quiz').classList.remove('show');
+}
+
+function showStep(i){
+  curStep = Math.max(0, Math.min(STEPS.length-1, i));
+  const s = STEPS[curStep];
+
+  document.getElementById('stepIx').textContent = 'ADIM ' + (curStep+1);
+  document.getElementById('stepOf').textContent = '/ ' + STEPS.length;
+  document.getElementById('stepTitle').textContent = s.title;
+  document.getElementById('stepText').textContent = s.text;
+
+  if(s.tip){ document.getElementById('stepTip').style.display='block'; document.getElementById('stepTipText').innerHTML = s.tip; }
+  else document.getElementById('stepTip').style.display='none';
+
+  if(s.action){ document.getElementById('stepAction').style.display='block'; document.getElementById('stepActionText').innerHTML = ' ' + s.action; }
+  else document.getElementById('stepAction').style.display='none';
+
+  // Progress
+  document.querySelectorAll('.dot').forEach((d,idx) => {
+    d.classList.remove('done','current');
+    if(idx < curStep) d.classList.add('done');
+    if(idx === curStep) d.classList.add('current');
+  });
+
+  document.getElementById('prevBtn').disabled = (curStep === 0);
+  document.getElementById('nextBtn').textContent = (curStep === STEPS.length-1) ? 'Bölüm 2 →' : 'Sonraki Adım →';
+
+  clearViewport();
+
+  // Cube animasyon
+  const cube = document.getElementById('cube');
+  if(s.cubeRotate || s.cubeScale){
+    let t = s.cubeRotate || 'rotateY(-25deg) rotateX(-20deg)';
+    if(s.cubeScale) t += ` scale(${s.cubeScale})`;
+    cube.style.transform = t;
+  } else if(curStep === 0) {
+    cube.style.transform = 'rotateY(-25deg) rotateX(-20deg)';
+  }
+
+  // Aktif tool
+  if(s.activate){ const el = document.getElementById(s.activate); if(el) el.classList.add('active'); }
+
+  // Highlight
+  if(s.highlight){
+    const hl = document.getElementById('highlight');
+    if(s.highlight.el){
+      const el = document.getElementById(s.highlight.el);
+      const rect = el.getBoundingClientRect();
+      const vp = document.getElementById('viewport').getBoundingClientRect();
+      hl.style.left = (rect.left - vp.left - 4) + 'px';
+      hl.style.top  = (rect.top - vp.top - 4) + 'px';
+      hl.style.width  = (rect.width + 8) + 'px';
+      hl.style.height = (rect.height + 8) + 'px';
+      setTimeout(()=> hl.classList.add('show'), 100);
+    }
+  }
+
+  // Cursor animasyon
+  if(s.cursor){
+    const c = document.getElementById('cursor');
+    let x = s.cursor.x, y = s.cursor.y;
+    if(s.cursor.toolHover){
+      const el = document.getElementById(s.cursor.toolHover);
+      const rect = el.getBoundingClientRect();
+      const vp = document.getElementById('viewport').getBoundingClientRect();
+      x = rect.left - vp.left + rect.width/2;
+      y = rect.top - vp.top + rect.height/2;
+    }
+    c.style.left = x + 'px';
+    c.style.top = y + 'px';
+    setTimeout(()=> { c.classList.add('show'); setTimeout(()=> c.classList.add('clicking'), 800); }, 300);
+  }
+
+  // Quiz
+  if(s.quiz){ setTimeout(()=> showQuiz(s.quiz), 1000); }
+
+  // Voice
+  setTimeout(()=> speak(s.voice || s.text), 400);
+}
+
+function showQuiz(q){
+  const quiz = document.getElementById('quiz');
+  document.getElementById('quizQ').textContent = q.q;
+  const opts = document.getElementById('quizOpts');
+  opts.innerHTML = '';
+  q.opts.forEach(o => {
+    const b = document.createElement('button');
+    b.className = 'quiz-opt';
+    b.textContent = o.t;
+    b.onclick = ()=> {
+      opts.querySelectorAll('.quiz-opt').forEach(x => x.style.pointerEvents='none');
+      b.classList.add(o.ok ? 'correct' : 'wrong');
+      if(o.ok){
+        speak('Doğru! Mavi Z ekseni dikey yöndür.');
+        setTimeout(()=> quiz.classList.remove('show'), 1800);
+      } else {
+        const correct = q.opts.findIndex(x => x.ok);
+        opts.children[correct].classList.add('correct');
+        speak('Hata! Mavi Z ekseni dikeydir.');
+      }
+    };
+    opts.appendChild(b);
+  });
+  quiz.classList.add('show');
+}
+
+function nextStep(){ if(curStep < STEPS.length-1) showStep(curStep+1); else alert('Bölüm 2 yakında! Şimdilik Bölüm 1\'i bitirdin. 🎉'); }
+function prevStep(){ if(curStep > 0) showStep(curStep-1); }
+function goStep(i){ showStep(i); }
+function toggleMute(){ muted = !muted; document.getElementById('muteBtn').textContent = muted ? '🔇' : '🔊'; document.getElementById('muteBtn').classList.toggle('active', muted); if(muted) synth.cancel(); }
+function replayNarration(){ if(!muted) speak(STEPS[curStep].voice || STEPS[curStep].text); }
+
+function startLesson(){
+  document.getElementById('welcome').classList.add('hide');
+  setTimeout(()=> {
+    buildProgress();
+    showStep(0);
+  }, 300);
+}
+
+// Klavye kısayolları
+document.addEventListener('keydown', e => {
+  if(document.getElementById('welcome').classList.contains('hide')){
+    if(e.key === 'ArrowRight' || e.key === ' '){ e.preventDefault(); nextStep(); }
+    if(e.key === 'ArrowLeft') prevStep();
+    if(e.key === 'm' || e.key === 'M') toggleMute();
+  }
+});
+</script>
+</body>
+</html>
