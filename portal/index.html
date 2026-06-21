@@ -114,6 +114,27 @@ tr:last-child td{border-bottom:none}
 .chart .bar::after{content:attr(data-val);position:absolute;top:-22px;left:50%;transform:translateX(-50%);font-size:11px;color:var(--gold);font-weight:600}
 .chart-labels{display:flex;justify-content:space-around;padding:8px 20px 0;font-size:11px;color:var(--muted)}
 
+
+/* APPLY MODAL */
+.apply-cta{margin-top:24px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1A0F00;padding:18px 26px;border-radius:14px;display:flex;align-items:center;justify-content:space-between;gap:20px;cursor:pointer;transition:.25s;font-weight:600}
+.apply-cta:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(201,168,76,.35)}
+.apply-cta .ico{font-size:32px}
+.apply-cta .title{font-size:18px;font-weight:700;letter-spacing:.5px}
+.apply-cta .sub{font-size:12px;opacity:.75;margin-top:2px;font-weight:500}
+.apply-cta .arr{font-size:24px;margin-left:auto}
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:1000;align-items:center;justify-content:center;padding:20px}
+.modal-bg.open{display:flex}
+.modal{background:var(--bg2);border:1px solid var(--gold);border-radius:16px;padding:32px;max-width:520px;width:100%;text-align:center}
+.modal h2{font-family:'Bebas Neue';font-size:32px;color:var(--gold);letter-spacing:2px;margin-bottom:8px}
+.modal p{color:var(--muted2);line-height:1.6;margin-bottom:24px;font-size:14px}
+.modal .options{display:grid;gap:12px;margin-bottom:18px}
+.modal .opt{background:var(--bg3);border:1px solid var(--border2);padding:16px;border-radius:10px;display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--white);transition:.2s}
+.modal .opt:hover{border-color:var(--gold);background:var(--gold4)}
+.modal .opt .ico{font-size:28px}
+.modal .opt .info{text-align:left;flex:1}
+.modal .opt .info b{display:block;font-size:15px}
+.modal .opt .info small{color:var(--muted);font-size:12px}
+.modal .close{background:transparent;border:1px solid var(--border2);color:var(--muted);padding:8px 18px;border-radius:8px;cursor:pointer;font-family:'Outfit'}
 .row{display:flex;gap:14px;align-items:center}
 .flex1{flex:1}
 .hr{height:1px;background:var(--border2);margin:18px 0}
@@ -233,6 +254,15 @@ tr:last-child td{border-bottom:none}
             <tr><td><b>YouTube OAC Süreci</b><br><small style="color:var(--muted)">Diğer · 02 Haz 2026</small></td><td><span class="badge live">Kapatıldı</span></td></tr>
           </table>
         </div>
+      </div>
+    
+      <div class="apply-cta" onclick="document.getElementById('applyModal').classList.add('open')">
+        <div class="ico">📩</div>
+        <div>
+          <div class="title">SANATÇI BAŞVURU PORTALI AÇIK</div>
+          <div class="sub">Yeni sanatçı başvurusu kabul ediyoruz — hızlı yanıt veriyoruz</div>
+        </div>
+        <div class="arr">→</div>
       </div>
     </section>
 
@@ -519,5 +549,28 @@ renderArtists();
 const startView = location.hash.replace('#','') || 'home';
 setView(startView);
 </script>
+
+<!-- LABEL BAŞVURU MODAL -->
+<div class="modal-bg" id="applyModal" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="modal">
+    <h2>AURA SONIC LABEL BAŞVURU</h2>
+    <p>Sanatçı veya prodüktör müsün? Bizimle çalışmak için aşağıdaki kanallardan bize ulaş. <b>24 saat içinde geri dönüş</b> yapıyoruz.</p>
+    <div class="options">
+      <a class="opt" href="https://wa.me/905320606612?text=Merhaba%2C%20AURA%20SONIC%20label%27a%20ba%C5%9Fvurmak%20istiyorum." target="_blank">
+        <div class="ico">📱</div>
+        <div class="info"><b>WhatsApp ile Başvur</b><small>+90 532 060 6612</small></div>
+      </a>
+      <a class="opt" href="mailto:askin.ozturk.com@gmail.com?subject=AURA%20SONIC%20Label%20Ba%C5%9Fvurusu&body=Merhaba%2C%0A%0ASanat%C3%A7%C4%B1%20Ad%C4%B1%3A%20%0AT%C3%BCr%3A%20%0AYa%C5%9F%3A%20%0AInstagram%2FSpotify%3A%20%0A%C3%96rnek%20%C5%9Fark%C4%B1%20linki%3A%20%0AMesaj%C4%B1n%C4%B1z%3A%0A">
+        <div class="ico">📧</div>
+        <div class="info"><b>E-posta ile Başvur</b><small>askin.ozturk.com@gmail.com</small></div>
+      </a>
+      <a class="opt" href="https://instagram.com/aurasonic.official" target="_blank">
+        <div class="ico">📷</div>
+        <div class="info"><b>Instagram DM</b><small>@aurasonic.official</small></div>
+      </a>
+    </div>
+    <button class="close" onclick="document.getElementById('applyModal').classList.remove('open')">Kapat</button>
+  </div>
+</div>
 </body>
 </html>
