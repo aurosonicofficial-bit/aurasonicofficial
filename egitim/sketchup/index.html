@@ -204,6 +204,55 @@ a{color:inherit;text-decoration:none}
 .grid,.axis-x,.axis-y{left:36px !important;right:200px !important;top:88px !important;bottom:24px !important}
 
 @media(max-width:900px){.su-toolset,.su-tray{display:none}.draw-svg,.grid,.axis-x,.axis-y{left:0 !important;right:0 !important}}
+
+/* ── Q&A PANEL ── */
+.qa-btn{position:fixed;bottom:160px;right:24px;width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1A0F00;border:none;cursor:pointer;box-shadow:0 8px 20px rgba(201,168,76,.4);z-index:90;display:flex;align-items:center;justify-content:center;font-size:24px;transition:.3s;font-family:'Outfit'}
+.qa-btn:hover{transform:scale(1.1);box-shadow:0 12px 28px rgba(201,168,76,.5)}
+.qa-btn .badge{position:absolute;top:-2px;right:-2px;background:#EF4444;color:#fff;width:18px;height:18px;border-radius:50%;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;animation:bounce 1.5s ease-in-out infinite}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+
+.qa-overlay{position:fixed;inset:0;background:rgba(10,14,26,.7);z-index:300;display:none;align-items:flex-end;justify-content:flex-end;padding:20px}
+.qa-overlay.show{display:flex;animation:fadeIn .25s}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+.qa-panel{background:var(--bg2);border:1px solid var(--gold);border-radius:18px;width:460px;max-width:100%;max-height:600px;display:flex;flex-direction:column;box-shadow:0 30px 60px rgba(0,0,0,.6);overflow:hidden;animation:slideUp .3s}
+@keyframes slideUp{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
+
+.qa-head{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1A0F00;padding:18px 22px;display:flex;align-items:center;gap:14px}
+.qa-head-avatar{width:46px;height:46px;border-radius:50%;background:#1A0F00;color:var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue';font-size:22px;font-weight:700}
+.qa-head-info{flex:1}
+.qa-head-info .n{font-weight:700;font-size:15px;line-height:1.1}
+.qa-head-info .r{font-size:11px;opacity:.7;margin-top:3px;display:flex;align-items:center;gap:5px}
+.qa-head-info .r::before{content:'●';color:#22C55E;animation:pulse-dot 2s ease-in-out infinite}
+@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.3}}
+.qa-close{background:rgba(26,15,0,.15);border:none;color:#1A0F00;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:16px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.qa-close:hover{background:rgba(26,15,0,.3)}
+
+.qa-search-row{padding:14px 18px;border-bottom:1px solid var(--border2);display:flex;gap:8px;align-items:center}
+.qa-search{flex:1;background:var(--bg3);border:1px solid var(--border2);color:var(--white);padding:10px 14px 10px 38px;border-radius:10px;font-family:'Outfit';font-size:13px;outline:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='rgba(255,255,255,0.4)'><path d='M15.5 14h-.79l-.28-.27A6.5 6.5 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16a6.5 6.5 0 0 0 4.23-1.57l.27.28v.79l5 5 1.5-1.5-5-5zm-6 0A4.5 4.5 0 1 1 14 9.5 4.5 4.5 0 0 1 9.5 14z'/></svg>");background-repeat:no-repeat;background-position:12px center;background-size:16px}
+.qa-search:focus{border-color:var(--gold)}
+.qa-mic{width:38px;height:38px;background:var(--bg3);border:1px solid var(--border2);color:var(--white);border-radius:10px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;transition:.2s}
+.qa-mic:hover{border-color:var(--gold);color:var(--gold)}
+.qa-mic.listening{background:#EF4444;border-color:#EF4444;animation:pulse 1s ease-in-out infinite}
+
+.qa-body{flex:1;overflow-y:auto;padding:14px 18px}
+.qa-section{font-size:11px;color:var(--gold);text-transform:uppercase;letter-spacing:1.5px;margin:10px 0 8px;font-weight:700}
+.qa-item{background:var(--bg3);border:1px solid var(--border2);border-radius:10px;padding:12px 14px;margin-bottom:8px;cursor:pointer;transition:.2s}
+.qa-item:hover{border-color:var(--gold);background:var(--gold4)}
+.qa-item .q{font-size:13px;font-weight:600;color:var(--white);display:flex;align-items:flex-start;gap:8px}
+.qa-item .q::before{content:'?';flex-shrink:0;width:22px;height:22px;border-radius:50%;background:var(--gold);color:#1A0F00;display:inline-flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;margin-top:-1px}
+.qa-item .a{display:none;margin-top:10px;padding-top:10px;border-top:1px solid var(--border2);color:var(--muted2);font-size:13px;line-height:1.6}
+.qa-item.open .a{display:block;animation:fadeIn .3s}
+.qa-item.open{border-color:var(--gold);background:var(--gold4)}
+
+.qa-empty{text-align:center;padding:30px 20px;color:var(--muted);font-size:13px}
+
+.qa-footer{padding:14px 18px;border-top:1px solid var(--border2);background:var(--bg3)}
+.qa-footer p{font-size:12px;color:var(--muted2);margin-bottom:10px;text-align:center}
+.qa-wa-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;border:none;padding:12px;border-radius:10px;font-family:'Outfit';font-weight:700;font-size:13px;cursor:pointer;text-decoration:none}
+.qa-wa-btn:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(37,211,102,.3)}
+
+@media(max-width:700px){.qa-overlay{padding:0;align-items:stretch;justify-content:stretch}.qa-panel{width:100%;max-height:none;border-radius:0}.qa-btn{bottom:150px;right:16px}}
 </style>
 </head>
 <body>
@@ -575,6 +624,133 @@ document.addEventListener('keydown', e => {
     if(e.key === 'ArrowLeft') prevStep();
     if(e.key === 'm' || e.key === 'M') toggleMute();
   }
+});
+</script>
+<script>
+window.LESSON_FAQ = [
+  {cat:"Bölüm 1 · Arayüz", q:"Orbit aracı çalışmıyor, ne yapayım?", a:"En kolayı: aleti seçmeden de orbit yapabilirsin. <b>Sağ tık + fareyi sürükle</b> ile her zaman çalışır. Klavye kısayolu: O harfi."},
+  {cat:"Bölüm 1 · Arayüz", q:"Eksenler kayboldu, nasıl geri getiririm?", a:"Üst menüden <b>View → Axes</b>'i tıkla. Kapatılmışsa orada açabilirsin."},
+  {cat:"Bölüm 1 · Arayüz", q:"Mavi Z ekseni neden yukarı gösteriyor?", a:"SketchUp'ta Z ekseni mimar düşüncesine göre yukarı-aşağı dikey yöndür. Bu kural değişmez. X (kırmızı) ve Y (yeşil) yatay düzlemi tarif eder."},
+  {cat:"Bölüm 1 · Arayüz", q:"Sahne yatayda kaldı, dik açı nasıl getiririm?", a:"Klavyeden <b>numara tuşu 5</b>'e bas — Iso (3D perspektif) görünüme döner. <b>2</b> üstten, <b>1</b> önden bakar."},
+  {cat:"Bölüm 1 · Arayüz", q:"Sahne ters döndü, nasıl düzeltirim?", a:"<b>Camera → Standard Views → Iso</b>'ya tıkla. Veya <b>Shift+Z</b> ile pencere zoom (Zoom Extents) yap, her şey yerine oturur."},
+  {cat:"Bölüm 1 · Arayüz", q:"İnsan figürünü nasıl silerim?", a:"Üstüne tıkla → Sil tuşu (Delete). Ama silmesen daha iyi — ölçek karşılaştırması için faydalı."},
+  {cat:"Bölüm 1 · Arayüz", q:"Hangi SketchUp sürümünü kullanmalıyım?", a:"Bu eğitim Pro 2024 esas alınarak hazırlandı. Free sürümle de tüm temel dersleri yapabilirsin."}
+];
+</script>
+
+<!-- Q&A FLOATING BUTTON -->
+<button class="qa-btn" id="qaBtn" onclick="openQA()" title="Soru Sor (S)">
+  💬
+  <span class="badge" id="qaBadge">?</span>
+</button>
+
+<!-- Q&A OVERLAY -->
+<div class="qa-overlay" id="qaOverlay" onclick="if(event.target===this)closeQA()">
+  <div class="qa-panel">
+    <div class="qa-head">
+      <div class="qa-head-avatar">AÖ</div>
+      <div class="qa-head-info">
+        <div class="n">Aşkın Hoca</div>
+        <div class="r">Soru sor, anında cevaplayım</div>
+      </div>
+      <button class="qa-close" onclick="closeQA()">✕</button>
+    </div>
+    <div class="qa-search-row">
+      <input class="qa-search" id="qaSearch" placeholder="Sorunu yaz veya aşağıdan seç..." oninput="filterQA()" autocomplete="off">
+      <button class="qa-mic" id="qaMic" onclick="startVoiceInput()" title="Sesle sor">🎤</button>
+    </div>
+    <div class="qa-body" id="qaBody"></div>
+    <div class="qa-footer">
+      <p>Cevap bulamadın mı? Doğrudan Aşkın Hoca'ya yaz:</p>
+      <a class="qa-wa-btn" href="https://wa.me/447882747808?text=Merhaba%20Aşkın%20Hoca,%20SketchUp%20dersinde%20bir%20sorum%20var:%20" target="_blank">
+        📱 WhatsApp'tan sor
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+// FAQ veritabani (her bolumun kendi FAQ'si window.LESSON_FAQ icinde)
+const QA_GENERAL = [
+  {cat:"Genel", q:"Hangi SketchUp sürümünü kullanmalıyım?", a:"Bu eğitim SketchUp Pro 2024 esas alınarak hazırlandı. Ama SketchUp Free (web sürümü) ile de tüm temel dersleri yapabilirsin. Mimari proje için Pro önerilir."},
+  {cat:"Genel", q:"SketchUp Free yeterli mi?", a:"Başlangıç ve hobi için yeterli. Profesyonel kullanım için (uzantılar, Layout, render eklentileri) SketchUp Pro veya Studio gerekli."},
+  {cat:"Genel", q:"Klavyem İngilizce, sorun olur mu?", a:"Hiçbir sorun olmaz. Kısayollar zaten İngilizce harflerle (L, R, C). Sadece sayı yazarken ondalık ayracına dikkat: TR Windows'ta virgül, EN Windows'ta nokta."},
+  {cat:"Genel", q:"Fare tekerleğim yok, zoom nasıl?", a:"Z harfine basıp aktif yap, sonra ekrana tıklayıp sürükle. Veya menüden Camera > Zoom kullan."},
+  {cat:"Genel", q:"Tabletten/telefondan kullanabilir miyim?", a:"SketchUp Free'nin iPad sürümü var. Telefonda sadece izleme amaçlı SketchUp Viewer çalışır."}
+];
+
+let allQA = [];
+
+function renderQA(filter=""){
+  const f = filter.toLowerCase().trim();
+  const body = document.getElementById('qaBody');
+  const filtered = allQA.filter(item => !f || item.q.toLowerCase().includes(f) || item.a.toLowerCase().includes(f));
+
+  if(filtered.length === 0){
+    body.innerHTML = '<div class="qa-empty">🤔 Bu konuda hazır cevap yok.<br>Aşağıdaki WhatsApp\'tan Aşkın Hoca\'ya direkt sor!</div>';
+    return;
+  }
+
+  const grouped = {};
+  filtered.forEach(item => { if(!grouped[item.cat]) grouped[item.cat]=[]; grouped[item.cat].push(item); });
+
+  body.innerHTML = Object.entries(grouped).map(([cat,items]) =>
+    `<div class="qa-section">${cat}</div>` +
+    items.map((item,i) => `
+      <div class="qa-item" onclick="toggleQA(this, '${item.q.replace(/'/g,"\\'")}', '${item.a.replace(/'/g,"\\'")}')">
+        <div class="q">${item.q}</div>
+        <div class="a">${item.a}</div>
+      </div>
+    `).join('')
+  ).join('');
+}
+
+function toggleQA(el, q, a){
+  document.querySelectorAll('.qa-item').forEach(x => { if(x!==el) x.classList.remove('open'); });
+  el.classList.toggle('open');
+  if(el.classList.contains('open')){
+    if(typeof speak === 'function') speak(a.replace(/<[^>]+>/g,''));
+  }
+}
+
+function filterQA(){ renderQA(document.getElementById('qaSearch').value); }
+
+function openQA(){
+  allQA = [...(window.LESSON_FAQ||[]), ...QA_GENERAL];
+  renderQA();
+  document.getElementById('qaOverlay').classList.add('show');
+  document.getElementById('qaBadge').style.display = 'none';
+  setTimeout(()=> document.getElementById('qaSearch').focus(), 100);
+}
+function closeQA(){ document.getElementById('qaOverlay').classList.remove('show'); if(window.synth) window.synth.cancel(); }
+
+// Sesle soru sor (Web Speech API)
+function startVoiceInput(){
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if(!SR){ alert('Tarayıcın sesli aramayı desteklemiyor. Chrome/Edge dene.'); return; }
+  const mic = document.getElementById('qaMic');
+  mic.classList.add('listening');
+  const recognition = new SR();
+  recognition.lang = 'tr-TR'; recognition.interimResults = false;
+  recognition.onresult = e => {
+    const text = e.results[0][0].transcript;
+    document.getElementById('qaSearch').value = text;
+    filterQA();
+  };
+  recognition.onend = ()=> mic.classList.remove('listening');
+  recognition.onerror = ()=> mic.classList.remove('listening');
+  recognition.start();
+}
+
+// S kisayolu
+document.addEventListener('keydown', e => {
+  if(e.key === 's' || e.key === 'S'){
+    if(document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA'){
+      const ov = document.getElementById('qaOverlay');
+      if(ov.classList.contains('show')) closeQA(); else openQA();
+    }
+  }
+  if(e.key === 'Escape') closeQA();
 });
 </script>
 </body>
