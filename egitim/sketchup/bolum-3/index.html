@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<title>Ders 2: Line, Rectangle, Circle, Polygon · AURA SONIC ACADEMY</title>
+<title>Ders 3: Arc & Freehand · AURA SONIC ACADEMY</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="icon" href="../../../aurasonicofficial-logo.png">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -159,12 +159,12 @@ a{color:inherit;text-decoration:none}
 <body>
 
 <div class="welcome" id="welcome">
-  <div class="tag">🏛️ SKETCHUP İLE MİMARİ MODELLEME · DERS 2</div>
-  <h1>DERS 2</h1>
-  <h2>Line · Rectangle · Circle · Polygon</h2>
-  <p>İlk düzleminizi <b style="color:var(--gold)">Line</b> ile çizeceksin. Sonra <b style="color:var(--gold)">Rectangle, Circle, Polygon</b> ile geometrik şekiller oluşturacaksın. Düzlemin nasıl 3D'ye dönüştüğünü göreceksin.</p>
+  <div class="tag">🏛️ SKETCHUP İLE MİMARİ MODELLEME · DERS 3</div>
+  <h1>DERS 3</h1>
+  <h2>Arc · Freehand · Rotated Rectangle</h2>
+  <p>Eğrisel şekiller için <b style="color:var(--gold)">Arc araçları</b>, serbest çizim için <b style="color:var(--gold)">Freehand</b> ve döndürülmüş dikdörtgenler için <b style="color:var(--gold)">Rotated Rectangle</b>. Mimari planlarda eğri formlar için olmazsa olmaz.</p>
   <div class="meta">
-    <div><b>10</b><small>Adım</small></div>
+    <div><b>9</b><small>Adım</small></div>
     <div><b>~6</b><small>Dakika</small></div>
     <div><b>Başlangıç</b><small>Seviye</small></div>
     <div><b>Türkçe</b><small>Anlatım</small></div>
@@ -178,8 +178,8 @@ a{color:inherit;text-decoration:none}
     <div><div class="brand-text">AURA SONIC ACADEMY</div><div class="brand-sub">SketchUp Eğitim Serisi</div></div>
   </a>
   <div class="lesson-info">
-    <div class="ch">DERS 2 / 16</div>
-    <div class="t">Çizim Araçları</div>
+    <div class="ch">DERS 3 / 16</div>
+    <div class="t">Arc & Freehand</div>
   </div>
   <button class="ctrl-btn" onclick="window.location.href='../../sketchup-mimari/'">← Tüm Dersler</button>
 </header>
@@ -226,7 +226,7 @@ a{color:inherit;text-decoration:none}
         <div class="r">SketchUp & Mimari Modelleme</div>
       </div>
     </div>
-    <div class="step-header"><div class="ix" id="stepIx">ADIM 1</div><div class="of" id="stepOf">/ 10</div></div>
+    <div class="step-header"><div class="ix" id="stepIx">ADIM 1</div><div class="of" id="stepOf">/ 9</div></div>
     <div class="step-title" id="stepTitle"></div>
     <div class="step-text" id="stepText"></div>
     <div class="step-tip" id="stepTip" style="display:none"><b>💡 İPUCU:</b> <span id="stepTipText"></span></div>
@@ -269,7 +269,7 @@ a{color:inherit;text-decoration:none}
 <script>
 // CIZIM ANIMASYONLARI
 function resetDraws(){
-  const ids = ['aLine','aRect','aCircle','aPolygon','aCircleFill','aRectFill'];
+  const ids = ['aLine','aRect','aCircle','aPolygon','aCircleFill','aRectFill','aArc','aFreehand','aRotRect'];
   ids.forEach(id => { const el = document.getElementById(id); if(el) el.classList.remove('go','show'); });
   const c = document.getElementById('aCircle'); if(c) c.setAttribute('r',0);
   const cf = document.getElementById('aCircleFill'); if(cf) cf.setAttribute('r',0);
@@ -333,6 +333,68 @@ function animDrawCircle(){
   }, 300);
 }
 
+
+function animDrawArc(){
+  // Yay - SVG path
+  const svg = document.getElementById('drawSvg');
+  let arc = document.getElementById('aArc');
+  if(!arc){
+    arc = document.createElementNS('http://www.w3.org/2000/svg','path');
+    arc.setAttribute('id','aArc');
+    arc.setAttribute('class','anim-stroke dash');
+    arc.setAttribute('d','M 500,700 Q 950,300 1400,700');
+    svg.appendChild(arc);
+  }
+  arc.classList.remove('go');
+  setTimeout(()=>{
+    arc.classList.add('go');
+    const t = document.getElementById('measureTip');
+    t.style.left='48%'; t.style.top='35%'; t.textContent='1,5 m bombe';
+    t.classList.add('show');
+  }, 300);
+}
+
+function animDrawFreehand(){
+  const svg = document.getElementById('drawSvg');
+  let fh = document.getElementById('aFreehand');
+  if(!fh){
+    fh = document.createElementNS('http://www.w3.org/2000/svg','polyline');
+    fh.setAttribute('id','aFreehand');
+    fh.setAttribute('class','anim-stroke dash');
+    // Titrek serbest cizgi
+    let pts='';
+    for(let i=0; i<60; i++){
+      const x = 400 + i*18;
+      const y = 600 + Math.sin(i*0.5)*30 + (Math.random()-0.5)*20;
+      pts += x+','+y+' ';
+    }
+    fh.setAttribute('points', pts);
+    svg.appendChild(fh);
+  }
+  fh.classList.remove('go');
+  setTimeout(()=> fh.classList.add('go'), 300);
+}
+
+function animDrawRotRect(){
+  const svg = document.getElementById('drawSvg');
+  let rr = document.getElementById('aRotRect');
+  if(!rr){
+    rr = document.createElementNS('http://www.w3.org/2000/svg','polygon');
+    rr.setAttribute('id','aRotRect');
+    rr.setAttribute('class','anim-stroke dash');
+    // 30 derece donmus dikdortgen
+    rr.setAttribute('points', '600,700 1300,500 1400,700 700,900');
+    svg.appendChild(rr);
+  }
+  rr.classList.remove('go');
+  setTimeout(()=>{
+    rr.classList.add('go');
+    const t = document.getElementById('measureTip');
+    t.style.left='52%'; t.style.top='62%'; t.textContent='30° açıda';
+    t.classList.add('show');
+  }, 300);
+}
+
 function animDrawPolygon(){
   // 6 koseli polygon
   const cx = 950, cy = 600, rad = 180;
@@ -352,68 +414,60 @@ function animDrawPolygon(){
 }
 const STEPS = [
   { title:"Tasarım Felsefesi (Tekrar)",
-    text:"Çizmeye başlamadan önce — yine sor: Bu ne için? Kim kullanacak? Hangi ölçekte?",
-    voice:"Hoş geldin Ders 2'ye. Çizim araçlarına geçmeden önce tasarım felsefesini hatırla. Hangi şekli çizersen çiz, önce kafanda netleşmiş olsun. Hangi mekan için? Kim kullanacak? Hangi ölçekte? Sonra el klavyeye gider.",
-    tip:"Ölçü her zaman önce kafada olsun, sonra ekranda. Sayıyı yazmak için ölçüyü bilmek gerekir." },
+    text:"Eğri formlar — kavisli duvarlar, yuvarlak masalar, organic tasarımlar. Bunlar Arc ile gelir.",
+    voice:"Hoş geldin Ders 3'e. Bu derste düz çizgilerden eğrilere geçiyoruz. Mimari tasarımda eğri çok güçlüdür. Bir kavisli duvar mekana yumuşaklık katar. Bir yuvarlak balkon karakteristik olur. Bu derste Arc yani yay araçlarını öğreneceğiz.",
+    tip:"Eğri her yere konulmaz — vurgu yapmak için kullan. Tüm planın eğri olursa kontrol etmesi zorlaşır." },
 
-  { title:"Line Aracı (L)",
-    text:"İlk ve en temel araç: çizgi. Sol araç panelinden seç veya klavyeden L harfine bas.",
-    voice:"Şimdi Line yani çizgi aracı. Klavye kısayolu L harfi. SketchUp'ta en çok kullanacağın araç. Sol Large Tool Set'te kalem simgesiyle gösterilir.",
-    tip:"<b>Kısayol:</b> <span class='kbd'>L</span> bas, çizgi aracı aktif olur. Sol panele tıklamadan da çalışır.",
-    hl:{x:0,y:9.5,w:5,h:35}, label:"Line · Sol Panelde", labelPos:"right" },
+  { title:"Arc Aracı (A)",
+    text:"Yay çizmek için Arc. Üst toolbar'da yarım daire simgesi.",
+    voice:"Arc aracı yani yay aracı. Kısayolu A harfi. Sol panelde yarım daire şeklinde simgesi var. Tıkla, sonra yayın başlangıç noktasına, bitiş noktasına ve şişkinliğine tıkla — üç tıklama ile arc hazır.",
+    tip:"Arc 3 noktayla tanımlanır: başlangıç, bitiş ve şişkinlik (bulge). Üç tıklama, üç karar." },
 
-  { title:"İlk çizgini çiz",
-    draw:"line",
-    text:"İlk noktaya tıkla, fareyi hareket ettir, ikinci noktaya tıkla. İşte çizgi.",
-    voice:"Çizgi nasıl çizilir? İlk noktaya tıkla — başlangıç. Fareni hareket ettir. İkinci noktaya tıkla — bitiş. Hepsi bu. Esnek ve hızlı.",
-    tip:"Klavyeden <b>tam ölçüde</b> çizmek için: fareni yönü ver, sonra klavyeden <span class='kbd'>3</span> yaz (3 metre demek) <span class='kbd'>Enter</span>. Çizgi tam 3 metre olur." },
+  { title:"Arc nasıl çizilir",
+    draw:"arc",
+    text:"İzle: önce iki uç nokta sonra bombe miktarı. 3 tıklama.",
+    voice:"Şimdi yay çiziyorum. İlk noktaya tıkladım. İkinci noktaya tıkladım — iki uç. Şimdi fareyi yukarı çekerek bombe miktarını ayarlıyorum ve tıklıyorum. Yay hazır. Klavyeden ölçü de yazabilirsin.",
+    tip:"Bombe miktarı klavyeden: <span class='kbd'>1</span> yaz <span class='kbd'>Enter</span> — 1 metre dışa bombelenir." },
 
-  { title:"Kapalı şekil = Yüzey",
-    draw:"shape",
-    text:"Çizgileri kapatınca SketchUp otomatik yüzey oluşturur. İşte bu sihir!",
-    voice:"Çok önemli kural. Çizgileri kapatıp aynı düzlemde tamamladığında, SketchUp otomatik olarak içini yüzey olarak doldurur. Yani 4 çizgi ile kapalı dikdörtgen çizdiğinde içi dolu yüzey olur. Bu yüzey daha sonra 3D'ye çevireceğimiz temel.",
-    tip:"Yüzey kuralı: Tüm çizgiler <b>aynı düzlemde</b> ve <b>kapalı</b> olmalı. Bir köşe açıksa yüzey oluşmaz." },
+  { title:"4 Arc Varyantı",
+    text:"SketchUp'ta 4 farklı arc aracı var — her ihtiyaca özel.",
+    voice:"SketchUp'ta dört arc varyantı bulunur. İlki sıradan Arc. İkincisi 2 Point Arc — iki noktayla. Üçüncüsü 3 Point Arc — üç noktayla. Dördüncüsü Pie yani dilim. Hangi durumda hangisini kullanacağını zamanla öğreneceksin.",
+    tip:"En çok kullanılan: <b>2 Point Arc</b> — iki nokta tıklarsın, yay otomatik. En hızlı yöntem." },
 
-  { title:"Rectangle Aracı (R)",
-    draw:"rect",
-    text:"Dikdörtgen tek hamlede: iki köşe tıkla, biter.",
-    voice:"Rectangle yani dikdörtgen aracı. Kısayolu R. Çizgi çizgi uğraşmak yerine, iki köşe seçiyorsun, dikdörtgen hazır. Mimari planlarda en çok kullanılan araç.",
-    tip:"En güçlü trick: dikdörtgen çizerken klavyeden <span class='kbd'>4,5;3</span> yaz <span class='kbd'>Enter</span>. Tam 4,5 metreye 3 metre dikdörtgen olur." },
+  { title:"Freehand Aracı",
+    draw:"freehand",
+    text:"Serbest çizim için. Tablet ile harika çalışır. Fareyle de yapılabilir.",
+    voice:"Freehand yani serbest çizim aracı. Fareyle basılı tutup hareket ettir, çizgi senin hareketini takip eder. Tablet kullanıyorsan mükemmel. Mimari'de pek kullanılmaz ama doğal formlar, ağaç çizimleri için işine yarar.",
+    tip:"Freehand çizgiler ağır olur. Mümkünse <b>Line</b> ile temiz çizgiler kullan." },
 
-  { title:"Circle Aracı (C)",
-    draw:"circle",
-    text:"Yuvarlak şekiller için: merkez seç, yarıçapı belirle.",
-    voice:"Circle yani çember aracı. Kısayolu C. Önce merkez noktasına tıkla, fareyi uzaklaştır, klavyeden yarıçap yaz. Örnek 1,5 metre.",
-    tip:"Çember aslında çok kenarlı bir poligon. Varsayılan 24 kenar. Pürüzsüz istersen çizdikten hemen sonra <span class='kbd'>64s</span> yaz <span class='kbd'>Enter</span>." },
+  { title:"Rotated Rectangle",
+    draw:"rotrect",
+    text:"Eğri açılarda dikdörtgen çizmek için. 3 tıklama: yön, uzunluk, genişlik.",
+    voice:"Rotated Rectangle yani döndürülmüş dikdörtgen. Sıradan dikdörtgen sadece yatay-dikey çizer. Bu araçla istediğin açıda dikdörtgen çizebilirsin. Üç tıklamayla: birinci nokta, ikinci nokta yönü verir, üçüncü tıklamayla genişlik ayarlanır.",
+    tip:"Mimari'de eğik duvarlar için altın değerinde. Sıradan dikdörtgenle yapamazsın." },
 
-  { title:"Polygon Aracı",
-    draw:"polygon",
-    text:"Üçgen, altıgen, sekizgen... her kenar sayısı.",
-    voice:"Polygon yani çok kenarlı şekil aracı. Çemberle benzer ama sen kaç kenar olacağına karar veriyorsun. Önce klavyeden kenar sayısını yaz, mesela 6. Sonra merkez ve yarıçap.",
-    tip:"Önce <span class='kbd'>6</span> yaz <span class='kbd'>Enter</span> — altıgen olur. <span class='kbd'>8</span> yazarsan sekizgen." },
-
-  { title:"3 araç, 3 kural",
-    text:"Ezberlenecek özet:",
-    voice:"Ders 2 özeti. L harfi çizgi. R harfi dikdörtgen. C harfi çember. Hepsinde ortak kural: fare ile başlat, klavyeden ölçüyü yaz, Enter ile bitir. Mimari çizimde ölçü mantığı altın kuraldır.",
-    tip:"<b>L</b> = Line · <b>R</b> = Rectangle · <b>C</b> = Circle. Hepsinde: fare → ölçü yaz → Enter." },
+  { title:"Hangi araç ne zaman?",
+    text:"Net kural:",
+    voice:"Hangi araç ne zaman? Düz duvar Line. Düz dikdörtgen oda Rectangle. Yuvarlak masa Circle. Kavisli balkon Arc. Eğik duvar Rotated Rectangle. Organic ağaç Freehand. Her aracın yeri var.",
+    tip:"<b>Plan çizerken:</b> %80 Line + Rectangle. %15 Circle. %5 Arc + Rotated Rect. Freehand neredeyse hiç." },
 
   { title:"Quiz 🧠",
-    text:"4 metreye 3 metre dikdörtgen nasıl çizilir?",
-    voice:"Küçük bir soru. 4 metreye 3 metre dikdörtgen çizmek için klavyeden ne yazarsın?",
+    text:"Arc çizmek için kaç tıklama gerekir?",
+    voice:"Küçük soru. Standart Arc aracıyla bir yay çizmek için kaç tıklama gerekir?",
     quiz:{
-      q:"4 m × 3 m dikdörtgen çizmek için klavyeden ne yazıp Enter'a basarsın?",
+      q:"Standart Arc aracıyla yay çizmek için kaç tıklama gerekir?",
       opts:[
-        {t:"4*3",ok:false},
-        {t:"4;3",ok:true},
-        {t:"4,3",ok:false},
-        {t:"4 ve 3",ok:false}
+        {t:"1 tıklama",ok:false},
+        {t:"2 tıklama",ok:false},
+        {t:"3 tıklama (başlangıç, bitiş, bombe)",ok:true},
+        {t:"4 tıklama",ok:false}
       ]
     }},
 
-  { title:"Tebrikler! 🎉 Ödev",
-    text:"Artık plan çizebilirsin. Ödevin var: bir oda planı çiz!",
-    voice:"Aferin. Bölüm 2'yi tamamladın. Çizgi, dikdörtgen, çember araçlarını öğrendin. Bir sonraki bölümde Push Pull ile 2D'yi 3D'ye dönüştüreceğiz. Mimarlığa bir adım daha yaklaştın.",
-    tip:"<b>Ödev:</b> SketchUp'ı aç. Top görünüme geç (klavyede 2 numara). 4 metreye 5 metre bir oda dikdörtgeni çiz. İçine 1 metre yarıçaplı bir masa çember olarak ekle. 10 dakikanı alır.",
+  { title:"Tebrikler! 🎉",
+    text:"Eğri araçlarını öğrendin. Bir sonraki derste 2D'den 3D'ye geçişi konuşacağız!",
+    voice:"Aferin. Bölüm 3'ü tamamladın. Artık eğri formlar çizebilirsin. Bölüm 4'te Push Pull aracıyla 2 boyutlu çizimleri 3 boyutlu hacme dönüştüreceğiz. Mimar olma yolunda büyük adım.",
+    tip:"<b>Ödev:</b> Ders 2'de çizdiğin 4×5 m odanın bir köşesini 90 derece açıyla kesip yarıçap 1 m'lik kavisli köşe yap. Arc aracını kullan.",
     final:true }
 ];
 
@@ -455,7 +509,7 @@ function showStep(i){
   });
 
   document.getElementById('prevBtn').disabled = (curStep===0);
-  document.getElementById('nextBtn').textContent = (curStep===STEPS.length-1) ? 'Ders 3 →' : 'Sonraki Adım →';
+  document.getElementById('nextBtn').textContent = (curStep===STEPS.length-1) ? 'Ders 4 →' : 'Sonraki Adım →';
 
   document.getElementById('highlight').classList.remove('show');
   document.getElementById('dim').classList.remove('show');
@@ -511,7 +565,7 @@ function showQuiz(q){
   quiz.classList.add('show');
 }
 
-function nextStep(){ if(curStep < STEPS.length-1) showStep(curStep+1); else window.location.href = '../bolum-3/'; }
+function nextStep(){ if(curStep < STEPS.length-1) showStep(curStep+1); else alert('Ders 4 yakında! Şimdilik Ders 3''ü bitirdin. 🎉'); }
 function prevStep(){ if(curStep > 0) showStep(curStep-1); }
 function goStep(i){ showStep(i); }
 function toggleMute(){ muted = !muted; document.getElementById('muteBtn').textContent = muted ? '🔇' : '🔊'; if(muted) synth.cancel(); }
