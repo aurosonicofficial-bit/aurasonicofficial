@@ -7,14 +7,10 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="AURA SONIC OFFICIAL — bağımsız müzik şirketi. Sanatçılarımız, müziğimiz, dünyaya açılan ses.">
 <meta name="author" content="AURA SONIC OFFICIAL GROUP LTD">
-<meta name="robots" content="index, follow">
 <link rel="canonical" href="https://www.aurasonicofficial.com/">
-
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="AURA SONIC OFFICIAL">
 <meta property="og:title" content="AURA SONIC OFFICIAL — Bağımsız Müzik Şirketi">
-<meta property="og:description" content="Sanatçılarımız, müziğimiz, dünyaya açılan ses.">
-<meta property="og:url" content="https://www.aurasonicofficial.com/">
 <meta property="og:image" content="https://www.aurasonicofficial.com/aurasonicofficial-logo.png">
 
 <script type="application/ld+json">
@@ -25,73 +21,78 @@
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-TLFGYP8XR2');</script>
 
 <link rel="icon" href="aurasonicofficial-logo.png">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--accent:#C9A84C;--accent2:#E8C96A}
+:root{--gold:#C9A84C;--gold2:#E8C96A}
 html,body{height:100%}
-body{font-family:'Montserrat',sans-serif;background:#000;color:#fff;overflow:hidden;height:100vh}
+body{font-family:'Montserrat',sans-serif;background:#0a0a0a;color:#fff;overflow:hidden;height:100vh}
 a{color:inherit;text-decoration:none}
 
 /* SLIDESHOW */
 .stage{position:fixed;inset:0;background:#0a0a0a}
-.slide{position:absolute;inset:0;opacity:0;transition:opacity 1.4s ease;pointer-events:none}
-.slide.active{opacity:1;pointer-events:auto}
-.slide img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 28%;filter:grayscale(1) contrast(1.04) brightness(.92)}
-.slide::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.55) 0%,transparent 22%,transparent 60%,rgba(0,0,0,.7) 100%)}
+.slide{position:absolute;inset:0;opacity:0;transition:opacity 1.4s ease}
+.slide.active{opacity:1}
+.slide img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 22%;filter:grayscale(1) contrast(1.05) brightness(.95)}
 .slide.active img{animation:kb 8s ease-out forwards}
-@keyframes kb{from{transform:scale(1.04)}to{transform:scale(1.12)}}
+@keyframes kb{from{transform:scale(1.03)}to{transform:scale(1.1)}}
+/* güçlü alt gradyan — yazı asla kaybolmaz */
+.slide::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,10,.55) 0,transparent 20%,transparent 45%,rgba(10,10,10,.85) 80%,rgba(10,10,10,.97) 100%)}
 
-/* ARTIST NAME */
-.slide-name{position:absolute;left:0;right:0;bottom:11%;text-align:center;z-index:5;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:clamp(34px,5.5vw,76px);letter-spacing:1px;color:var(--accent2);text-shadow:0 2px 30px rgba(0,0,0,.6);opacity:0;transform:translateY(14px);transition:.9s .4s}
+/* ARTIST NAME — footer'ın üstünde, güvenli alanda */
+.slide-name{position:absolute;left:0;right:0;bottom:128px;text-align:center;z-index:5;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:clamp(36px,5.5vw,82px);letter-spacing:1px;color:var(--gold2);text-shadow:0 3px 30px rgba(0,0,0,.85);opacity:0;transform:translateY(16px);transition:.9s .4s}
 .slide.active .slide-name{opacity:1;transform:translateY(0)}
-.slide-genre{position:absolute;left:0;right:0;bottom:8.4%;text-align:center;z-index:5;font-size:11px;letter-spacing:5px;text-transform:uppercase;color:rgba(255,255,255,.7);opacity:0;transition:.9s .6s}
+.slide-genre{position:absolute;left:0;right:0;bottom:104px;text-align:center;z-index:5;font-size:11px;letter-spacing:5px;text-transform:uppercase;color:rgba(255,255,255,.78);opacity:0;transition:.9s .6s}
 .slide.active .slide-genre{opacity:1}
 
 /* TOP LOGO */
-.topbar{position:fixed;top:0;left:0;right:0;z-index:20;height:124px;background:linear-gradient(180deg,rgba(0,0,0,.6),transparent);display:flex;align-items:flex-start;justify-content:center;padding-top:18px}
-.logo-center{text-align:center}
-.logo-center img{height:54px;filter:brightness(0) invert(1) drop-shadow(0 0 1px rgba(0,0,0,.5))}
-.logo-center .wm{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;letter-spacing:6px;color:#fff;margin-top:7px;text-transform:uppercase;opacity:.9}
+.topbar{position:fixed;top:0;left:0;right:0;z-index:20;padding-top:22px;display:flex;flex-direction:column;align-items:center;pointer-events:none}
+.topbar img{height:50px;filter:brightness(0) invert(1)}
+.topbar .wm{font-family:'Cormorant Garamond',serif;letter-spacing:6px;font-size:12px;margin-top:8px;text-transform:uppercase;color:#fff;opacity:.9}
 
-/* MENU + NEWS */
-.menu-btn{position:fixed;top:0;left:0;z-index:30;width:58px;height:58px;background:var(--accent);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;transition:.25s}
-.menu-btn:hover{background:var(--accent2)}
-.menu-btn span{width:24px;height:2px;background:#000}
-.news-btn{position:fixed;top:0;right:0;z-index:30;height:58px;padding:0 26px;background:rgba(20,20,20,.85);display:flex;align-items:center;font-size:12px;letter-spacing:3px;cursor:pointer;transition:.25s}
-.news-btn:hover{color:var(--accent)}
+/* MENU BUTTON (gold) */
+.menu-btn{position:fixed;top:0;left:0;z-index:60;width:60px;height:60px;background:var(--gold);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;transition:.25s}
+.menu-btn:hover{background:var(--gold2)}
+.menu-btn span{width:24px;height:2px;background:#0a0a0a;transition:.3s}
+
+/* TOP-RIGHT (dil) */
+.lang-btn{position:fixed;top:0;right:0;z-index:30;height:60px;padding:0 24px;background:rgba(18,18,18,.9);display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:2px;cursor:pointer}
+.lang-btn span{opacity:.5;transition:.2s}
+.lang-btn span.on{opacity:1;color:var(--gold)}
+.lang-btn span:hover{opacity:1}
 
 /* ARROWS */
-.nav-arrow{position:fixed;right:0;z-index:25;width:48px;height:50px;background:rgba(15,15,15,.85);display:flex;align-items:center;justify-content:center;cursor:pointer;color:#fff;font-size:20px;transition:.25s;border:none}
-.nav-arrow:hover{background:var(--accent);color:#000}
-.nav-prev{top:calc(50% - 50px)}
+.nav-arrow{position:fixed;right:0;z-index:25;width:50px;height:52px;background:rgba(15,15,15,.8);display:flex;align-items:center;justify-content:center;cursor:pointer;color:#fff;font-size:22px;transition:.25s;border:none}
+.nav-arrow:hover{background:var(--gold);color:#0a0a0a}
+.nav-prev{top:calc(50% - 52px)}
 .nav-next{top:50%}
 
-/* PROGRESS DOTS */
-.dots{position:fixed;bottom:78px;left:0;right:0;z-index:15;display:flex;justify-content:center;gap:8px}
+/* DOTS */
+.dots{position:fixed;bottom:70px;left:0;right:0;z-index:15;display:flex;justify-content:center;gap:8px}
 .dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer;transition:.3s}
-.dot.on{background:var(--accent);width:22px;border-radius:3px}
+.dot.on{background:var(--gold);width:22px;border-radius:3px}
 
-/* FOOTER BAR */
-.foot{position:fixed;bottom:0;left:0;right:0;z-index:20;height:48px;background:rgba(0,0,0,.6);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:space-between;padding:0 22px;font-size:11px;color:rgba(255,255,255,.55)}
-.foot-social{display:flex;gap:18px;font-size:14px}
-.foot-social a{transition:.2s;opacity:.7}
-.foot-social a:hover{opacity:1;color:var(--accent)}
+/* FOOTER */
+.foot{position:fixed;bottom:0;left:0;right:0;z-index:20;height:46px;background:rgba(0,0,0,.55);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:space-between;padding:0 22px;font-size:11px;color:rgba(255,255,255,.55)}
+.foot-social{display:flex;gap:20px;font-size:15px}
+.foot-social a{opacity:.7;transition:.2s}
+.foot-social a:hover{opacity:1;color:var(--gold)}
 .foot-legal{display:flex;gap:14px}
-.foot-legal a:hover{color:var(--accent)}
+.foot-legal a:hover{color:var(--gold)}
 
-/* SLIDE-OUT MENU */
-.drawer{position:fixed;inset:0;z-index:40;background:rgba(0,0,0,.97);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;opacity:0;pointer-events:none;transition:.4s}
-.drawer.open{opacity:1;pointer-events:auto}
-.drawer a{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(28px,5vw,48px);color:#fff;transition:.25s}
-.drawer a:hover{color:var(--accent)}
-.drawer .close{position:absolute;top:20px;left:20px;width:58px;height:58px;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:26px;color:#000;cursor:pointer}
-.drawer .d-contact{margin-top:30px;font-family:'Montserrat';font-style:normal;font-size:13px;letter-spacing:1px;color:rgba(255,255,255,.6)}
+/* SOL AÇILIR MENÜ (UMG tarzı) */
+.drawer{position:fixed;top:0;left:0;bottom:0;width:340px;max-width:84vw;z-index:55;background:#0d0d0d;border-right:1px solid rgba(201,168,76,.18);transform:translateX(-100%);transition:.4s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;padding:90px 0 30px}
+.drawer.open{transform:translateX(0)}
+.drawer-overlay{position:fixed;inset:0;z-index:54;background:rgba(0,0,0,.6);opacity:0;pointer-events:none;transition:.4s}
+.drawer-overlay.open{opacity:1;pointer-events:auto}
+.drawer nav{flex:1;display:flex;flex-direction:column}
+.drawer nav a{padding:15px 36px;font-size:14px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.82);border-left:3px solid transparent;transition:.22s}
+.drawer nav a:hover{color:var(--gold);border-left-color:var(--gold);background:rgba(201,168,76,.05)}
+.drawer-foot{padding:24px 36px 0;border-top:1px solid rgba(255,255,255,.07);margin-top:18px}
+.drawer-foot .badge{display:inline-block;border:1px solid var(--gold);color:var(--gold);font-family:'Cormorant Garamond',serif;font-size:13px;letter-spacing:2px;padding:10px 16px;border-radius:4px;line-height:1.3;text-align:center}
+.drawer-foot .c{font-size:11px;color:rgba(255,255,255,.45);margin-top:16px;line-height:1.7}
 
-@media(max-width:640px){
-  .foot-legal{display:none}
-  .logo-center img{height:42px}
-}
+@media(max-width:640px){.foot-legal{display:none}.topbar img{height:40px}.slide-name{bottom:118px}.slide-genre{bottom:98px}}
 </style>
 </head>
 <body>
@@ -99,14 +100,18 @@ a{color:inherit;text-decoration:none}
 <div class="stage" id="stage"></div>
 
 <div class="topbar">
-  <div class="logo-center">
-    <img src="aurasonicofficial-logo.png" alt="AURA SONIC OFFICIAL" onerror="this.outerHTML='<div style=\'font-family:Cormorant Garamond;font-size:34px;letter-spacing:6px\'>AURA SONIC</div>'">
-    <div class="wm">Aura Sonic Official</div>
-  </div>
+  <img src="aurasonicofficial-logo.png" alt="AURA SONIC OFFICIAL" onerror="this.style.display='none'">
+  <div class="wm" data-i18n="wm">Aura Sonic Official</div>
 </div>
 
-<div class="menu-btn" onclick="document.getElementById('drawer').classList.add('open')"><span></span><span></span><span></span></div>
-<a class="news-btn" href="egitim/sketchup-mimari/">AKADEMİ</a>
+<!-- MENU BUTTON -->
+<div class="menu-btn" id="menuBtn"><span></span><span></span><span></span></div>
+
+<!-- DİL -->
+<div class="lang-btn">
+  <span class="on" data-lang="tr" onclick="setLang('tr')">TR</span>
+  <span data-lang="en" onclick="setLang('en')">EN</span>
+</div>
 
 <button class="nav-arrow nav-prev" onclick="go(-1)">‹</button>
 <button class="nav-arrow nav-next" onclick="go(1)">›</button>
@@ -114,71 +119,89 @@ a{color:inherit;text-decoration:none}
 <div class="dots" id="dots"></div>
 
 <div class="foot">
-  <span>© 2026 AURA SONIC OFFICIAL GROUP LTD. Tüm hakları saklıdır.</span>
+  <span data-i18n="copyright">© 2026 AURA SONIC OFFICIAL GROUP LTD. Tüm hakları saklıdır.</span>
   <div class="foot-social">
     <a href="https://instagram.com/aurasonic.official" title="Instagram">◉</a>
     <a href="https://wa.me/447882747808" title="WhatsApp">✆</a>
     <a href="mailto:info@aurasonicofficial.co.uk" title="E-posta">✉</a>
   </div>
   <div class="foot-legal">
-    <a href="#" onclick="document.getElementById('drawer').classList.add('open');return false">Sanatçılar</a>
-    <span>·</span>
-    <a href="mailto:info@aurasonicofficial.co.uk">İletişim</a>
+    <a href="hakkimizda.html" data-i18n="about">Hakkımızda</a><span>·</span>
+    <a href="iletisim.html" data-i18n="contact">İletişim</a>
   </div>
 </div>
 
-<!-- DRAWER MENU -->
-<div class="drawer" id="drawer">
-  <div class="close" onclick="document.getElementById('drawer').classList.remove('open')">✕</div>
-  <a href="#" onclick="document.getElementById('drawer').classList.remove('open');return false">Sanatçılar</a>
-  <a href="egitim/sketchup-mimari/">Akademi</a>
-  <a href="mailto:info@aurasonicofficial.co.uk">İletişim</a>
-  <a href="index-distribution.html">Dağıtım</a>
-  <div class="d-contact">info@aurasonicofficial.co.uk · +44 7882 747808</div>
-</div>
+<!-- SOL MENÜ -->
+<div class="drawer-overlay" id="overlay"></div>
+<aside class="drawer" id="drawer">
+  <nav>
+    <a href="index.html" data-i18n="m_home">Ana Sayfa</a>
+    <a href="hakkimizda.html" data-i18n="m_about">Hakkımızda</a>
+    <a href="sanatcilar.html" data-i18n="m_artists">Sanatçılarımız</a>
+    <a href="vizyon.html" data-i18n="m_vision">Vizyonumuz</a>
+    <a href="sanatcilar-icin.html" data-i18n="m_forartists">Sanatçılar İçin</a>
+    <a href="iletisim.html" data-i18n="m_contact">İletişim</a>
+  </nav>
+  <div class="drawer-foot">
+    <div class="badge" data-i18n="badge">BAĞIMSIZ<br>MÜZİK ŞİRKETİ</div>
+    <div class="c">AURA SONIC OFFICIAL GROUP LTD<br>London · İzmir</div>
+  </div>
+</aside>
 
 <script>
 const ARTISTS = [
-  {n:"Aşkın Öztürk", g:"Kurucu · Vokal", img:"askin-ozturk"},
-  {n:"Kael Voss", g:"Alternative", img:"kael-voss"},
-  {n:"Vael Cross", g:"Cinematic", img:"vael-cross"},
-  {n:"Maria Mel", g:"Pop · Latin", img:"maria-mel"},
-  {n:"Chronos", g:"Electronic", img:"chronos"},
-  {n:"Lyra Sage", g:"Indie", img:"lyra-sage"},
-  {n:"Lara", g:"Türkçe Pop", img:"lara"},
-  {n:"Jaxen Moon", g:"R&B · Soul", img:"jaxen-moon"},
-  {n:"İrem Sezin", g:"Türkçe", img:"irem-sezin"},
-  {n:"Naxo Veyra", g:"Dance", img:"naxo-veyra"}
+  {n:"Aşkın Öztürk", g:{tr:"Kurucu · Vokal",en:"Founder · Vocals"}, img:"askin-ozturk"},
+  {n:"Kael Voss", g:{tr:"Alternatif",en:"Alternative"}, img:"kael-voss"},
+  {n:"Vael Cross", g:{tr:"Sinematik",en:"Cinematic"}, img:"vael-cross"},
+  {n:"Maria Mel", g:{tr:"Pop · Latin",en:"Pop · Latin"}, img:"maria-mel"},
+  {n:"Chronos", g:{tr:"Elektronik",en:"Electronic"}, img:"chronos"},
+  {n:"Lyra Sage", g:{tr:"Indie",en:"Indie"}, img:"lyra-sage"},
+  {n:"Lara", g:{tr:"Türkçe Pop",en:"Turkish Pop"}, img:"lara"},
+  {n:"Jaxen Moon", g:{tr:"R&B · Soul",en:"R&B · Soul"}, img:"jaxen-moon"},
+  {n:"İrem Sezin", g:{tr:"Türkçe",en:"Turkish"}, img:"irem-sezin"},
+  {n:"Naxo Veyra", g:{tr:"Dance",en:"Dance"}, img:"naxo-veyra"}
 ];
-const stage = document.getElementById('stage');
-const dots = document.getElementById('dots');
+
+const I18N = {
+  tr:{wm:"Aura Sonic Official",copyright:"© 2026 AURA SONIC OFFICIAL GROUP LTD. Tüm hakları saklıdır.",about:"Hakkımızda",contact:"İletişim",m_home:"Ana Sayfa",m_about:"Hakkımızda",m_artists:"Sanatçılarımız",m_vision:"Vizyonumuz",m_forartists:"Sanatçılar İçin",m_contact:"İletişim",badge:"BAĞIMSIZ<br>MÜZİK ŞİRKETİ"},
+  en:{wm:"Aura Sonic Official",copyright:"© 2026 AURA SONIC OFFICIAL GROUP LTD. All rights reserved.",about:"About",contact:"Contact",m_home:"Home",m_about:"About",m_artists:"Our Artists",m_vision:"Our Vision",m_forartists:"For Artists",m_contact:"Contact",badge:"INDEPENDENT<br>MUSIC COMPANY"}
+};
+let lang = localStorage.getItem('asLang') || 'tr';
+
+function setLang(l){
+  lang = l; localStorage.setItem('asLang',l);
+  document.documentElement.lang = l;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{ if(I18N[l][el.dataset.i18n]) el.innerHTML = I18N[l][el.dataset.i18n]; });
+  document.querySelectorAll('.lang-btn span').forEach(s=>s.classList.toggle('on', s.dataset.lang===l));
+  document.querySelectorAll('.slide-genre').forEach((el,i)=>{ el.textContent = ARTISTS[i].g[l]; });
+}
+
+const stage = document.getElementById('stage'), dots = document.getElementById('dots');
 ARTISTS.forEach((a,i)=>{
   const s = document.createElement('div');
   s.className = 'slide' + (i===0?' active':'');
   s.innerHTML = `<img src="images/artists/${a.img}.jpg" alt="${a.n}" loading="${i<2?'eager':'lazy'}">
     <div class="slide-name">${a.n}</div>
-    <div class="slide-genre">${a.g}</div>`;
+    <div class="slide-genre">${a.g[lang]}</div>`;
   stage.appendChild(s);
   const d = document.createElement('div');
-  d.className = 'dot' + (i===0?' on':'');
-  d.onclick = ()=>show(i);
-  dots.appendChild(d);
+  d.className = 'dot' + (i===0?' on':''); d.onclick=()=>show(i); dots.appendChild(d);
 });
-let cur = 0, timer;
-const slides = document.querySelectorAll('.slide');
-const allDots = document.querySelectorAll('.dot');
-function show(i){
-  slides[cur].classList.remove('active');
-  allDots[cur].classList.remove('on');
-  cur = (i+ARTISTS.length)%ARTISTS.length;
-  slides[cur].classList.add('active');
-  allDots[cur].classList.add('on');
-  restart();
-}
-function go(d){ show(cur+d); }
-function restart(){ clearInterval(timer); timer=setInterval(()=>go(1),6000); }
+
+let cur=0,timer;
+const slides=document.querySelectorAll('.slide'), allDots=document.querySelectorAll('.dot');
+function show(i){slides[cur].classList.remove('active');allDots[cur].classList.remove('on');cur=(i+ARTISTS.length)%ARTISTS.length;slides[cur].classList.add('active');allDots[cur].classList.add('on');restart();}
+function go(d){show(cur+d);}
+function restart(){clearInterval(timer);timer=setInterval(()=>go(1),6000);}
 restart();
 document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')go(1);if(e.key==='ArrowLeft')go(-1)});
+
+// menu
+const drawer=document.getElementById('drawer'),overlay=document.getElementById('overlay');
+document.getElementById('menuBtn').onclick=()=>{drawer.classList.add('open');overlay.classList.add('open')};
+overlay.onclick=()=>{drawer.classList.remove('open');overlay.classList.remove('open')};
+
+setLang(lang);
 </script>
 </body>
 </html>
