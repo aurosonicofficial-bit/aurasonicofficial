@@ -97,18 +97,21 @@ section{padding:clamp(70px,10vw,120px) 6%}
 .sec-head p{color:var(--muted2);max-width:560px;margin:16px auto 0;font-weight:300}
 
 /* ARTISTS */
-.roster{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px}
-.artist{position:relative;aspect-ratio:3/4;border-radius:18px;overflow:hidden;cursor:pointer;border:1px solid var(--border2);transition:.35s;background:var(--bg3)}
-.artist:hover{border-color:var(--gold);transform:translateY(-6px)}
-.artist-bg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue';font-size:80px;color:rgba(255,255,255,.06);letter-spacing:4px;transition:.35s}
-.artist:hover .artist-bg{transform:scale(1.1);color:rgba(201,168,76,.12)}
-.artist-grad{position:absolute;inset:0;opacity:.9}
-.artist-info{position:absolute;left:0;right:0;bottom:0;padding:22px 20px;background:linear-gradient(transparent,rgba(8,9,13,.95));z-index:2}
-.artist-info .n{font-family:'Bebas Neue';font-size:25px;letter-spacing:1.5px;line-height:1}
-.artist-info .g{font-size:11px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-top:4px}
-.artist-info .r{font-size:11px;color:var(--muted);margin-top:6px}
-.artist-play{position:absolute;top:16px;right:16px;width:42px;height:42px;border-radius:50%;background:var(--gold);color:#08090D;display:flex;align-items:center;justify-content:center;font-size:15px;opacity:0;transform:scale(.6);transition:.3s;z-index:3}
-.artist:hover .artist-play{opacity:1;transform:scale(1)}
+.roster{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:24px}
+.artist{position:relative;aspect-ratio:4/5;border-radius:6px;overflow:hidden;cursor:pointer;background:var(--bg3);transition:.4s}
+.artist:hover{transform:translateY(-5px)}
+.artist-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;transition:.7s ease;filter:grayscale(.15)}
+.artist:hover .artist-photo{transform:scale(1.05);filter:grayscale(0)}
+.artist-bg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue';font-size:72px;color:rgba(255,255,255,.07);letter-spacing:4px;z-index:0}
+.artist-grad{position:absolute;inset:0;opacity:.9;z-index:0}
+.artist::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(8,9,13,.96) 0%,rgba(8,9,13,.35) 32%,transparent 60%);z-index:2;pointer-events:none}
+.artist-info{position:absolute;left:0;right:0;bottom:0;padding:22px 22px;z-index:3}
+.artist-info .n{font-family:'Bebas Neue';font-size:27px;letter-spacing:1.5px;line-height:1}
+.artist-info .g{font-size:11px;letter-spacing:2.5px;color:var(--gold);text-transform:uppercase;margin-top:6px}
+.artist-info .r{font-size:11px;color:var(--muted);margin-top:5px;letter-spacing:.5px}
+.artist-line{position:absolute;left:22px;bottom:14px;width:0;height:2px;background:var(--gold);z-index:3;transition:.4s}
+.artist:hover .artist-line{width:40px}
+.artist-play{display:none}
 
 /* CAPABILITIES (dağıtım hissi - fiyat YOK) */
 .caps{background:var(--bg2);border-top:1px solid var(--border2);border-bottom:1px solid var(--border2)}
@@ -311,16 +314,16 @@ footer{padding:60px 6% 36px;border-top:1px solid var(--border2);background:var(-
 
 <script>
 const ARTISTS = [
-  {n:"AŞKIN ÖZTÜRK", g:"Kurucu · Vokal", r:"9 yayın", c1:"#3a2d0a",c2:"#1a1405"},
-  {n:"KAEL VOSS", g:"Alternative", r:"8 yayın", c1:"#0a2a3a",c2:"#05131a"},
-  {n:"VAEL CROSS", g:"Cinematic", r:"8 yayın", c1:"#2a0a3a",c2:"#14051a"},
-  {n:"MARIA MEL", g:"Pop · Latin", r:"7 yayın", c1:"#3a0a1a",c2:"#1a0510"},
-  {n:"CHRONOS", g:"Electronic", r:"5 yayın", c1:"#0a3a2a",c2:"#051a14"},
-  {n:"LYRA SAGE", g:"Indie", r:"5 yayın", c1:"#2a2a0a",c2:"#141405"},
-  {n:"LARA", g:"Türkçe Pop", r:"5 yayın", c1:"#3a1a0a",c2:"#1a0d05"},
-  {n:"JAXEN MOON", g:"R&B · Soul", r:"5 yayın", c1:"#0a1a3a",c2:"#050d1a"},
-  {n:"İREM SEZİN", g:"Türkçe", r:"4 yayın", c1:"#3a0a2a",c2:"#1a0514"},
-  {n:"NAXO VEYRA", g:"Dance", r:"1 yayın", c1:"#0a3a3a",c2:"#051a1a"}
+  {n:"AŞKIN ÖZTÜRK", g:"Kurucu · Vokal", r:"9 yayın", img:"askin-ozturk", c1:"#3a2d0a",c2:"#1a1405"},
+  {n:"KAEL VOSS", g:"Alternative", r:"8 yayın", img:"kael-voss", c1:"#0a2a3a",c2:"#05131a"},
+  {n:"VAEL CROSS", g:"Cinematic", r:"8 yayın", img:"vael-cross", c1:"#2a0a3a",c2:"#14051a"},
+  {n:"MARIA MEL", g:"Pop · Latin", r:"7 yayın", img:"maria-mel", c1:"#3a0a1a",c2:"#1a0510"},
+  {n:"CHRONOS", g:"Electronic", r:"5 yayın", img:"chronos", c1:"#0a3a2a",c2:"#051a14"},
+  {n:"LYRA SAGE", g:"Indie", r:"5 yayın", img:"lyra-sage", c1:"#2a2a0a",c2:"#141405"},
+  {n:"LARA", g:"Türkçe Pop", r:"5 yayın", img:"lara", c1:"#3a1a0a",c2:"#1a0d05"},
+  {n:"JAXEN MOON", g:"R&B · Soul", r:"5 yayın", img:"jaxen-moon", c1:"#0a1a3a",c2:"#050d1a"},
+  {n:"İREM SEZİN", g:"Türkçe", r:"4 yayın", img:"irem-sezin", c1:"#3a0a2a",c2:"#1a0514"},
+  {n:"NAXO VEYRA", g:"Dance", r:"1 yayın", img:"naxo-veyra", c1:"#0a3a3a",c2:"#051a1a"}
 ];
 const roster = document.getElementById('roster');
 ARTISTS.forEach(a=>{
@@ -329,13 +332,14 @@ ARTISTS.forEach(a=>{
   el.className='artist';
   el.innerHTML = `
     <div class="artist-grad" style="background:linear-gradient(150deg,${a.c1},${a.c2})"></div>
+    <img class="artist-photo" src="images/artists/${a.img}.jpg" alt="${a.n}" loading="lazy" onerror="this.style.display='none'">
     <div class="artist-bg">${initials}</div>
-    <div class="artist-play">▶</div>
     <div class="artist-info">
       <div class="n">${a.n}</div>
       <div class="g">${a.g}</div>
       <div class="r">${a.r}</div>
-    </div>`;
+    </div>
+    <div class="artist-line"></div>`;
   roster.appendChild(el);
 });
 // nav scroll
