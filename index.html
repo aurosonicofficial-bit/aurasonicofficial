@@ -33,7 +33,7 @@ a{color:inherit;text-decoration:none}
 .stage{position:fixed;inset:0;background:#0a0a0a}
 .slide{position:absolute;inset:0;opacity:0;transition:opacity 1.4s ease}
 .slide.active{opacity:1}
-.slide img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 22%;filter:grayscale(1) contrast(1.05) brightness(.95)}
+.slide img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 45%;filter:grayscale(1) contrast(1.05) brightness(.95)}
 .slide.active img{animation:kb 8s ease-out forwards}
 @keyframes kb{from{transform:scale(1.03)}to{transform:scale(1.1)}}
 /* güçlü alt gradyan — yazı asla kaybolmaz */
@@ -46,8 +46,8 @@ a{color:inherit;text-decoration:none}
 .slide.active .slide-genre{opacity:1}
 
 /* TOP LOGO */
-.topbar{position:fixed;top:0;left:0;right:0;z-index:20;padding-top:22px;display:flex;flex-direction:column;align-items:center;pointer-events:none}
-.topbar img{height:74px;filter:drop-shadow(0 2px 14px rgba(0,0,0,.6))}
+.topbar{position:fixed;top:14px;left:0;right:0;z-index:20;display:flex;justify-content:center;align-items:center;pointer-events:none}
+.topbar img{height:104px;filter:drop-shadow(0 3px 18px rgba(0,0,0,.7))}
 .topbar .wm{font-family:'Cormorant Garamond',serif;letter-spacing:6px;font-size:12px;margin-top:8px;text-transform:uppercase;color:#fff;opacity:.9}
 
 /* MENU BUTTON (gold) */
