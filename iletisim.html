@@ -64,7 +64,7 @@ footer{margin-top:70px;background:var(--ink);color:rgba(244,241,235,.7);padding:
   </div>
   <div class="addr">
     <div class="ad"><h3 data-i18n="a_uk">Merkez · Birleşik Krallık</h3><p data-i18n="a_uk_p">AURA SONIC OFFICIAL GROUP LTD<br>71-75 Shelton Street, London WC2H 9JQ</p></div>
-    <div class="ad"><h3 data-i18n="a_tr">Türkiye Temsilciliği</h3><p data-i18n="a_tr_p">İsmetpaşa Mah. 10. Sk No: 114-116<br>Kat 4, Daire 14 · Dikili / İzmir</p></div>
+    <div class="ad"><h3 data-i18n="a_tr">Türkiye Temsilciliği</h3><p data-i18n="a_tr_p">İsmetpaşa Mah. Burmalıçeşme Sk.<br>No: 90/A · İzmir</p></div>
   </div>
 </div>
 
@@ -79,7 +79,7 @@ footer{margin-top:70px;background:var(--ink);color:rgba(244,241,235,.7);padding:
 </nav><div class="drawer-foot">AURA SONIC OFFICIAL GROUP LTD<br>London · İzmir</div></aside>
 
 <script>
-const T={tr:{crumb:"İletişim",title:"İletişim",lead:"Sanatçı başvurusu, iş birliği veya basın için bize ulaşın.",t_tr:"Telefon · TR",a_uk:"Merkez · Birleşik Krallık",a_uk_p:"AURA SONIC OFFICIAL GROUP LTD<br>71-75 Shelton Street, London WC2H 9JQ",a_tr:"Türkiye Temsilciliği",a_tr_p:"İsmetpaşa Mah. 10. Sk No: 114-116<br>Kat 4, Daire 14 · Dikili / İzmir",home:"Ana Sayfa",m_home:"Ana Sayfa",m_about:"Hakkımızda",m_artists:"Sanatçılarımız",m_vision:"Vizyonumuz",m_forartists:"Sanatçılar İçin",m_contact:"İletişim"},en:{crumb:"Contact",title:"Contact",lead:"Reach us for artist applications, collaborations or press.",t_tr:"Phone · TR",a_uk:"Headquarters · United Kingdom",a_uk_p:"AURA SONIC OFFICIAL GROUP LTD<br>71-75 Shelton Street, London WC2H 9JQ",a_tr:"Turkey Representative Office",a_tr_p:"İsmetpaşa Mah. 10. Sk No: 114-116<br>Floor 4, No 14 · Dikili / İzmir",home:"Home",m_home:"Home",m_about:"About",m_artists:"Our Artists",m_vision:"Our Vision",m_forartists:"For Artists",m_contact:"Contact"}};
+const T={tr:{crumb:"İletişim",title:"İletişim",lead:"Sanatçı başvurusu, iş birliği veya basın için bize ulaşın.",t_tr:"Telefon · TR",a_uk:"Merkez · Birleşik Krallık",a_uk_p:"AURA SONIC OFFICIAL GROUP LTD<br>71-75 Shelton Street, London WC2H 9JQ",a_tr:"Türkiye Temsilciliği",a_tr_p:"İsmetpaşa Mah. Burmalıçeşme Sk.<br>No: 90/A · İzmir",home:"Ana Sayfa",m_home:"Ana Sayfa",m_about:"Hakkımızda",m_artists:"Sanatçılarımız",m_vision:"Vizyonumuz",m_forartists:"Sanatçılar İçin",m_contact:"İletişim"},en:{crumb:"Contact",title:"Contact",lead:"Reach us for artist applications, collaborations or press.",t_tr:"Phone · TR",a_uk:"Headquarters · United Kingdom",a_uk_p:"AURA SONIC OFFICIAL GROUP LTD<br>71-75 Shelton Street, London WC2H 9JQ",a_tr:"Turkey Representative Office",a_tr_p:"İsmetpaşa Mah. Burmalıçeşme Sk.<br>No: 90/A · İzmir",home:"Home",m_home:"Home",m_about:"About",m_artists:"Our Artists",m_vision:"Our Vision",m_forartists:"For Artists",m_contact:"Contact"}};
 let lang=localStorage.getItem('asLang')||'tr';
 function setLang(l){lang=l;localStorage.setItem('asLang',l);document.documentElement.lang=l;document.querySelectorAll('[data-i18n]').forEach(e=>{if(T[l][e.dataset.i18n])e.innerHTML=T[l][e.dataset.i18n]});document.querySelectorAll('.lang span').forEach(s=>s.classList.toggle('on',s.dataset.lang===l))}
 const dr=document.getElementById('drawer'),ov=document.getElementById('ov');
