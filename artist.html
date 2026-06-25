@@ -148,7 +148,7 @@ const d=A[slug]||A['askin-ozturk'];
 
 function render(){
   const cv=document.getElementById('cover');
-  cv.src='images/artists/'+d.img+'.jpg';
+  cv.src='images/artists/'+d.img+'.jpg?v=4';
   cv.alt=d.name;
   cv.style.objectPosition=POS[slug]||'center 20%';
   document.getElementById('name').textContent=d.name;
@@ -158,7 +158,7 @@ function render(){
   const st=document.getElementById('styles');st.innerHTML='';
   d.styles.forEach(s=>{const e=document.createElement('span');e.textContent=(lang==='en'&&STYLE_EN[s])?STYLE_EN[s]:s;st.appendChild(e)});
   const gal=document.getElementById('gal');gal.innerHTML='';
-  if(d.gal>0){for(let i=1;i<=d.gal;i++){const a=document.createElement('a');const src='images/artists/gallery/'+d.img+'-'+i+'.jpg';a.href=src;a.target='_blank';a.innerHTML=`<img src="${src}" alt="${d.name}" loading="lazy" onerror="this.parentElement.style.display='none'">`;gal.appendChild(a)}}
+  if(d.gal>0){for(let i=1;i<=d.gal;i++){const a=document.createElement('a');const src='images/artists/gallery/'+d.img+'-'+i+'.jpg?v=4';a.href=src;a.target='_blank';a.innerHTML=`<img src="${src}" alt="${d.name}" loading="lazy" onerror="this.parentElement.style.display='none'">`;gal.appendChild(a)}}
   else{document.getElementById('galSec').style.display='none'}
 }
 function setLang(l){lang=l;localStorage.setItem('asLang',l);document.documentElement.lang=l;document.querySelectorAll('[data-i18n]').forEach(e=>{if(I[l][e.dataset.i18n])e.textContent=I[l][e.dataset.i18n]});document.querySelectorAll('.lang span').forEach(s=>s.classList.toggle('on',s.dataset.lang===l));render()}
