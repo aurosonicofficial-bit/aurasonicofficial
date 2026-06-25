@@ -13,10 +13,10 @@
 :root{--paper:#F4F1EB;--paper2:#ECE7DD;--ink:#20232A;--ink2:rgba(32,35,42,.6);--gold:#9C7A2E;--line:rgba(32,35,42,.13)}
 body{font-family:'Montserrat',sans-serif;background:var(--paper);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
-.bar{position:fixed;top:0;left:0;right:0;z-index:50;height:78px;display:flex;align-items:center;justify-content:space-between;padding:0 5%;background:rgba(244,241,235,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.bar{position:fixed;top:0;left:0;right:0;z-index:50;height:96px;display:flex;align-items:center;justify-content:space-between;padding:0 5%;background:rgba(244,241,235,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 .bar-left{display:flex;align-items:center;gap:22px}
 .menu-btn{display:flex;flex-direction:column;gap:5px;cursor:pointer;padding:6px}.menu-btn span{width:26px;height:1.5px;background:var(--ink);transition:.3s}.menu-btn:hover span{background:var(--gold)}
-.logo{height:46px;filter:drop-shadow(0 1px 2px rgba(0,0,0,.18))}
+.logo{height:72px;filter:drop-shadow(0 1px 2px rgba(0,0,0,.18))}
 .lang{display:flex;gap:12px;font-size:12px;letter-spacing:2px}.lang span{opacity:.42;cursor:pointer;transition:.2s}.lang span.on{opacity:1;color:var(--gold);font-weight:600}.lang span:hover{opacity:.85}
 .hero{padding:170px 5% 50px;max-width:1180px;margin:0 auto}
 .eyebrow{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:22px;font-weight:600}
@@ -49,7 +49,7 @@ footer{margin-top:80px;background:var(--ink);color:rgba(244,241,235,.7);padding:
 .drawer-ov{position:fixed;inset:0;z-index:64;background:rgba(32,35,42,.4);opacity:0;pointer-events:none;transition:.4s}.drawer-ov.open{opacity:1;pointer-events:auto}
 .drawer nav{flex:1;display:flex;flex-direction:column}.drawer nav a{padding:16px 40px;font-size:13px;letter-spacing:2.5px;text-transform:uppercase;color:var(--ink);border-left:2px solid transparent;transition:.22s;opacity:.7}.drawer nav a:hover,.drawer nav a.active{opacity:1;color:var(--gold);border-left-color:var(--gold)}
 .drawer-foot{padding:24px 40px 0;border-top:1px solid var(--line);margin-top:14px;font-size:11px;color:var(--ink2);line-height:1.8;letter-spacing:.5px}
-@media(max-width:680px){.val{grid-template-columns:1fr;gap:8px}.logo{height:38px}}
+@media(max-width:680px){.val{grid-template-columns:1fr;gap:8px}.logo{height:52px}}
 </style>
 </head>
 <body>
@@ -87,7 +87,7 @@ footer{margin-top:80px;background:var(--ink);color:rgba(244,241,235,.7);padding:
       <a href="sanatcilar-icin.html" data-i18n="m_forartists">Sanatçılar İçin</a>
       <a href="iletisim.html" data-i18n="m_contact">İletişim</a>
     </nav>
-    <div class="foot-soc"><a href="https://instagram.com/aurasonic.official" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2.6" y="2.6" width="18.8" height="18.8" rx="5.2"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.4" cy="6.6" r="1" fill="currentColor" stroke="none"/></svg></a><a href="https://wa.me/447882747808" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.5 15.3L2 22l4.8-1.5A10 10 0 1012 2zm0 1.8a8.2 8.2 0 016.9 12.6l-.2.3.7 2.6-2.7-.7-.3.2A8.2 8.2 0 1112 3.8zm-3 4c-.2 0-.5 0-.7.3-.2.3-.9.9-.9 2.1s.9 2.4 1 2.6c.1.2 1.8 2.9 4.5 3.9 2.2.9 2.7.7 3.2.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2 0-.1-.2-.2-.5-.3l-1.6-.8c-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1-.3-.1-1.1-.4-2-1.3-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.4.1-.5l.4-.5c.1-.1.1-.3.2-.5 0-.1 0-.3 0-.4l-.8-1.8c-.2-.4-.4-.4-.5-.4h-.4z"/></svg></a><a href="mailto:info@aurasonicofficial.co.uk" aria-label="E-posta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2.6" y="4.6" width="18.8" height="14.8" rx="2.4"/><path d="M3.2 6.2l8.8 6 8.8-6"/></svg></a></div>
+    <div class="foot-soc"><a href="https://instagram.com/aurasonic.official" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2.6" y="2.6" width="18.8" height="18.8" rx="5.2"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.4" cy="6.6" r="1" fill="currentColor" stroke="none"/></svg></a><a href="https://wa.me/447882747808" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.5 15.3L2 22l4.8-1.5A10 10 0 1012 2zm0 1.8a8.2 8.2 0 016.9 12.6l-.2.3.7 2.6-2.7-.7-.3.2A8.2 8.2 0 1112 3.8zm-3 4c-.2 0-.5 0-.7.3-.2.3-.9.9-.9 2.1s.9 2.4 1 2.6c.1.2 1.8 2.9 4.5 3.9 2.2.9 2.7.7 3.2.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2 0-.1-.2-.2-.5-.3l-1.6-.8c-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1-.3-.1-1.1-.4-2-1.3-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.4.1-.5l.4-.5c.1-.1.1-.3.2-.5 0-.1 0-.3 0-.4l-.8-1.8c-.2-.4-.4-.4-.5-.4h-.4z"/></svg></a><a href="https://mail.google.com/mail/?view=cm&fs=1&to=info@aurasonicofficial.co.uk" target="_blank" rel="noopener" aria-label="E-posta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2.6" y="4.6" width="18.8" height="14.8" rx="2.4"/><path d="M3.2 6.2l8.8 6 8.8-6"/></svg></a></div>
   </div>
   <div class="foot-cp"><span>© 2026 AURA SONIC OFFICIAL GROUP LTD</span><span>info@aurasonicofficial.co.uk · WhatsApp +44 7882 747808 · İzmir / London</span></div>
 </footer>
