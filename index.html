@@ -33,7 +33,7 @@ a{color:inherit;text-decoration:none}
 .stage{position:fixed;inset:0;background:#0a0a0a}
 .slide{position:absolute;inset:0;opacity:0;transition:opacity 1.4s ease}
 .slide.active{opacity:1}
-.slide img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 45%;filter:grayscale(1) contrast(1.05) brightness(.95)}
+.slide img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;filter:grayscale(1) contrast(1.05) brightness(.95)}
 .slide.active img{animation:kb 8s ease-out forwards}
 @keyframes kb{from{transform:scale(1.03)}to{transform:scale(1.1)}}
 /* güçlü alt gradyan — yazı asla kaybolmaz */
@@ -46,9 +46,10 @@ a{color:inherit;text-decoration:none}
 .slide.active .slide-genre{opacity:1}
 
 /* TOP LOGO */
-.topbar{position:fixed;top:14px;left:0;right:0;z-index:20;display:flex;justify-content:center;align-items:center;pointer-events:none}
-.topbar img{height:104px;filter:drop-shadow(0 3px 18px rgba(0,0,0,.7))}
-.topbar .wm{font-family:'Cormorant Garamond',serif;letter-spacing:6px;font-size:12px;margin-top:8px;text-transform:uppercase;color:#fff;opacity:.9}
+.topbar{position:fixed;top:10px;left:78px;z-index:50;display:flex;align-items:center;pointer-events:none;transition:transform .45s cubic-bezier(.4,0,.2,1),opacity .35s ease}
+.topbar img{height:128px;filter:drop-shadow(0 4px 20px rgba(0,0,0,.75))}
+/* menü açılınca logo sola çekilir, kapanınca yerine döner */
+body.menu-open .topbar{transform:translateX(-150%);opacity:0}
 
 /* MENU BUTTON (gold) */
 .menu-btn{position:fixed;top:0;left:0;z-index:60;width:60px;height:60px;background:var(--gold);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;transition:.25s}
@@ -196,8 +197,8 @@ document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')go(1);if(e.key==
 
 // menu
 const drawer=document.getElementById('drawer'),overlay=document.getElementById('overlay');
-document.getElementById('menuBtn').onclick=()=>{drawer.classList.add('open');overlay.classList.add('open')};
-overlay.onclick=()=>{drawer.classList.remove('open');overlay.classList.remove('open')};
+document.getElementById('menuBtn').onclick=()=>{drawer.classList.add('open');overlay.classList.add('open');document.body.classList.add('menu-open')};
+overlay.onclick=()=>{drawer.classList.remove('open');overlay.classList.remove('open');document.body.classList.remove('menu-open')};
 
 setLang(lang);
 </script>

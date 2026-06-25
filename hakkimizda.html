@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Hakkımızda — AURA SONIC OFFICIAL</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="AURA SONIC OFFICIAL — bağımsız müzik şirketi. Sanatçısını merkeze koyan, telif haklarını koruyan bir yapı.">
+<link rel="icon" href="aurasonicofficial-logo.png">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TLFGYP8XR2"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-TLFGYP8XR2');</script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--gold:#C9A84C;--gold2:#E8C96A}
+body{font-family:'Montserrat',sans-serif;background:#0a0a0a;color:#fff;line-height:1.7}
+a{color:inherit;text-decoration:none}
+.menu-btn{position:fixed;top:0;left:0;z-index:60;width:60px;height:60px;background:var(--gold);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;transition:.25s}
+.menu-btn:hover{background:var(--gold2)}.menu-btn span{width:24px;height:2px;background:#0a0a0a}
+.topbar{position:fixed;top:8px;left:78px;z-index:50;transition:transform .45s cubic-bezier(.4,0,.2,1),opacity .35s}
+.topbar img{height:96px;filter:drop-shadow(0 3px 16px rgba(0,0,0,.7))}
+body.menu-open .topbar{transform:translateX(-150%);opacity:0}
+.lang-btn{position:fixed;top:0;right:0;z-index:55;height:60px;padding:0 24px;background:rgba(18,18,18,.92);display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:2px;cursor:pointer}
+.lang-btn span{opacity:.5;transition:.2s}.lang-btn span.on{opacity:1;color:var(--gold)}.lang-btn span:hover{opacity:1}
+/* HERO BAND */
+.hero{height:48vh;min-height:340px;position:relative;display:flex;align-items:flex-end;overflow:hidden;background:#111}
+.hero::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,#1a1a1a,#0a0a0a 70%);z-index:0}
+.hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 20%,rgba(201,168,76,.14),transparent 60%);z-index:1}
+.hero-in{position:relative;z-index:2;padding:0 8% 56px;width:100%}
+.hero .crumb{font-size:11px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:14px;opacity:.85}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(44px,8vw,96px);font-weight:500;letter-spacing:1px;line-height:.96}
+.hero .uline{width:60px;height:3px;background:var(--gold);margin-top:22px}
+/* CONTENT */
+.wrap{max-width:880px;margin:0 auto;padding:70px 8% 100px}
+.lead{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(22px,3vw,30px);color:var(--gold2);line-height:1.5;margin-bottom:40px}
+.wrap h2{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:600;margin:44px 0 16px;letter-spacing:.5px}
+.wrap p{color:rgba(255,255,255,.78);font-weight:300;margin-bottom:18px;font-size:16px}
+.wrap p .g{color:var(--gold);font-weight:400}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;margin:40px 0}
+.fact{border:1px solid rgba(201,168,76,.22);border-radius:10px;padding:24px}
+.fact b{display:block;font-family:'Cormorant Garamond',serif;font-size:34px;color:var(--gold);line-height:1}
+.fact span{font-size:12px;letter-spacing:1.5px;color:rgba(255,255,255,.55);text-transform:uppercase;margin-top:6px;display:block}
+/* FOOTER */
+footer{border-top:1px solid rgba(255,255,255,.08);padding:40px 8%;display:flex;justify-content:space-between;flex-wrap:wrap;gap:18px;font-size:12px;color:rgba(255,255,255,.5)}
+footer a:hover{color:var(--gold)}
+.f-social{display:flex;gap:18px;font-size:15px}
+/* DRAWER */
+.drawer{position:fixed;top:0;left:0;bottom:0;width:340px;max-width:84vw;z-index:65;background:#0d0d0d;border-right:1px solid rgba(201,168,76,.18);transform:translateX(-100%);transition:.42s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;padding:90px 0 30px}
+.drawer.open{transform:translateX(0)}
+.drawer-ov{position:fixed;inset:0;z-index:64;background:rgba(0,0,0,.6);opacity:0;pointer-events:none;transition:.4s}
+.drawer-ov.open{opacity:1;pointer-events:auto}
+.drawer nav{flex:1;display:flex;flex-direction:column}
+.drawer nav a{padding:15px 36px;font-size:14px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.82);border-left:3px solid transparent;transition:.22s}
+.drawer nav a:hover,.drawer nav a.active{color:var(--gold);border-left-color:var(--gold);background:rgba(201,168,76,.05)}
+.drawer-foot{padding:22px 36px 0;border-top:1px solid rgba(255,255,255,.07);margin-top:14px;font-size:11px;color:rgba(255,255,255,.45);line-height:1.7}
+@media(max-width:640px){.topbar img{height:62px}.topbar{left:70px}}
+</style>
+</head>
+<body>
+
+<div class="menu-btn" id="menuBtn"><span></span><span></span><span></span></div>
+<a class="topbar" href="index.html"><img src="aura-logo-gold.png" alt="AURA SONIC OFFICIAL" onerror="this.src='aurasonicofficial-logo.png'"></a>
+<div class="lang-btn"><span class="on" data-lang="tr" onclick="setLang('tr')">TR</span><span data-lang="en" onclick="setLang('en')">EN</span></div>
+
+<section class="hero">
+  <div class="hero-in">
+    <div class="crumb"><span data-i18n="crumb">Ana Sayfa › Hakkımızda</span></div>
+    <h1 data-i18n="title">Hakkımızda</h1>
+    <div class="uline"></div>
+  </div>
+</section>
+
+<div class="wrap">
+  <p class="lead" data-i18n="lead">Sanatçısını merkeze koyan, bağımsız bir müzik şirketi.</p>
+  <p data-i18n="p1"><span class="g">AURA SONIC OFFICIAL</span>, büyük şirketlerin bürokrasisi olmadan; sanatçının yaratıcı özgürlüğünü ve haklarını koruyarak müzik üreten bağımsız bir yapıdır. Keşfetmek, üretmek ve dünyaya ulaştırmak — yaptığımız işin özü budur.</p>
+  <p data-i18n="p2">Kataloğumuzdaki her eser bize aittir; sözü, bestesi ve prodüksiyonu kendi ekibimizin imzasını taşır. Telif haklarımız <span class="g">tescilli ve blockchain üzerinde zaman damgalıdır</span> — değiştirilemez, inkâr edilemez.</p>
+
+  <div class="facts">
+    <div class="fact"><b>9</b><span data-i18n="f_artist">Sanatçı</span></div>
+    <div class="fact"><b>57+</b><span data-i18n="f_release">Yayın</span></div>
+    <div class="fact"><b>150+</b><span data-i18n="f_platform">Platform</span></div>
+  </div>
+
+  <h2 data-i18n="h_vision">Vizyonumuz</h2>
+  <p data-i18n="p3">Amacımız basit: doğru sanatçıyı keşfetmek, en iyi müziği üretmek ve onu dünyanın dört bir yanındaki dinleyiciye ulaştırmak. Şeffaflık, hak sahipliği ve sanatçı önceliği ilkelerimizdir.</p>
+
+  <h2 data-i18n="h_company">Kurumsal</h2>
+  <p data-i18n="p4"><span class="g">AURA SONIC OFFICIAL GROUP LTD</span> — Birleşik Krallık (kuruluş aşamasında). Operasyon merkezi: İzmir, Türkiye. İletişim: <span class="g">info@aurasonicofficial.co.uk</span></p>
+</div>
+
+<footer>
+  <span>© 2026 AURA SONIC OFFICIAL GROUP LTD</span>
+  <div class="f-social">
+    <a href="https://instagram.com/aurasonic.official">◉</a>
+    <a href="https://wa.me/447882747808">✆</a>
+    <a href="mailto:info@aurasonicofficial.co.uk">✉</a>
+  </div>
+  <a href="iletisim.html" data-i18n="contact">İletişim</a>
+</footer>
+
+<div class="drawer-ov" id="ov"></div>
+<aside class="drawer" id="drawer">
+  <nav>
+    <a href="index.html" data-i18n="m_home">Ana Sayfa</a>
+    <a href="hakkimizda.html" class="active" data-i18n="m_about">Hakkımızda</a>
+    <a href="sanatcilar.html" data-i18n="m_artists">Sanatçılarımız</a>
+    <a href="vizyon.html" data-i18n="m_vision">Vizyonumuz</a>
+    <a href="sanatcilar-icin.html" data-i18n="m_forartists">Sanatçılar İçin</a>
+    <a href="iletisim.html" data-i18n="m_contact">İletişim</a>
+  </nav>
+  <div class="drawer-foot">AURA SONIC OFFICIAL GROUP LTD<br>London · İzmir</div>
+</aside>
+
+<script>
+const T={
+ tr:{crumb:"Ana Sayfa › Hakkımızda",title:"Hakkımızda",lead:"Sanatçısını merkeze koyan, bağımsız bir müzik şirketi.",p1:"<span class='g'>AURA SONIC OFFICIAL</span>, büyük şirketlerin bürokrasisi olmadan; sanatçının yaratıcı özgürlüğünü ve haklarını koruyarak müzik üreten bağımsız bir yapıdır. Keşfetmek, üretmek ve dünyaya ulaştırmak — yaptığımız işin özü budur.",p2:"Kataloğumuzdaki her eser bize aittir; sözü, bestesi ve prodüksiyonu kendi ekibimizin imzasını taşır. Telif haklarımız <span class='g'>tescilli ve blockchain üzerinde zaman damgalıdır</span> — değiştirilemez, inkâr edilemez.",f_artist:"Sanatçı",f_release:"Yayın",f_platform:"Platform",h_vision:"Vizyonumuz",p3:"Amacımız basit: doğru sanatçıyı keşfetmek, en iyi müziği üretmek ve onu dünyanın dört bir yanındaki dinleyiciye ulaştırmak. Şeffaflık, hak sahipliği ve sanatçı önceliği ilkelerimizdir.",h_company:"Kurumsal",p4:"<span class='g'>AURA SONIC OFFICIAL GROUP LTD</span> — Birleşik Krallık (kuruluş aşamasında). Operasyon merkezi: İzmir, Türkiye. İletişim: <span class='g'>info@aurasonicofficial.co.uk</span>",contact:"İletişim",m_home:"Ana Sayfa",m_about:"Hakkımızda",m_artists:"Sanatçılarımız",m_vision:"Vizyonumuz",m_forartists:"Sanatçılar İçin",m_contact:"İletişim"},
+ en:{crumb:"Home › About",title:"About",lead:"An independent music company that puts its artists first.",p1:"<span class='g'>AURA SONIC OFFICIAL</span> is an independent company that creates music while protecting the creative freedom and rights of its artists — without corporate bureaucracy. Discover, create, and deliver to the world: that is the essence of what we do.",p2:"Every work in our catalog belongs to us; its lyrics, composition and production carry our own team's signature. Our copyrights are <span class='g'>registered and time-stamped on the blockchain</span> — immutable and undeniable.",f_artist:"Artists",f_release:"Releases",f_platform:"Platforms",h_vision:"Our Vision",p3:"Our goal is simple: discover the right artist, produce the best music, and deliver it to listeners around the world. Transparency, ownership and artist-first are our principles.",h_company:"Company",p4:"<span class='g'>AURA SONIC OFFICIAL GROUP LTD</span> — United Kingdom (in formation). Operations: İzmir, Türkiye. Contact: <span class='g'>info@aurasonicofficial.co.uk</span>",contact:"Contact",m_home:"Home",m_about:"About",m_artists:"Our Artists",m_vision:"Our Vision",m_forartists:"For Artists",m_contact:"Contact"}
+};
+let lang=localStorage.getItem('asLang')||'tr';
+function setLang(l){lang=l;localStorage.setItem('asLang',l);document.documentElement.lang=l;document.querySelectorAll('[data-i18n]').forEach(e=>{if(T[l][e.dataset.i18n])e.innerHTML=T[l][e.dataset.i18n]});document.querySelectorAll('.lang-btn span').forEach(s=>s.classList.toggle('on',s.dataset.lang===l))}
+const dr=document.getElementById('drawer'),ov=document.getElementById('ov');
+document.getElementById('menuBtn').onclick=()=>{dr.classList.add('open');ov.classList.add('open');document.body.classList.add('menu-open')};
+ov.onclick=()=>{dr.classList.remove('open');ov.classList.remove('open');document.body.classList.remove('menu-open')};
+setLang(lang);
+</script>
+</body>
+</html>

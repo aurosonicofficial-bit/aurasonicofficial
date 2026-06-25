@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Vizyonumuz — AURA SONIC OFFICIAL</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="aurasonicofficial-logo.png">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TLFGYP8XR2"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-TLFGYP8XR2');</script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}:root{--gold:#C9A84C;--gold2:#E8C96A}
+body{font-family:'Montserrat',sans-serif;background:#0a0a0a;color:#fff;line-height:1.7}a{color:inherit;text-decoration:none}
+.menu-btn{position:fixed;top:0;left:0;z-index:60;width:60px;height:60px;background:var(--gold);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;transition:.25s}.menu-btn:hover{background:var(--gold2)}.menu-btn span{width:24px;height:2px;background:#0a0a0a}
+.topbar{position:fixed;top:8px;left:78px;z-index:50;transition:transform .45s cubic-bezier(.4,0,.2,1),opacity .35s}.topbar img{height:96px;filter:drop-shadow(0 3px 16px rgba(0,0,0,.7))}body.menu-open .topbar{transform:translateX(-150%);opacity:0}
+.lang-btn{position:fixed;top:0;right:0;z-index:55;height:60px;padding:0 24px;background:rgba(18,18,18,.92);display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:2px;cursor:pointer}.lang-btn span{opacity:.5;transition:.2s}.lang-btn span.on{opacity:1;color:var(--gold)}
+.hero{height:48vh;min-height:340px;position:relative;display:flex;align-items:flex-end;overflow:hidden;background:#111}.hero::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,#1a1a1a,#0a0a0a 70%)}.hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 20%,rgba(201,168,76,.14),transparent 60%)}
+.hero-in{position:relative;z-index:2;padding:0 8% 56px;width:100%}.hero .crumb{font-size:11px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:14px;opacity:.85}.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(44px,8vw,90px);font-weight:500;line-height:.96}.hero .uline{width:60px;height:3px;background:var(--gold);margin-top:22px}
+.wrap{max-width:880px;margin:0 auto;padding:70px 8% 100px}
+.lead{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(22px,3vw,30px);color:var(--gold2);line-height:1.5;margin-bottom:40px}
+.wrap h2{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:600;margin:44px 0 16px}.wrap p{color:rgba(255,255,255,.78);font-weight:300;margin-bottom:18px;font-size:16px}.wrap p .g{color:var(--gold)}
+.vals{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin:40px 0}
+.val{border:1px solid rgba(201,168,76,.22);border-radius:10px;padding:26px}.val .ic{font-size:26px;margin-bottom:12px}.val h3{font-size:17px;margin-bottom:8px}.val p{font-size:14px;color:rgba(255,255,255,.7);margin:0}
+footer{border-top:1px solid rgba(255,255,255,.08);padding:40px 8%;display:flex;justify-content:space-between;flex-wrap:wrap;gap:18px;font-size:12px;color:rgba(255,255,255,.5)}footer a:hover{color:var(--gold)}.f-social{display:flex;gap:18px;font-size:15px}
+.drawer{position:fixed;top:0;left:0;bottom:0;width:340px;max-width:84vw;z-index:65;background:#0d0d0d;border-right:1px solid rgba(201,168,76,.18);transform:translateX(-100%);transition:.42s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;padding:90px 0 30px}.drawer.open{transform:translateX(0)}.drawer-ov{position:fixed;inset:0;z-index:64;background:rgba(0,0,0,.6);opacity:0;pointer-events:none;transition:.4s}.drawer-ov.open{opacity:1;pointer-events:auto}
+.drawer nav{flex:1;display:flex;flex-direction:column}.drawer nav a{padding:15px 36px;font-size:14px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.82);border-left:3px solid transparent;transition:.22s}.drawer nav a:hover,.drawer nav a.active{color:var(--gold);border-left-color:var(--gold);background:rgba(201,168,76,.05)}.drawer-foot{padding:22px 36px 0;border-top:1px solid rgba(255,255,255,.07);margin-top:14px;font-size:11px;color:rgba(255,255,255,.45);line-height:1.7}
+@media(max-width:640px){.topbar img{height:62px}.topbar{left:70px}}
+</style>
+</head>
+<body>
+<div class="menu-btn" id="menuBtn"><span></span><span></span><span></span></div>
+<a class="topbar" href="index.html"><img src="aura-logo-gold.png" alt="AURA SONIC OFFICIAL" onerror="this.src='aurasonicofficial-logo.png'"></a>
+<div class="lang-btn"><span class="on" data-lang="tr" onclick="setLang('tr')">TR</span><span data-lang="en" onclick="setLang('en')">EN</span></div>
+
+<section class="hero"><div class="hero-in"><div class="crumb"><span data-i18n="crumb">Ana Sayfa › Vizyonumuz</span></div><h1 data-i18n="title">Vizyonumuz</h1><div class="uline"></div></div></section>
+
+<div class="wrap">
+  <p class="lead" data-i18n="lead">Müzik evrensel bir dildir. Onu en saf haliyle dünyaya taşımak için varız.</p>
+  <p data-i18n="p1">Bir sanatçının yanında olmak, sadece müziğini yayınlamak değildir. Onun vizyonunu korumak, hakkını savunmak ve kariyerini büyütmektir. <span class="g">AURA SONIC OFFICIAL</span> bu anlayışla kuruldu.</p>
+  <div class="vals">
+    <div class="val"><div class="ic">🎯</div><h3 data-i18n="v1h">Sanatçı Önceliği</h3><p data-i18n="v1p">Her karar, sanatçının yararına. Bürokrasi değil, yaratıcılık.</p></div>
+    <div class="val"><div class="ic">🛡️</div><h3 data-i18n="v2h">Hak Koruması</h3><p data-i18n="v2p">Telifler tescilli, blockchain'de zaman damgalı. Eser sahibinin hakkı güvende.</p></div>
+    <div class="val"><div class="ic">🌍</div><h3 data-i18n="v3h">Global Erişim</h3><p data-i18n="v3p">150+ platformda, dünyanın her köşesinde dinleyiciye ulaşmak.</p></div>
+    <div class="val"><div class="ic">📈</div><h3 data-i18n="v4h">Şeffaf Büyüme</h3><p data-i18n="v4p">Açık iletişim, dürüst süreç, sürdürülebilir kariyer.</p></div>
+  </div>
+  <h2 data-i18n="h2">Geleceğe</h2>
+  <p data-i18n="p2">Bağımsız kalmaya, sanatçımızın hakkını sonuna kadar savunmaya ve müziği coğrafya tanımadan yaymaya devam edeceğiz. Bu, bir şirketten daha fazlası — bir duruş.</p>
+</div>
+
+<footer><span>© 2026 AURA SONIC OFFICIAL GROUP LTD</span><div class="f-social"><a href="https://instagram.com/aurasonic.official">◉</a><a href="https://wa.me/447882747808">✆</a><a href="mailto:info@aurasonicofficial.co.uk">✉</a></div><a href="iletisim.html" data-i18n="contact">İletişim</a></footer>
+
+<div class="drawer-ov" id="ov"></div>
+<aside class="drawer" id="drawer"><nav>
+  <a href="index.html" data-i18n="m_home">Ana Sayfa</a><a href="hakkimizda.html" data-i18n="m_about">Hakkımızda</a><a href="sanatcilar.html" data-i18n="m_artists">Sanatçılarımız</a><a href="vizyon.html" class="active" data-i18n="m_vision">Vizyonumuz</a><a href="sanatcilar-icin.html" data-i18n="m_forartists">Sanatçılar İçin</a><a href="iletisim.html" data-i18n="m_contact">İletişim</a>
+</nav><div class="drawer-foot">AURA SONIC OFFICIAL GROUP LTD<br>London · İzmir</div></aside>
+
+<script>
+const T={tr:{crumb:"Ana Sayfa › Vizyonumuz",title:"Vizyonumuz",lead:"Müzik evrensel bir dildir. Onu en saf haliyle dünyaya taşımak için varız.",p1:"Bir sanatçının yanında olmak, sadece müziğini yayınlamak değildir. Onun vizyonunu korumak, hakkını savunmak ve kariyerini büyütmektir. <span class='g'>AURA SONIC OFFICIAL</span> bu anlayışla kuruldu.",v1h:"Sanatçı Önceliği",v1p:"Her karar, sanatçının yararına. Bürokrasi değil, yaratıcılık.",v2h:"Hak Koruması",v2p:"Telifler tescilli, blockchain'de zaman damgalı. Eser sahibinin hakkı güvende.",v3h:"Global Erişim",v3p:"150+ platformda, dünyanın her köşesinde dinleyiciye ulaşmak.",v4h:"Şeffaf Büyüme",v4p:"Açık iletişim, dürüst süreç, sürdürülebilir kariyer.",h2:"Geleceğe",p2:"Bağımsız kalmaya, sanatçımızın hakkını sonuna kadar savunmaya ve müziği coğrafya tanımadan yaymaya devam edeceğiz. Bu, bir şirketten daha fazlası — bir duruş.",contact:"İletişim",m_home:"Ana Sayfa",m_about:"Hakkımızda",m_artists:"Sanatçılarımız",m_vision:"Vizyonumuz",m_forartists:"Sanatçılar İçin",m_contact:"İletişim"},en:{crumb:"Home › Our Vision",title:"Our Vision",lead:"Music is a universal language. We exist to carry it to the world in its purest form.",p1:"Standing by an artist is more than releasing their music. It is protecting their vision, defending their rights, and growing their career. <span class='g'>AURA SONIC OFFICIAL</span> was founded on this belief.",v1h:"Artist First",v1p:"Every decision for the artist's benefit. Creativity, not bureaucracy.",v2h:"Rights Protection",v2p:"Copyrights registered, time-stamped on blockchain. The creator's right is safe.",v3h:"Global Reach",v3p:"On 150+ platforms, reaching listeners in every corner of the world.",v4h:"Transparent Growth",v4p:"Open communication, honest process, sustainable careers.",h2:"To The Future",p2:"We will remain independent, defend our artists' rights to the end, and spread music beyond borders. This is more than a company — it is a stance.",contact:"Contact",m_home:"Home",m_about:"About",m_artists:"Our Artists",m_vision:"Our Vision",m_forartists:"For Artists",m_contact:"Contact"}};
+let lang=localStorage.getItem('asLang')||'tr';
+function setLang(l){lang=l;localStorage.setItem('asLang',l);document.documentElement.lang=l;document.querySelectorAll('[data-i18n]').forEach(e=>{if(T[l][e.dataset.i18n])e.innerHTML=T[l][e.dataset.i18n]});document.querySelectorAll('.lang-btn span').forEach(s=>s.classList.toggle('on',s.dataset.lang===l))}
+const dr=document.getElementById('drawer'),ov=document.getElementById('ov');
+document.getElementById('menuBtn').onclick=()=>{dr.classList.add('open');ov.classList.add('open');document.body.classList.add('menu-open')};
+ov.onclick=()=>{dr.classList.remove('open');ov.classList.remove('open');document.body.classList.remove('menu-open')};
+setLang(lang);
+</script>
+</body>
+</html>
