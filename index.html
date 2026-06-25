@@ -182,7 +182,7 @@ ARTISTS.forEach((a,i)=>{
   const s = document.createElement('div');
   s.className = 'slide' + (i===0?' active':'');
   s.innerHTML = `<img src="images/artists/${a.img}.jpg" alt="${a.n}" loading="${i<2?'eager':'lazy'}" style="object-position:${a.pos}">
-    <div class="slide-name">${a.n}</div>
+    <a class="slide-name" href="artist.html?a=${a.img}" style="display:block;text-decoration:none">${a.n}</a>
     <div class="slide-genre">${a.g[lang]}</div>`;
   stage.appendChild(s);
   const d = document.createElement('div');
