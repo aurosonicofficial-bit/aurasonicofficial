@@ -41,11 +41,15 @@ a{color:inherit;text-decoration:none}
 .gal a{display:block;aspect-ratio:3/2;overflow:hidden;background:var(--paper2)}
 .gal img{width:100%;height:100%;object-fit:cover;transition:.6s ease}
 .gal a:hover img{transform:scale(1.05)}
-footer{margin-top:80px;background:var(--ink);color:rgba(244,241,235,.7);padding:50px 6% 36px}
-.foot-in{max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px;align-items:center}
-.foot-in .fl{font-family:'Cormorant Garamond',serif;font-size:20px;letter-spacing:2px;color:var(--paper)}
-.foot-soc{display:flex;gap:20px;font-size:15px}.foot-soc a{opacity:.7;transition:.2s}.foot-soc a:hover{opacity:1;color:#E8C96A}
-.foot-cp{max-width:1280px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(244,241,235,.14);font-size:12px;color:rgba(244,241,235,.45);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}.foot-cp a:hover{color:#E8C96A}
+footer{margin-top:80px;background:var(--ink);color:rgba(244,241,235,.7);padding:56px 6% 30px}
+.foot-top{max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:34px;padding-bottom:36px;border-bottom:1px solid rgba(244,241,235,.13)}
+.foot-brand .fl{font-family:'Cormorant Garamond',serif;font-size:24px;letter-spacing:2px;color:var(--paper)}
+.foot-brand .ft{font-size:13px;color:rgba(244,241,235,.5);margin-top:8px;font-weight:300}
+.foot-nav{display:flex;flex-wrap:wrap;gap:10px 26px;max-width:540px}
+.foot-nav a{font-size:13px;letter-spacing:.4px;color:rgba(244,241,235,.62);transition:.2s;font-weight:300}.foot-nav a:hover{color:#E8C96A}
+.foot-soc{display:flex;gap:18px;font-size:13px}.foot-soc a{opacity:.65;transition:.2s}.foot-soc a:hover{opacity:1;color:#E8C96A}
+.foot-cp{max-width:1280px;margin:22px auto 0;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12px;color:rgba(244,241,235,.4)}
+@media(max-width:680px){.foot-top{flex-direction:column;gap:24px}}
 .drawer{position:fixed;top:0;left:0;bottom:0;width:360px;max-width:86vw;z-index:65;background:var(--paper2);border-right:1px solid var(--line);transform:translateX(-100%);transition:.42s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;padding:100px 0 30px;box-shadow:8px 0 40px rgba(0,0,0,.12)}.drawer.open{transform:translateX(0)}
 .drawer-ov{position:fixed;inset:0;z-index:64;background:rgba(32,35,42,.4);opacity:0;pointer-events:none;transition:.4s}.drawer-ov.open{opacity:1;pointer-events:auto}
 .drawer nav{flex:1;display:flex;flex-direction:column}.drawer nav a{padding:16px 40px;font-size:13px;letter-spacing:2.5px;text-transform:uppercase;color:var(--ink);border-left:2px solid transparent;transition:.22s;opacity:.7}.drawer nav a:hover,.drawer nav a.active{opacity:1;color:var(--gold);border-left-color:var(--gold)}
@@ -77,8 +81,18 @@ footer{margin-top:80px;background:var(--ink);color:rgba(244,241,235,.7);padding:
 </div>
 
 <footer>
-  <div class="foot-in"><div class="fl">AURA SONIC OFFICIAL</div><div class="foot-soc"><a href="https://instagram.com/aurasonic.official">Instagram</a><a href="https://wa.me/447882747808">WhatsApp</a><a href="mailto:info@aurasonicofficial.co.uk">E-posta</a></div></div>
-  <div class="foot-cp"><span>© 2026 AURA SONIC OFFICIAL GROUP LTD</span><a href="iletisim.html" data-i18n="contact">İletişim</a></div>
+  <div class="foot-top">
+    <div class="foot-brand"><div class="fl">AURA SONIC OFFICIAL</div><p class="ft">Bağımsız müzik şirketi</p></div>
+    <nav class="foot-nav">
+      <a href="sanatcilar.html" data-i18n="m_artists">Sanatçılarımız</a>
+      <a href="hakkimizda.html" data-i18n="m_about">Hakkımızda</a>
+      <a href="vizyon.html" data-i18n="m_vision">Vizyonumuz</a>
+      <a href="sanatcilar-icin.html" data-i18n="m_forartists">Sanatçılar İçin</a>
+      <a href="iletisim.html" data-i18n="m_contact">İletişim</a>
+    </nav>
+    <div class="foot-soc"><a href="https://instagram.com/aurasonic.official">Instagram</a><a href="https://wa.me/447882747808">WhatsApp</a><a href="mailto:info@aurasonicofficial.co.uk">E-posta</a></div>
+  </div>
+  <div class="foot-cp"><span>© 2026 AURA SONIC OFFICIAL GROUP LTD</span><span>info@aurasonicofficial.co.uk · London · İzmir</span></div>
 </footer>
 
 <div class="drawer-ov" id="ov"></div>
