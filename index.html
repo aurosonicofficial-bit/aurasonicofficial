@@ -1,16 +1,16 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
 <meta name="google-site-verification" content="6_P8sunQylEFyNhS5YM8w2CasJ6cG9dgKu7n2po1-nY" />
-<title>AURA SONIC OFFICIAL â€” BaÄŸÄ±msÄ±z MÃ¼zik Åirketi</title>
+<title>AURA SONIC OFFICIAL — Bağımsız Müzik Şirketi</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="AURA SONIC OFFICIAL â€” baÄŸÄ±msÄ±z mÃ¼zik ÅŸirketi. SanatÃ§Ä±larÄ±mÄ±z, mÃ¼ziÄŸimiz, dÃ¼nyaya aÃ§Ä±lan ses.">
+<meta name="description" content="AURA SONIC OFFICIAL — bağımsız müzik şirketi. Sanatçılarımız, müziğimiz, dünyaya açılan ses.">
 <meta name="author" content="AURA SONIC OFFICIAL GROUP LTD">
 <link rel="canonical" href="https://www.aurasonicofficial.com/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="AURA SONIC OFFICIAL">
-<meta property="og:title" content="AURA SONIC OFFICIAL â€” BaÄŸÄ±msÄ±z MÃ¼zik Åirketi">
+<meta property="og:title" content="AURA SONIC OFFICIAL — Bağımsız Müzik Şirketi">
 <meta property="og:image" content="https://www.aurasonicofficial.com/aurasonicofficial-logo.png">
 
 <script type="application/ld+json">
@@ -36,10 +36,10 @@ a{color:inherit;text-decoration:none}
 .slide img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;filter:grayscale(1) contrast(1.05) brightness(.95)}
 .slide.active img{animation:kb 8s ease-out forwards}
 @keyframes kb{from{transform:scale(1.03)}to{transform:scale(1.1)}}
-/* gÃ¼Ã§lÃ¼ alt gradyan â€” yazÄ± asla kaybolmaz */
+/* güçlü alt gradyan — yazı asla kaybolmaz */
 .slide::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,10,.55) 0,transparent 20%,transparent 45%,rgba(10,10,10,.85) 80%,rgba(10,10,10,.97) 100%)}
 
-/* ARTIST NAME â€” footer'Ä±n Ã¼stÃ¼nde, gÃ¼venli alanda */
+/* ARTIST NAME — footer'ın üstünde, güvenli alanda */
 .slide-name{position:absolute;left:0;right:0;bottom:128px;text-align:center;z-index:5;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:clamp(36px,5.5vw,82px);letter-spacing:1px;color:var(--gold2);text-shadow:0 3px 30px rgba(0,0,0,.85);opacity:0;transform:translateY(16px);transition:.9s .4s}
 .slide.active .slide-name{opacity:1;transform:translateY(0)}
 .slide-genre{position:absolute;left:0;right:0;bottom:104px;text-align:center;z-index:5;font-size:11px;letter-spacing:5px;text-transform:uppercase;color:rgba(255,255,255,.78);opacity:0;transition:.9s .6s}
@@ -48,7 +48,7 @@ a{color:inherit;text-decoration:none}
 /* TOP LOGO */
 .topbar{position:fixed;top:10px;left:78px;z-index:50;display:flex;align-items:center;pointer-events:none;transition:transform .45s cubic-bezier(.4,0,.2,1),opacity .35s ease}
 .topbar img{height:128px;filter:drop-shadow(0 4px 20px rgba(0,0,0,.75))}
-/* menÃ¼ aÃ§Ä±lÄ±nca logo sola Ã§ekilir, kapanÄ±nca yerine dÃ¶ner */
+/* menü açılınca logo sola çekilir, kapanınca yerine döner */
 body.menu-open .topbar{transform:translateX(-150%);opacity:0}
 
 /* MENU BUTTON (gold) */
@@ -81,7 +81,7 @@ body.menu-open .topbar{transform:translateX(-150%);opacity:0}
 .foot-legal{display:flex;gap:14px}
 .foot-legal a:hover{color:var(--gold)}
 
-/* SOL AÃ‡ILIR MENÃœ (UMG tarzÄ±) */
+/* SOL AÇILIR MENÜ (UMG tarzı) */
 .drawer{position:fixed;top:0;left:0;bottom:0;width:340px;max-width:84vw;z-index:55;background:#0d0d0d;border-right:1px solid rgba(201,168,76,.18);transform:translateX(-100%);transition:.4s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;padding:90px 0 30px}
 .drawer.open{transform:translateX(0)}
 .drawer-overlay{position:fixed;inset:0;z-index:54;background:rgba(0,0,0,.6);opacity:0;pointer-events:none;transition:.4s}
@@ -107,66 +107,66 @@ body.menu-open .topbar{transform:translateX(-150%);opacity:0}
 <!-- MENU BUTTON -->
 <div class="menu-btn" id="menuBtn"><span></span><span></span><span></span></div>
 
-<!-- DÄ°L -->
+<!-- DİL -->
 <div class="lang-btn">
   <span class="on" data-lang="tr" onclick="setLang('tr')">TR</span>
   <span data-lang="en" onclick="setLang('en')">EN</span>
 </div>
 
-<button class="nav-arrow nav-prev" onclick="go(-1)">â€¹</button>
-<button class="nav-arrow nav-next" onclick="go(1)">â€º</button>
+<button class="nav-arrow nav-prev" onclick="go(-1)">‹</button>
+<button class="nav-arrow nav-next" onclick="go(1)">›</button>
 
 <div class="dots" id="dots"></div>
 
 <div class="foot">
-  <span data-i18n="copyright">Â© 2026 AURA SONIC OFFICIAL GROUP LTD. TÃ¼m haklarÄ± saklÄ±dÄ±r.</span>
+  <span data-i18n="copyright">© 2026 AURA SONIC OFFICIAL GROUP LTD. Tüm hakları saklıdır.</span>
   <div class="foot-social">
-    <a href="https://instagram.com/aurasonic.official" title="Instagram">â—‰</a>
-    <a href="https://wa.me/447882747808" title="WhatsApp">âœ†</a>
-    <a href="mailto:info@aurasonicofficial.co.uk" title="E-posta">âœ‰</a>
+    <a href="https://instagram.com/aurasonic.official" title="Instagram">◉</a>
+    <a href="https://wa.me/447882747808" title="WhatsApp">✆</a>
+    <a href="mailto:info@aurasonicofficial.co.uk" title="E-posta">✉</a>
   </div>
   <div class="foot-legal">
-    <a href="hakkimizda.html" data-i18n="about">HakkÄ±mÄ±zda</a><span>Â·</span>
-    <a href="iletisim.html" data-i18n="contact">Ä°letiÅŸim</a>
+    <a href="hakkimizda.html" data-i18n="about">Hakkımızda</a><span>·</span>
+    <a href="iletisim.html" data-i18n="contact">İletişim</a>
   </div>
 </div>
 
-<!-- SOL MENÃœ -->
+<!-- SOL MENÜ -->
 <div class="drawer-overlay" id="overlay"></div>
 <aside class="drawer" id="drawer">
   <nav>
     <a href="index.html" data-i18n="m_home">Ana Sayfa</a>
-    <a href="hakkimizda.html" data-i18n="m_about">HakkÄ±mÄ±zda</a>
-    <a href="sanatcilar.html" data-i18n="m_artists">SanatÃ§Ä±larÄ±mÄ±z</a>
+    <a href="hakkimizda.html" data-i18n="m_about">Hakkımızda</a>
+    <a href="sanatcilar.html" data-i18n="m_artists">Sanatçılarımız</a>
     <a href="vizyon.html" data-i18n="m_vision">Vizyonumuz</a>
-    <a href="sanatcilar-icin.html" data-i18n="m_forartists">SanatÃ§Ä±lar Ä°Ã§in</a>
-    <a href="iletisim.html" data-i18n="m_contact">Ä°letiÅŸim</a>
+    <a href="sanatcilar-icin.html" data-i18n="m_forartists">Sanatçılar İçin</a>
+    <a href="iletisim.html" data-i18n="m_contact">İletişim</a>
   </nav>
   <div class="drawer-foot">
-    <div class="badge" data-i18n="badge">BAÄIMSIZ<br>MÃœZÄ°K ÅÄ°RKETÄ°</div>
-    <div class="c">AURA SONIC OFFICIAL GROUP LTD<br>London Â· Ä°zmir</div>
+    <div class="badge" data-i18n="badge">BAĞIMSIZ<br>MÜZİK ŞİRKETİ</div>
+    <div class="c">AURA SONIC OFFICIAL GROUP LTD<br>London · İzmir</div>
   </div>
 </aside>
 
 <script>
 const ARTISTS = [
-  {n:"AÅŸkÄ±n Ã–ztÃ¼rk", g:{tr:"Emotional Pop-Rock Â· SÃ¶z-MÃ¼zik",en:"Emotional Pop-Rock Â· Singer-Songwriter"}, img:"askin-ozturk", pos:"57% 26%"},
+  {n:"Aşkın Öztürk", g:{tr:"Emotional Pop-Rock · Söz-Müzik",en:"Emotional Pop-Rock · Singer-Songwriter"}, img:"askin-ozturk", pos:"57% 26%"},
   {n:"Kael Voss", g:{tr:"Cinematic Story Rock",en:"Cinematic Story Rock"}, img:"kael-voss", pos:"50% 30%"},
   {n:"Vael Cross", g:{tr:"Dark Cinematic Rock",en:"Dark Cinematic Rock"}, img:"vael-cross", pos:"48% 26%"},
   {n:"Maria Mel", g:{tr:"Emotional Soul-Pop",en:"Emotional Soul-Pop"}, img:"maria-mel", pos:"48% 16%"},
   {n:"Lyra Sage", g:{tr:"Spanish Latin Pop",en:"Spanish Latin Pop"}, img:"lyra-sage", pos:"58% 16%"},
   {n:"Lara", g:{tr:"Global Summer Pop",en:"Global Summer Pop"}, img:"lara", pos:"47% 20%"},
-  {n:"Jaxen Moon", g:{tr:"Americana Â· Folk-Rock",en:"Americana Â· Folk-Rock"}, img:"jaxen-moon", pos:"48% 30%"},
-  {n:"Ä°rem Sezin", g:{tr:"Dramatic Female Rock",en:"Dramatic Female Rock"}, img:"irem-sezin", pos:"47% 18%"},
-  {n:"Naxo Veyra", g:{tr:"Latin Urbano Â· Reggaeton",en:"Latin Urbano Â· Reggaeton"}, img:"naxo-veyra", pos:"50% 16%"},
+  {n:"Jaxen Moon", g:{tr:"Americana · Folk-Rock",en:"Americana · Folk-Rock"}, img:"jaxen-moon", pos:"48% 30%"},
+  {n:"İrem Sezin", g:{tr:"Dramatic Female Rock",en:"Dramatic Female Rock"}, img:"irem-sezin", pos:"47% 18%"},
+  {n:"Naxo Veyra", g:{tr:"Latin Urbano · Reggaeton",en:"Latin Urbano · Reggaeton"}, img:"naxo-veyra", pos:"50% 16%"},
   {n:"Chris Marlo", g:{tr:"Modern Dance Pop",en:"Modern Dance Pop"}, img:"chris-marlo", pos:"50% 20%"},
   {n:"Neil Daren", g:{tr:"Modern Arena Rock",en:"Modern Arena Rock"}, img:"neil-daren", pos:"50% 0%"},
-  {n:"Chronos", g:{tr:"Rock Â· Grup",en:"Rock Â· Band"}, img:"chronos", pos:"center 40%"}
+  {n:"Chronos", g:{tr:"Rock · Grup",en:"Rock · Band"}, img:"chronos", pos:"center 40%"}
 ];
 
 const I18N = {
-  tr:{wm:"Aura Sonic Official",copyright:"Â© 2026 AURA SONIC OFFICIAL GROUP LTD. TÃ¼m haklarÄ± saklÄ±dÄ±r.",about:"HakkÄ±mÄ±zda",contact:"Ä°letiÅŸim",m_home:"Ana Sayfa",m_about:"HakkÄ±mÄ±zda",m_artists:"SanatÃ§Ä±larÄ±mÄ±z",m_vision:"Vizyonumuz",m_forartists:"SanatÃ§Ä±lar Ä°Ã§in",m_contact:"Ä°letiÅŸim",badge:"BAÄIMSIZ<br>MÃœZÄ°K ÅÄ°RKETÄ°"},
-  en:{wm:"Aura Sonic Official",copyright:"Â© 2026 AURA SONIC OFFICIAL GROUP LTD. All rights reserved.",about:"About",contact:"Contact",m_home:"Home",m_about:"About",m_artists:"Our Artists",m_vision:"Our Vision",m_forartists:"For Artists",m_contact:"Contact",badge:"INDEPENDENT<br>MUSIC COMPANY"}
+  tr:{wm:"Aura Sonic Official",copyright:"© 2026 AURA SONIC OFFICIAL GROUP LTD. Tüm hakları saklıdır.",about:"Hakkımızda",contact:"İletişim",m_home:"Ana Sayfa",m_about:"Hakkımızda",m_artists:"Sanatçılarımız",m_vision:"Vizyonumuz",m_forartists:"Sanatçılar İçin",m_contact:"İletişim",badge:"BAĞIMSIZ<br>MÜZİK ŞİRKETİ"},
+  en:{wm:"Aura Sonic Official",copyright:"© 2026 AURA SONIC OFFICIAL GROUP LTD. All rights reserved.",about:"About",contact:"Contact",m_home:"Home",m_about:"About",m_artists:"Our Artists",m_vision:"Our Vision",m_forartists:"For Artists",m_contact:"Contact",badge:"INDEPENDENT<br>MUSIC COMPANY"}
 };
 let lang = localStorage.getItem('asLang') || 'tr';
 
