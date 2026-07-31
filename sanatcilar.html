@@ -61,7 +61,7 @@ footer{margin-top:80px;background:var(--ink);color:rgba(244,241,235,.7);padding:
 <footer>
   <div class="foot-top">
     <div class="foot-brand"><div class="fl">AURA SONIC OFFICIAL</div><p class="ft" data-i18n="ftag">Bağımsız müzik şirketi</p></div>
-    <nav class="foot-nav">
+    <nav class="foot-nav"><a href="magaza.html" data-i18n="m_shop">Mağaza</a>
       <a href="sanatcilar.html" data-i18n="m_artists">Sanatçılarımız</a>
       <a href="hakkimizda.html" data-i18n="m_about">Hakkımızda</a>
       <a href="vizyon.html" data-i18n="m_vision">Vizyonumuz</a>
@@ -75,7 +75,7 @@ footer{margin-top:80px;background:var(--ink);color:rgba(244,241,235,.7);padding:
 
 <div class="drawer-ov" id="ov"></div>
 <aside class="drawer" id="drawer"><nav>
-  <a href="index.html" data-i18n="m_home">Ana Sayfa</a><a href="hakkimizda.html" data-i18n="m_about">Hakkımızda</a><a href="sanatcilar.html" class="active" data-i18n="m_artists">Sanatçılarımız</a><a href="vizyon.html" data-i18n="m_vision">Vizyonumuz</a><a href="radyo.html" data-i18n="m_radio">Radyo</a><a href="sanatcilar-icin.html" data-i18n="m_forartists">Sanatçılar İçin</a><a href="iletisim.html" data-i18n="m_contact">İletişim</a>
+  <a href="index.html" data-i18n="m_home">Ana Sayfa</a><a href="magaza.html" data-i18n="m_shop">Mağaza</a><a href="hakkimizda.html" data-i18n="m_about">Hakkımızda</a><a href="sanatcilar.html" class="active" data-i18n="m_artists">Sanatçılarımız</a><a href="vizyon.html" data-i18n="m_vision">Vizyonumuz</a><a href="radyo.html" data-i18n="m_radio">Radyo</a><a href="sanatcilar-icin.html" data-i18n="m_forartists">Sanatçılar İçin</a><a href="iletisim.html" data-i18n="m_contact">İletişim</a>
 </nav><div class="drawer-foot">AURA SONIC OFFICIAL GROUP LTD<br>London · İzmir</div></aside>
 
 <script>
@@ -94,7 +94,7 @@ const ARTISTS=[
  {n:"Chronos",g:{tr:"Rock · Grup",en:"Rock · Band"},img:"chronos",pos:"center 40%"},
  {n:"Esin Banu",g:{tr:"Prodüktör Sanatçı",en:"Producer & Artist"},img:"esin-banu",pos:"50% 30%"}
 ];
-const T={tr:{crumb:"Sanatçılarımız",title:"Sanatçılarımız",contact:"İletişim",m_home:"Ana Sayfa",m_about:"Hakkımızda",m_artists:"Sanatçılarımız",m_vision:"Vizyonumuz",m_radio:"Radyo",m_forartists:"Sanatçılar İçin",m_contact:"İletişim",ftag:"Bağımsız müzik şirketi"},en:{crumb:"Our Artists",title:"Our Artists",contact:"Contact",m_home:"Home",m_about:"About",m_artists:"Our Artists",m_vision:"Our Vision",m_radio:"Radio",m_forartists:"For Artists",m_contact:"Contact",ftag:"Independent music company"}};
+const T={tr:{crumb:"Sanatçılarımız",title:"Sanatçılarımız",contact:"İletişim",m_shop:"Mağaza",m_home:"Ana Sayfa",m_about:"Hakkımızda",m_artists:"Sanatçılarımız",m_vision:"Vizyonumuz",m_radio:"Radyo",m_forartists:"Sanatçılar İçin",m_contact:"İletişim",ftag:"Bağımsız müzik şirketi"},en:{crumb:"Our Artists",title:"Our Artists",contact:"Contact",m_shop:"Store",m_home:"Home",m_about:"About",m_artists:"Our Artists",m_vision:"Our Vision",m_radio:"Radio",m_forartists:"For Artists",m_contact:"Contact",ftag:"Independent music company"}};
 let lang=localStorage.getItem('asLang')||'tr';
 const grid=document.getElementById('grid');
 ARTISTS.forEach(a=>{const c=document.createElement('a');c.className='card';c.href='artist.html?a='+a.img;c.innerHTML=`<div class="ph"><img src="images/artists/${a.img}.jpg?v=4" alt="${a.n}" loading="lazy" style="object-position:${a.pos}"></div><div class="cap"><div class="n">${a.n}</div><div class="g" data-genre>${a.g[lang]}</div><div class="ln"></div></div>`;grid.appendChild(c)});
