@@ -26,6 +26,12 @@ a{color:inherit;text-decoration:none}
 .hero h1{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(56px,11vw,140px);line-height:.92;letter-spacing:-1px}
 .hero .rule{width:64px;height:2px;background:var(--gold);margin-top:34px}
 .player-wrap{max-width:1040px;margin:0 auto;padding:14px 5% 10px}
+.chans{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:0 0 18px}
+.chans button{font-family:inherit;cursor:pointer;background:transparent;border:1px solid var(--line);border-radius:30px;padding:10px 20px;font-size:12.5px;letter-spacing:1.4px;text-transform:uppercase;font-weight:600;color:var(--ink2);transition:.25s;display:inline-flex;align-items:center;gap:8px}
+.chans button:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
+.chans button.on{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.chans button.on .ld{background:#ff4d4d;box-shadow:0 0 0 0 rgba(255,77,77,.6);animation:pulse 1.8s infinite}
+.chans .ld{width:7px;height:7px;border-radius:50%;background:var(--ink2)}
 .frame{position:relative;width:100%;aspect-ratio:16/9;border-radius:6px;overflow:hidden;background:#0c0c0e;box-shadow:0 22px 70px rgba(0,0,0,.26);border:1px solid var(--line)}
 .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .cue{text-align:center;color:var(--ink2);font-size:13px;font-weight:300;letter-spacing:.4px;margin-top:16px}
@@ -66,19 +72,20 @@ footer{margin-top:80px;background:var(--ink);color:rgba(244,241,235,.7);padding:
 </section>
 
 <div class="player-wrap">
+  <div class="chans" id="chans"></div>
   <div class="frame">
-    <iframe id="yt" src="https://www.youtube.com/embed/live_stream?channel=UCS59J8baS5L0ZgsQilf6nAA&rel=0&playsinline=1&modestbranding=1" title="Aura Sonic Radio — Canlı" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+    <iframe id="yt" src="" title="Aura Sonic Radio — Canlı" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
   </div>
   <div class="cue" data-i18n="cue">▶ Sesi açmak için <b>oynat</b>'a basın — yayın kesintisiz sürer.</div>
 </div>
 
 <div class="intro">
-  <p class="lead" data-i18n="lead">Aura Sonic Radio. Gece yarısından şafağa, kesintisiz.</p>
-  <p data-i18n="p1">Kataloğumuzdan seçilmiş İngilizce ve Latin parçalar, 7 gün 24 saat tek bir akışta. Reklamsız, duraksız — sadece müzik.</p>
+  <p class="lead" data-i18n="lead">Dört radyo, tek çatı. Gece yarısından şafağa, kesintisiz.</p>
+  <p data-i18n="p1">Global Hits, Türkçe, Latino ve Phonk — dört ayrı kanal, 7 gün 24 saat canlı. Yukarıdan kanalını seç.</p>
 </div>
 
 <div class="tags">
-  <span data-i18n="t1">Latin</span><span data-i18n="t2">Pop</span><span data-i18n="t3">Rock</span><span data-i18n="t4">Dance</span><span data-i18n="t5">7/24 Canlı</span>
+  <span data-i18n="t1">Global Hits</span><span data-i18n="t2">Türkçe</span><span data-i18n="t3">Latino</span><span data-i18n="t4">Phonk</span><span data-i18n="t5">7/24 Canlı</span>
 </div>
 
 <div class="alt">
@@ -107,13 +114,46 @@ footer{margin-top:80px;background:var(--ink);color:rgba(244,241,235,.7);padding:
 </nav><div class="drawer-foot">AURA SONIC OFFICIAL GROUP LTD<br>London · İzmir</div></aside>
 
 <script>
-const T={tr:{livetag:"Canlı",crumb:"7/24 Yayın",title:"Radyo",cue:"▶ Sesi açmak için <b>oynat</b>'a basın — yayın kesintisiz sürer.",lead:"Aura Sonic Radio. Gece yarısından şafağa, kesintisiz.",p1:"Kataloğumuzdan seçilmiş İngilizce ve Latin parçalar, 7 gün 24 saat tek bir akışta. Reklamsız, duraksız — sadece müzik.",t1:"Latin",t2:"Pop",t3:"Rock",t4:"Dance",t5:"7/24 Canlı",ytbtn:"Tüm Radyoları YouTube'da Aç",m_shop:"Mağaza",m_home:"Ana Sayfa",m_about:"Hakkımızda",m_artists:"Sanatçılarımız",m_vision:"Vizyonumuz",m_radio:"Radyo",m_forartists:"Sanatçılar İçin",m_contact:"İletişim",ftag:"Bağımsız müzik şirketi"},en:{livetag:"Live",crumb:"24/7 Stream",title:"Radio",cue:"▶ Press <b>play</b> to start the sound — the stream runs nonstop.",lead:"Aura Sonic Radio. From midnight to dawn, nonstop.",p1:"Hand-picked English and Latin tracks from our catalog, in one continuous stream, 24/7. No ads, no breaks — just music.",t1:"Latin",t2:"Pop",t3:"Rock",t4:"Dance",t5:"24/7 Live",ytbtn:"Open all radios on YouTube",m_shop:"Store",m_home:"Home",m_about:"About",m_artists:"Our Artists",m_vision:"Our Vision",m_radio:"Radio",m_forartists:"For Artists",m_contact:"Contact",ftag:"Independent music company"}};
+const T={tr:{livetag:"Canlı",crumb:"7/24 Yayın",title:"Radyo",cue:"▶ Sesi açmak için <b>oynat</b>'a basın — yayın kesintisiz sürer.",lead:"Dört radyo, tek çatı. Gece yarısından şafağa, kesintisiz.",p1:"Global Hits, Türkçe, Latino ve Phonk — kataloğumuzdan seçilmiş parçalarla dört ayrı kanal, 7 gün 24 saat canlı. Reklamsız, duraksız — sadece müzik. Yukarıdan dinlemek istediğin kanalı seç.",t1:"Global Hits",t2:"Türkçe",t3:"Latino",t4:"Phonk",t5:"7/24 Canlı",ytbtn:"Tüm Radyoları YouTube'da Aç",m_shop:"Mağaza",m_home:"Ana Sayfa",m_about:"Hakkımızda",m_artists:"Sanatçılarımız",m_vision:"Vizyonumuz",m_radio:"Radyo",m_forartists:"Sanatçılar İçin",m_contact:"İletişim",ftag:"Bağımsız müzik şirketi"},en:{livetag:"Live",crumb:"24/7 Stream",title:"Radio",cue:"▶ Press <b>play</b> to start the sound — the stream runs nonstop.",lead:"Four radios, one house. From midnight to dawn, nonstop.",p1:"Global Hits, Turkish, Latino and Phonk — four live channels of hand-picked tracks from our catalog, 24/7. No ads, no breaks — just music. Pick your channel above.",t1:"Global Hits",t2:"Turkish",t3:"Latino",t4:"Phonk",t5:"24/7 Live",ytbtn:"Open all radios on YouTube",m_shop:"Store",m_home:"Home",m_about:"About",m_artists:"Our Artists",m_vision:"Our Vision",m_radio:"Radio",m_forartists:"For Artists",m_contact:"Contact",ftag:"Independent music company"}};
 let lang=localStorage.getItem('asLang')||'tr';
 function setLang(l){lang=l;localStorage.setItem('asLang',l);document.documentElement.lang=l;document.querySelectorAll('[data-i18n]').forEach(e=>{if(T[l][e.dataset.i18n])e.innerHTML=T[l][e.dataset.i18n]});document.querySelectorAll('.lang span').forEach(s=>s.classList.toggle('on',s.dataset.lang===l))}
 const dr=document.getElementById('drawer'),ov=document.getElementById('ov');
 document.getElementById('menuBtn').onclick=()=>{dr.classList.add('open');ov.classList.add('open')};
 ov.onclick=()=>{dr.classList.remove('open');ov.classList.remove('open')};
 setLang(lang);
+
+/* ---- 4 RADYO SECICI ----
+   Yayin ID'leri radyo.json'dan okunur (VPS otomatik gunceller).
+   Dosya yoksa/erisilemezse asagidaki yedek ID'ler kullanilir. */
+const FALLBACK=[
+  {k:"global",n:{tr:"Global Hits",en:"Global Hits"},id:"F2BgK8uMJqI"},
+  {k:"turkce",n:{tr:"Türkçe",en:"Turkish"},id:"CJRU5Xl2hGo"},
+  {k:"latino",n:{tr:"Latino",en:"Latino"},id:"LZcRQh38kf4"},
+  {k:"phonk", n:{tr:"Phonk",en:"Phonk"},id:"SvKmpk38SDY"}
+];
+let CH=FALLBACK, cur=localStorage.getItem('asRadio')||'global';
+const YT=document.getElementById('yt'), CB=document.getElementById('chans');
+function play(k,auto){
+  const c=CH.find(x=>x.k===k)||CH[0]; if(!c)return;
+  cur=c.k; localStorage.setItem('asRadio',cur);
+  YT.src='https://www.youtube.com/embed/'+c.id+'?rel=0&playsinline=1&modestbranding=1'+(auto?'&autoplay=1':'');
+  [...CB.children].forEach(b=>b.classList.toggle('on',b.dataset.k===cur));
+}
+function drawBtns(){
+  CB.innerHTML='';
+  CH.forEach(c=>{
+    const b=document.createElement('button');
+    b.dataset.k=c.k; b.innerHTML='<span class="ld"></span>'+(c.n[lang]||c.n.tr);
+    b.onclick=()=>play(c.k,true); CB.appendChild(b);
+  });
+  play(CH.some(x=>x.k===cur)?cur:CH[0].k,false);
+}
+drawBtns();
+fetch('radyo.json?t='+Date.now()).then(r=>r.ok?r.json():null).then(d=>{
+  if(d&&Array.isArray(d.radios)&&d.radios.length){CH=d.radios;drawBtns();}
+}).catch(()=>{});
+const _sl=setLang;
+setLang=function(l){_sl(l);drawBtns();};
 </script>
 </body>
 </html>
