@@ -1,10 +1,38 @@
 {
-  "updated": "2026-07-31T07:30:00Z",
-  "note": "Yayin ID'leri. VPS2 dongusu ID degistirdiginde bu dosya guncellenir.",
+  "updated": "2026-07-31T10:57:17Z",
+  "note": "VPS2 tarafindan otomatik guncellenir (aura-site-radyo.timer).",
   "radios": [
-    { "k": "global", "n": { "tr": "Global Hits", "en": "Global Hits" }, "id": "F2BgK8uMJqI" },
-    { "k": "turkce", "n": { "tr": "Türkçe", "en": "Turkish" }, "id": "CJRU5Xl2hGo" },
-    { "k": "latino", "n": { "tr": "Latino", "en": "Latino" }, "id": "LZcRQh38kf4" },
-    { "k": "phonk", "n": { "tr": "Phonk", "en": "Phonk" }, "id": "SvKmpk38SDY" }
+    {
+      "k": "global",
+      "n": {
+        "tr": "Global Hits",
+        "en": "Global Hits"
+      },
+      "id": "F2BgK8uMJqI"
+    },
+    {
+      "k": "turkce",
+      "n": {
+        "tr": "Türkçe",
+        "en": "Turkish"
+      },
+      "id": "CJRU5Xl2hGo"
+    },
+    {
+      "k": "latino",
+      "n": {
+        "tr": "Latino",
+        "en": "Latino"
+      },
+      "id": "LZcRQh38kf4"
+    },
+    {
+      "k": "phonk",
+      "n": {
+        "tr": "Phonk",
+        "en": "Phonk"
+      },
+      "id": "ihm12Rvp47U"
+    }
   ]
 }
