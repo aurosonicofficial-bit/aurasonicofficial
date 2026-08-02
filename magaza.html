@@ -27,7 +27,7 @@ a{color:inherit;text-decoration:none}
 .hero h1{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(56px,11vw,140px);line-height:.92;letter-spacing:-1px}
 .hero .rule{width:64px;height:2px;background:var(--gold);margin-top:34px}
 /* SHOP */
-.shop{max-width:1080px;margin:20px auto 0;padding:20px 5% 20px}
+.shop{max-width:1080px;margin:20px auto 0;padding:20px 5% 20px;display:grid;gap:34px}
 .vcard{position:relative;display:grid;grid-template-columns:1.05fr 1fr;gap:0;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--paper2);box-shadow:0 20px 50px rgba(32,35,42,.08)}
 .vcard .cover{position:relative;z-index:3;background:#000;min-height:340px}
 .vcard .cover img{width:100%;height:100%;object-fit:cover;display:block}
@@ -103,6 +103,24 @@ footer{margin-top:90px;background:var(--ink);color:rgba(244,241,235,.7);padding:
 </section>
 
 <div class="shop">
+  <a class="vcard" href="https://elasticstage.com/askin-ozturk/releases/geceye-yazdim-seni-album" target="_blank" rel="noopener">
+    <div class="disc" aria-hidden="true"></div>
+    <div class="cover">
+      <span class="badge" data-i18n="badge">ÖN SİPARİŞ</span>
+      <img src="geceye-yazdim-seni.jpg" alt="Geceye Yazdım Seni — Aşkın Öztürk 12 inch Vinyl LP">
+    </div>
+    <div class="info">
+      <div class="tag" data-i18n="a_tag">12" VINYL + BOOKLET · ALBÜM · ROCK</div>
+      <h2>Geceye Yazdım Seni</h2>
+      <div class="sub">Aşkın Öztürk · 2026</div>
+      <div class="meta">
+        <span data-i18n="a_m1">9 Parça</span><span>43 dk 24 sn</span><span data-i18n="m3">33⅓ RPM</span>
+      </div>
+      <div class="price">₺ 1.977,00</div>
+      <div class="rel"><span data-i18n="rel1">Çıkış:</span> <b>11 Ağustos 2026</b> · <span data-i18n="rel2">dünya çapında kargo</span></div>
+      <span class="cta" data-i18n="cta">Ön Sipariş →</span>
+    </div>
+  </a>
   <a class="vcard" href="https://elasticstage.com/askin-ozturk/releases/until-the-wires-glow-singleep" target="_blank" rel="noopener">
     <div class="disc" aria-hidden="true"></div>
     <div class="cover">
@@ -156,8 +174,8 @@ footer{margin-top:90px;background:var(--ink);color:rgba(244,241,235,.7);padding:
 
 <script>
 const T={
- tr:{crumb:"Mağaza",title:"Mağaza",badge:"ÖN SİPARİŞ",tag:'12" VINYL · SINGLE/EP · ROCK',m1:"4 Parça",m3:"33⅓ RPM",rel1:"Çıkış:",rel2:"dünya çapında kargo",cta:"Ön Sipariş →",note:"Fiziksel plak elasticStage üzerinden güvenli ödeme ile ön siparişe alınır. Sipariş sayfası yeni sekmede açılır.",ftag:"Bağımsız müzik şirketi",m_home:"Ana Sayfa",m_shop:"Mağaza",m_about:"Hakkımızda",m_artists:"Sanatçılarımız",m_vision:"Vizyonumuz",m_radio:"Radyo",m_forartists:"Sanatçılar İçin",m_contact:"İletişim"},
- en:{crumb:"Store",title:"Store",badge:"PRE-ORDER",tag:'12" VINYL · SINGLE/EP · ROCK',m1:"4 Tracks",m3:"33⅓ RPM",rel1:"Release:",rel2:"worldwide shipping",cta:"Pre-order →",note:"The physical record is available for pre-order via elasticStage with secure checkout. The order page opens in a new tab.",ftag:"Independent music company",m_home:"Home",m_shop:"Store",m_about:"About",m_artists:"Our Artists",m_vision:"Our Vision",m_radio:"Radio",m_forartists:"For Artists",m_contact:"Contact"}
+ tr:{crumb:"Mağaza",title:"Mağaza",badge:"ÖN SİPARİŞ",a_tag:'12" VINYL + BOOKLET · ALBÜM · ROCK',a_m1:"9 Parça",tag:'12" VINYL · SINGLE/EP · ROCK',m1:"4 Parça",m3:"33⅓ RPM",rel1:"Çıkış:",rel2:"dünya çapında kargo",cta:"Ön Sipariş →",note:"Fiziksel plak elasticStage üzerinden güvenli ödeme ile ön siparişe alınır. Sipariş sayfası yeni sekmede açılır.",ftag:"Bağımsız müzik şirketi",m_home:"Ana Sayfa",m_shop:"Mağaza",m_about:"Hakkımızda",m_artists:"Sanatçılarımız",m_vision:"Vizyonumuz",m_radio:"Radyo",m_forartists:"Sanatçılar İçin",m_contact:"İletişim"},
+ en:{crumb:"Store",title:"Store",badge:"PRE-ORDER",a_tag:'12" VINYL + BOOKLET · ALBUM · ROCK',a_m1:"9 Tracks",tag:'12" VINYL · SINGLE/EP · ROCK',m1:"4 Tracks",m3:"33⅓ RPM",rel1:"Release:",rel2:"worldwide shipping",cta:"Pre-order →",note:"The physical record is available for pre-order via elasticStage with secure checkout. The order page opens in a new tab.",ftag:"Independent music company",m_home:"Home",m_shop:"Store",m_about:"About",m_artists:"Our Artists",m_vision:"Our Vision",m_radio:"Radio",m_forartists:"For Artists",m_contact:"Contact"}
 };
 let lang=localStorage.getItem('asLang')||'tr';
 function setLang(l){lang=l;localStorage.setItem('asLang',l);document.documentElement.lang=l;document.querySelectorAll('[data-i18n]').forEach(e=>{if(T[l][e.dataset.i18n])e.innerHTML=T[l][e.dataset.i18n]});document.querySelectorAll('.lang span').forEach(s=>s.classList.toggle('on',s.dataset.lang===l))}
