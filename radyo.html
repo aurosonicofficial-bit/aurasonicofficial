@@ -25,6 +25,23 @@ a{color:inherit;text-decoration:none}
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(192,57,43,.5)}70%{box-shadow:0 0 0 9px rgba(192,57,43,0)}100%{box-shadow:0 0 0 0 rgba(192,57,43,0)}}
 .hero h1{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(56px,11vw,140px);line-height:.92;letter-spacing:-1px}
 .hero .rule{width:64px;height:2px;background:var(--gold);margin-top:34px}
+.rgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(232px,1fr));gap:16px;margin:4px 0 2px}
+.rcard{display:block;border-radius:14px;overflow:hidden;text-decoration:none;background:#101012;
+  border:1px solid rgba(255,255,255,.10);transition:transform .18s,border-color .18s,box-shadow .18s}
+.rcard:hover{transform:translateY(-4px);border-color:rgba(212,168,83,.55);box-shadow:0 14px 34px rgba(0,0,0,.5)}
+.rcard .th{position:relative;aspect-ratio:16/9;background:#0b0b0b}
+.rcard .th img{width:100%;height:100%;object-fit:cover;display:block}
+.rcard .lv{position:absolute;top:10px;left:10px;display:inline-flex;align-items:center;gap:6px;
+  background:rgba(198,30,30,.94);color:#fff;font-size:10.5px;letter-spacing:.14em;padding:4px 9px;border-radius:20px}
+.rcard .lv i{width:6px;height:6px;border-radius:50%;background:#fff;animation:aspulse 1.5s infinite}
+@keyframes aspulse{0%,100%{opacity:1}50%{opacity:.2}}
+.rcard .pl{position:absolute;inset:0;display:grid;place-items:center;opacity:0;
+  transition:opacity .18s;background:rgba(0,0,0,.34)}
+.rcard:hover .pl{opacity:1}
+.rcard .pl svg{width:56px;height:40px;filter:drop-shadow(0 3px 10px rgba(0,0,0,.6))}
+.rcard .nm{padding:12px 14px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.rcard .nm b{color:#eee;font-weight:500;font-size:15px;letter-spacing:.04em}
+.rcard .nm span{color:#d4a853;font-size:11.5px;white-space:nowrap}
 .player-wrap{max-width:1040px;margin:0 auto;padding:14px 5% 10px}
 .chans{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:0 0 18px}
 .chans button{font-family:inherit;cursor:pointer;background:transparent;border:1px solid var(--line);border-radius:30px;padding:10px 20px;font-size:12.5px;letter-spacing:1.4px;text-transform:uppercase;font-weight:600;color:var(--ink2);transition:.25s;display:inline-flex;align-items:center;gap:8px}
@@ -72,11 +89,8 @@ footer{margin-top:80px;background:var(--ink);color:rgba(244,241,235,.7);padding:
 </section>
 
 <div class="player-wrap">
-  <div class="chans" id="chans"></div>
-  <div class="frame">
-    <iframe id="yt" src="" title="Aura Sonic Radio — Canlı" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
-  </div>
-  <div class="cue" data-i18n="cue">▶ Sesi açmak için <b>oynat</b>'a basın — yayın kesintisiz sürer.</div>
+  <div class="rgrid" id="rgrid"></div>
+  <div class="cue" data-i18n="cue">Kanala tıkla — canlı yayın YouTube'da açılır.</div>
 </div>
 
 <div class="intro">
@@ -114,7 +128,7 @@ footer{margin-top:80px;background:var(--ink);color:rgba(244,241,235,.7);padding:
 </nav><div class="drawer-foot">AURA SONIC OFFICIAL GROUP LTD<br>London · İzmir</div></aside>
 
 <script>
-const T={tr:{livetag:"Canlı",crumb:"7/24 Yayın",title:"Radyo",cue:"▶ Sesi açmak için <b>oynat</b>'a basın — yayın kesintisiz sürer.",lead:"Dört radyo, tek çatı. Gece yarısından şafağa, kesintisiz.",p1:"Global Hits, Türkçe, Latino ve Phonk — kataloğumuzdan seçilmiş parçalarla dört ayrı kanal, 7 gün 24 saat canlı. Reklamsız, duraksız — sadece müzik. Yukarıdan dinlemek istediğin kanalı seç.",t1:"Global Hits",t2:"Türkçe",t3:"Latino",t4:"Phonk",t5:"7/24 Canlı",ytbtn:"Tüm Radyoları YouTube'da Aç",m_shop:"Mağaza",m_home:"Ana Sayfa",m_about:"Hakkımızda",m_artists:"Sanatçılarımız",m_vision:"Vizyonumuz",m_radio:"Radyo",m_forartists:"Sanatçılar İçin",m_contact:"İletişim",ftag:"Bağımsız müzik şirketi"},en:{livetag:"Live",crumb:"24/7 Stream",title:"Radio",cue:"▶ Press <b>play</b> to start the sound — the stream runs nonstop.",lead:"Four radios, one house. From midnight to dawn, nonstop.",p1:"Global Hits, Turkish, Latino and Phonk — four live channels of hand-picked tracks from our catalog, 24/7. No ads, no breaks — just music. Pick your channel above.",t1:"Global Hits",t2:"Turkish",t3:"Latino",t4:"Phonk",t5:"24/7 Live",ytbtn:"Open all radios on YouTube",m_shop:"Store",m_home:"Home",m_about:"About",m_artists:"Our Artists",m_vision:"Our Vision",m_radio:"Radio",m_forartists:"For Artists",m_contact:"Contact",ftag:"Independent music company"}};
+const T={tr:{livetag:"Canlı",crumb:"7/24 Yayın",title:"Radyo",cue:"Kanala tıkla — canlı yayın <b>YouTube</b>'da açılır.",lead:"Dört radyo, tek çatı. Gece yarısından şafağa, kesintisiz.",p1:"Global Hits, Türkçe, Latino ve Phonk — kataloğumuzdan seçilmiş parçalarla dört ayrı kanal, 7 gün 24 saat canlı. Reklamsız, duraksız — sadece müzik. Yukarıdan dinlemek istediğin kanalı seç.",t1:"Global Hits",t2:"Türkçe",t3:"Latino",t4:"Phonk",t5:"7/24 Canlı",ytbtn:"Tüm Radyoları YouTube'da Aç",m_shop:"Mağaza",m_home:"Ana Sayfa",m_about:"Hakkımızda",m_artists:"Sanatçılarımız",m_vision:"Vizyonumuz",m_radio:"Radyo",m_forartists:"Sanatçılar İçin",m_contact:"İletişim",ftag:"Bağımsız müzik şirketi"},en:{livetag:"Live",crumb:"24/7 Stream",title:"Radio",cue:"Tap a channel — the live stream opens on <b>YouTube</b>.",lead:"Four radios, one house. From midnight to dawn, nonstop.",p1:"Global Hits, Turkish, Latino and Phonk — four live channels of hand-picked tracks from our catalog, 24/7. No ads, no breaks — just music. Pick your channel above.",t1:"Global Hits",t2:"Turkish",t3:"Latino",t4:"Phonk",t5:"24/7 Live",ytbtn:"Open all radios on YouTube",m_shop:"Store",m_home:"Home",m_about:"About",m_artists:"Our Artists",m_vision:"Our Vision",m_radio:"Radio",m_forartists:"For Artists",m_contact:"Contact",ftag:"Independent music company"}};
 let lang=localStorage.getItem('asLang')||'tr';
 function setLang(l){lang=l;localStorage.setItem('asLang',l);document.documentElement.lang=l;document.querySelectorAll('[data-i18n]').forEach(e=>{if(T[l][e.dataset.i18n])e.innerHTML=T[l][e.dataset.i18n]});document.querySelectorAll('.lang span').forEach(s=>s.classList.toggle('on',s.dataset.lang===l))}
 const dr=document.getElementById('drawer'),ov=document.getElementById('ov');
@@ -131,29 +145,32 @@ const FALLBACK=[
   {k:"latino",n:{tr:"Latino",en:"Latino"},id:"LZcRQh38kf4"},
   {k:"phonk", n:{tr:"Phonk",en:"Phonk"},id:"SvKmpk38SDY"}
 ];
-let CH=FALLBACK, cur=localStorage.getItem('asRadio')||'global';
-const YT=document.getElementById('yt'), CB=document.getElementById('chans');
-function play(k,auto){
-  const c=CH.find(x=>x.k===k)||CH[0]; if(!c)return;
-  cur=c.k; localStorage.setItem('asRadio',cur);
-  YT.src='https://www.youtube.com/embed/'+c.id+'?rel=0&playsinline=1&modestbranding=1'+(auto?'&autoplay=1':'');
-  [...CB.children].forEach(b=>b.classList.toggle('on',b.dataset.k===cur));
-}
-function drawBtns(){
-  CB.innerHTML='';
+let CH=FALLBACK, lang0=(typeof lang!=='undefined'?lang:'tr');
+const RG=document.getElementById('rgrid');
+const YTICON='<svg viewBox="0 0 68 48"><path fill="#f00" d="M66.5 7.7a8.6 8.6 0 0 0-6-6C55.3 0 34 0 34 0S12.7 0 7.5 1.7a8.6 8.6 0 0 0-6 6A90 90 0 0 0 0 24a90 90 0 0 0 1.5 16.3 8.6 8.6 0 0 0 6 6C12.7 48 34 48 34 48s21.3 0 26.5-1.7a8.6 8.6 0 0 0 6-6A90 90 0 0 0 68 24a90 90 0 0 0-1.5-16.3z"/><path fill="#fff" d="M27 34l18-10-18-10z"/></svg>';
+function drawCards(){
+  if(!RG) return;
+  const L=(typeof lang!=='undefined'?lang:'tr');
+  RG.innerHTML='';
   CH.forEach(c=>{
-    const b=document.createElement('button');
-    b.dataset.k=c.k; b.innerHTML='<span class="ld"></span>'+(c.n[lang]||c.n.tr);
-    b.onclick=()=>play(c.k,true); CB.appendChild(b);
+    const a=document.createElement('a');
+    a.className='rcard';
+    a.href='https://www.youtube.com/watch?v='+c.id;
+    a.target='_blank'; a.rel='noopener';
+    a.innerHTML='<div class="th">'+
+      '<img loading="lazy" alt="" src="https://i.ytimg.com/vi/'+c.id+'/hqdefault.jpg">'+
+      '<span class="lv"><i></i>'+(L==='tr'?'CANLI':'LIVE')+'</span>'+
+      '<span class="pl">'+YTICON+'</span></div>'+
+      '<div class="nm"><b>'+(c.n[L]||c.n.tr)+'</b><span>YouTube \u2197</span></div>';
+    RG.appendChild(a);
   });
-  play(CH.some(x=>x.k===cur)?cur:CH[0].k,false);
 }
-drawBtns();
+drawCards();
 fetch('radyo.json?t='+Date.now()).then(r=>r.ok?r.json():null).then(d=>{
-  if(d&&Array.isArray(d.radios)&&d.radios.length){CH=d.radios;drawBtns();}
+  if(d&&Array.isArray(d.radios)&&d.radios.length){CH=d.radios;drawCards();}
 }).catch(()=>{});
 const _sl=setLang;
-setLang=function(l){_sl(l);drawBtns();};
+setLang=function(l){_sl(l);drawCards();};
 </script>
 </body>
 </html>
