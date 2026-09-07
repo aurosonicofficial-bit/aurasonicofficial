@@ -1,15 +1,7 @@
 {
-  "updated": "2026-09-07T19:59:24Z",
+  "updated": "2026-09-07T20:59:46Z",
   "note": "VPS2 tarafindan otomatik guncellenir (aura-site-radyo.timer).",
   "radios": [
-    {
-      "k": "global",
-      "n": {
-        "tr": "Global Hits",
-        "en": "Global Hits"
-      },
-      "id": "PHMihT9qc9Q"
-    },
     {
       "k": "turkce",
       "n": {
